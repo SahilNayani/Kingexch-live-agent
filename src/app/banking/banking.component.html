@@ -1,0 +1,466 @@
+<app-header [walletBalance]="walletBalance"></app-header>
+
+<!-- <main>
+    <div class="full-wrap" id="contentToConvert" #contentToConvert>
+        <div class="report-page">
+            <div class="user-list inner-content">
+
+                <div class="card my-exchange-head">
+                    <div class="card-body">
+
+                        <div class="table-filter">
+                            <div class="col-inner">
+                                <label>Items per page:</label>
+    
+                                <select name="betType" class="form-select" [(ngModel)]="itemsPerPage"
+                                    [ngModelOptions]="{standalone: true}" aria-label="Default select example"
+                                    (change)="setSelectedOption($event.target.value)">
+                                    <option value="10" selected>10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+
+                            <div class="col-inner">
+                                <label>Search:</label>
+                                <input type="text" class="form-control" [(ngModel)]="searchQuery"
+                                            (ngModelChange)="searchFilter()" [ngModelOptions]="{standalone: true}"
+                                            placeholder="Search UserName">
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                      
+                                        <th>UID</th>
+                                        <th>Balance</th>
+                                        <th>Available D/W</th>
+                                        <th>Exposure</th>
+                                        <th>Credit Reference</th>
+                                        <th>Reference P | L</th>
+                                        <th>Deposit/Withdraw</th>
+                                        <th>Remark</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let user of userList | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: total_items } ;let i = index;">
+                                        <td>{{user?.user_name}}</td>
+                                        <td [ngClass]="{'red':(user?.balance_reference <= 0),'green':(user?.balance_reference > 0) }">{{user?.balance_reference | number : '0.0-2'}}</td>
+                                        <td [ngClass]="{'red':(user?.balance <= 0),'green':(user?.balance > 0) }">{{user?.balance | number :
+                                            '0.0-2'}}</td>
+                                        <td [ngClass]="{'red':(user?.liability <= 0),'green':(user?.liability > 0) }"><strong>({{user?.liability | number :
+                                            '0.0-2'}})</strong></td>
+                                        <td>
+                                            <a (click)="openModalCreditRefModal(creditRefModal,user);"><strong>{{user?.credit_reference}}</strong>
+                                                <i class="fa fa-pencil-square-o m-l-10"></i>
+                                            </a>
+                                        </td>
+                                        <td [ngClass]="{'red':((user?.balance_reference - user?.credit_reference)<= 0),'green':((user?.balance_reference - user?.credit_reference)> 0) }">({{user?.balance_reference - user?.credit_reference | number : '0.0-2'}})</td>
+                                        <td class="tbl-cell-depst">
+                                            <button class="btn btn-brand btn-secondary active text bt-deposit" [ngClass]="{'bgGreen':(this.crDr == 1 && this.index == i) }"
+                                            (click)="deposit(1,user._id,user.parent_id,i)">
+                                                <span class="text-white">D</span>
+                                            </button>
+                                            <button class="btn btn-brand btn-secondary active text bt-withdraw" [ngClass]="{'bgRed':(this.crDr == 2 && this.index == i) }"
+                                            (click)="deposit(2,user._id,user.parent_id,i)">
+                                                <span class="text-white">W</span>
+                                            </button>
+                                            <input class="form-control inpt-dpst" type="number" [(ngModel)]="settleAmount[i]"  name="280{{i}}" id="{{i}}">
+                                            <button class="btn btn-brand btn-primary bt-full text" (click)="(user?.balance_reference - user?.credit_reference) > 0 ? settlement((user?.balance_reference - user?.credit_reference),i) : settlement(-(user?.balance_reference - user?.credit_reference),i)">
+                                                <span><strong>Full</strong></span>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" placeholder="Remark" type="text" [(ngModel)]="remark[i]" name="281{{i}}" id="{{i}}">
+                                        </td>
+                                       
+                                    </tr>
+                                </tbody>
+                                <tbody *ngIf="userList?.length == 0">
+                                    <tr class="odd">
+                                        <td valign="top" colspan="9" class="dataTables_empty">No matching records found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="report-bottom-paginate">
+                            <pagination-controls (pageChange)="pageChange($event)" class="user-list-pagination">
+                            </pagination-controls>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-sm-4 col-md-2 col-xl mb-3 mb-xl-0 col-6" (click)="clear()">
+                                <button class="btn btn-block btn-default" type="button">Clear All</button>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                                <input class="form-control" name="paymentPass" placeholder="Password.." type="password" [(ngModel)]="passWord">
+                            </div>
+                            <div class="col-12 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0" (click)="depositWithdrawl()">
+                                <button class="btn btn-block btn-primary" type="button">Submit Payment</button>
+                            </div>
+                            <div class="col-md-3 col-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<ng-template #history>
+    <div class="modal-header">
+        <h4 class="modal-title">History</h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+
+    <div class="modal-body">
+        <div class="body-inner">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Updated Amount</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="popUpData == true">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Opening Amount</td>
+                        <td></td>
+                    </tr>
+                    <tr *ngFor="let settleHistory of settlementHistoryData; let i = index;">
+                        <td>{{settleHistory?.s_num}}</td>
+                        <td>{{settleHistory?.createdAt | date :'dd-MM-yyyy hh:mm:ss aa'}}</td>
+                        <td [ngClass]="{'red':settleHistory.amount < 0 ,'green':settleHistory.amount >= 0}">
+                            {{settleHistory?.amount | number : '0.0-2'}}</td>
+                        <td>{{settleHistory?.updated_balance | number : '0.0-2'}}</td>
+                        <td>{{settleHistory?.comment}}</td>
+                    </tr>
+                </tbody>
+                <tbody *ngIf="popUpData == false">
+                    No Record Found...
+                </tbody>
+            </table>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #creditRefModal>
+    <div class="modal-header">
+        <h4 class="modal-title">Edit Credit Reference - {{selectedUser?.user_name}}        </h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="modal-body no-scroll-body">
+        <div class="body-inner">
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label class="col-md-3" >Current : </label>
+                    <label class="col-md-8">
+                        <strong>{{selectedUser?.credit_reference}}</strong>
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label class="col-md-3" >New : </label>
+                    <label class="col-md-8">
+                        <input  placeholder="Credit Reference.." required="" type="number" [(ngModel)]="cRefrence">
+                    </label>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-end">
+            <button type="submit" class="btn btn-success" (click)="updateCRefrence()">Submit</button> &nbsp;
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modalRef.hide()">Cancel</button>
+        </div>
+    </div>
+</ng-template> -->
+
+<div id="layoutSidenav" class="mt-3">
+   <div id="layoutSidenav_nav" class="d-none">
+      <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+         <div class="sb-sidenav-menu">
+            <div class="nav">
+               <div class="sb-sidenav-menu-heading">Core</div>
+               <a class="nav-link" href="index.html">
+                  <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                  Dashboard
+               </a>
+               <div class="sb-sidenav-menu-heading">Interface</div>
+               <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
+                  aria-expanded="false" aria-controls="collapseLayouts">
+                  <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                  Layouts
+                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+               </a>
+               <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                  data-bs-parent="#sidenavAccordion">
+                  <nav class="sb-sidenav-menu-nested nav">
+                     <a class="nav-link" href="layout-static.html">Static Navigation</a>
+                     <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
+                  </nav>
+               </div>
+               <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
+                  aria-expanded="false" aria-controls="collapsePages">
+                  <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                  Pages
+                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+               </a>
+               <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                  <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                        data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                        Authentication
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
+                        data-bs-parent="#sidenavAccordionPages">
+                        <nav class="sb-sidenav-menu-nested nav">
+                           <a class="nav-link" href="login.html">Login</a>
+                           <a class="nav-link" href="register.html">Register</a>
+                           <a class="nav-link" href="password.html">Forgot Password</a>
+                        </nav>
+                     </div>
+                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                        data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                        Error
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                     </a>
+                     <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
+                        data-bs-parent="#sidenavAccordionPages">
+                        <nav class="sb-sidenav-menu-nested nav">
+                           <a class="nav-link" href="401.html">401 Page</a>
+                           <a class="nav-link" href="404.html">404 Page</a>
+                           <a class="nav-link" href="500.html">500 Page</a>
+                        </nav>
+                     </div>
+                  </nav>
+               </div>
+               <div class="sb-sidenav-menu-heading">Addons</div>
+               <a class="nav-link" href="charts.html">
+                  <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                  Charts
+               </a>
+               <a class="nav-link" href="tables.html">
+                  <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                  Tables
+               </a>
+            </div>
+         </div>
+         <div class="sb-sidenav-footer">
+            <div class="small">Logged in as:</div>
+            Aura777
+         </div>
+      </nav>
+   </div>
+   <div id="layoutSidenav_content" class="p-0">
+      <main>
+         <div class="container-fluid px-3">
+            <div class="card mb-4">
+               <div class="card-body">
+                  <div class="table-data-filter">
+                     <div class="dataTables_length" id="">
+                        <label>
+                           Show
+                           <select [(ngModel)]="itemsPerPage" [ngModelOptions]="{standalone: true}"
+                              aria-label="Default select example" (change)="setSelectedPageOption($event.target.value)">
+                              <option value="10" selected>10</option>
+                              <option value="25">25</option>
+                              <option value="50">50</option>
+                              <option value="100">100</option>
+                           </select>
+                           entries
+                        </label>
+                     </div>
+                     <div class="dataTables_filter">
+                        <label>Search:<input type="search" [(ngModel)]="searchQuery"
+                              (ngModelChange)="getUserChildDetail(user_id)" [ngModelOptions]="{standalone: true}"
+                              placeholder="Search UserName"></label>
+                     </div>
+                  </div>
+                  <table class="dataTable-table table-bordered">
+                     <thead>
+                        <tr>
+                           <th>UID</th>
+                           <th>Balance</th>
+                           <th>Available D/W</th>
+                           <th>Exposure</th>
+                           <th>Credit Reference</th>
+                           <th>Reference P/L</th>
+                           <th>Deposit/Withdraw</th>
+                           <th>Remark</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr
+                           *ngFor="let user of userList | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: total_items } ;let i = index;">
+                           <td class="table-font-weight"><span
+                                 class="badge badge-success me-1 text-uppercase">USER</span>{{user?.user_name}}</td>
+                           <td class="table-font-weight"
+                              [ngClass]="{'red':(user?.available_balance <= 0),'green':(user?.available_balance > 0) }">
+                              {{user?.available_balance | number : '0.0-2'}}</td>
+                           <td class="table-font-weight"
+                              [ngClass]="{'red':(user?.balance <= 0),'green':(user?.balance > 0) }">{{user?.balance |
+                              number : '0.0-2'}}</td>
+                           <td class="text-red table-font-weight"
+                              [ngClass]="{'red':(user?.exposure <= 0),'green':(user?.exposure > 0) }">
+                              <strong>({{user?.exposure | number : '0.0-2'}})</strong></td>
+                           <td class="text-blue">
+                              <a class="text-blue" (click)="openModalCreditRefModal(creditRefModal,user);">
+                                 <span class="me-1"><strong>{{user?.credit_reference}}</strong></span>
+                                 <span class="table-icon"><i class="fas fa-pen-to-square fa-fw"></i></span>
+                              </a>
+                           </td>
+                           <td class="table-font-weight"
+                              [ngClass]="{'red':((user?.available_balance - user?.credit_reference)<= 0),'green':((user?.available_balance - user?.credit_reference)> 0) }">
+                              ({{user?.available_balance - user?.credit_reference | number : '0.0-2'}})</td>
+                           <td class="table-font-weight tbl-cell-depst">
+                              <button class="btn btn-brand btn-secondary active text bt-deposit "
+                                 [ngClass]="{'bt-deposit-active':(this.crDr == 1 && this.index == i) }"
+                                 (click)="deposit(1,user.user_id,user.parent_id,i)">
+                                 <span class="text-white">D</span>
+                              </button>
+                              <button class="btn btn-brand btn-secondary active text bt-withdraw "
+                                 [ngClass]="{'bt-withdraw-active':(this.crDr == 2 && this.index == i) }"
+                                 (click)="deposit(2,user.user_id,user.parent_id,i)">
+                                 <span class="text-white">W</span>
+                              </button>
+                              <input class="form-control inpt-dpst" placeholder="0" type="number"
+                                 [(ngModel)]="settleAmount[i]" name="280{{i}}" id="{{i}}" (change)="indexValue(i)">
+                              <button class="btn btn-brand btn-primary bt-full text"
+                                 (click)="(user?.available_balance - user?.credit_reference) >= 0 ? settlement((user?.available_balance - user?.credit_reference),user,i) : settlement(-(user?.available_balance - user?.credit_reference),user,i)">
+
+                                 <span><strong>Full</strong></span>
+                              </button>
+                           </td>
+                           <td class="table-font-weight">
+                              <input class="form-control" placeholder="Remark" type="text" [(ngModel)]="remark[i]"
+                                 name="281{{i}}" id="{{i}}">
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <div class="table-data-footer">
+                     <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+                     </div>
+                     <div class="dataTables_paginate paging_full_numbers">
+                        <pagination-controls (pageChange)="pageChange($event)" class="user-list-pagination">
+                        </pagination-controls>
+                     </div>
+                  </div>
+                  <div class="row align-items-center">
+                     <div class="col-sm-4 col-md-2 col-xl mb-3 mb-xl-0 col-6">
+                        <button class="btn btn-block btn-default" type="button" (click)="clear()">Clear All</button>
+                     </div>
+                     <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                        <input autocomplete="new-password" class="form-control ng-untouched ng-pristine ng-valid"
+                           name="paymentPass" placeholder="Password.." type="password" [(ngModel)]="passWord">
+                     </div>
+                     <div class="col-12 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                        <button class="btn btn-block btn-primary" type="button" (click)="depositWithdrawl()">Submit
+                           Payment</button>
+                     </div>
+                     <div class="col-md-3 col-2"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </main>
+   </div>
+   <!-- credit reference -->
+   <div class="modal fade credit-reference" id="credit_reference" tabindex="-1" role="dialog"
+      aria-labelledby="creditreferenceModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-content">
+               <div class="modal-header bg-primary">
+                  <h5 class="modal-title text-white" id="creditreferenceModalLabel"> Edit Credit Reference -
+                     <span>hdemo</span></h5>
+                  <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <div class="col-md-12">
+                     <div class="form-group row">
+                        <label class="col-md-2">Current</label>
+                        <label class="col-md-8"><strong>1000</strong></label>
+                     </div>
+                  </div>
+                  <div class="col-md-12">
+                     <div class="form-group row">
+                        <label class="col-md-2 col-form-label">New</label>
+                        <div class="col-md-8">
+                           <input class="form-control" name="creditReference" placeholder="New Credit Reference.."
+                              required="" type="number">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-12">
+                     <div class="form-group row">
+                        <label class="col-md-2 col-form-label">Password</label>
+                        <div class="col-md-8">
+                           <input autocomplete="new-password" class="form-control" name="rate" placeholder="Password.."
+                              required="" type="password">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button class="btn btn-primary" type="button">Submit</button>
+                  <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<ng-template #creditRefModal>
+   <div class="modal-header bg-primary">
+      <h5 class="modal-title text-white" id="creditreferenceModalLabel"> Edit Credit Reference -
+         <span>{{selectedUser?.user_name}}</span></h5>
+      <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+         <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   <div class="modal-body">
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2">Current</label>
+            <label class="col-md-8"><strong>{{selectedUser?.credit_reference}}</strong></label>
+         </div>
+      </div>
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">New</label>
+            <div class="col-md-8">
+               <input class="form-control" name="creditReference" placeholder="New Credit Reference.." required=""
+                  type="number" [(ngModel)]="cRefrence">
+            </div>
+         </div>
+      </div>
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">Password</label>
+            <div class="col-md-8">
+               <input autocomplete="new-password" class="form-control" name="rate" placeholder="Password.." required=""
+                  type="password">
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="modal-footer">
+      <button class="btn btn-primary" type="button" (click)="updateCRefrence()">Submit</button>
+      <button class="btn btn-default" type="button" data-dismiss="modal" (click)="modalRef.hide()">Cancel</button>
+   </div>
+</ng-template>

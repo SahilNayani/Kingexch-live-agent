@@ -1,0 +1,350 @@
+<app-header></app-header>
+<!-- <app-sidebar></app-sidebar> -->
+
+<main>
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="bet-history inner-content">
+                <div class="page-title">
+                    <h3>Result & RollBack</h3>
+                    <div class="breadcrumb">
+                        <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                class="fa fa-arrow-left"></i>Back</a>
+                    </div>
+                </div>
+                <div class="filterDiv">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form>
+                                <div class="row form-field">
+
+                                    <!-- <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group">
+
+                                                <input name="searchSport"
+                                                    class="search-input dropdown-toggle form-control"
+                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false" type="text" autocomplete="off"
+                                                    [(ngModel)]="searchSport" placeholder="Search Sport Name">
+
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <a class="dropdown-item"
+                                                        *ngFor="let sport of SportList |search: searchSport :'sport_name'">
+                                                        <div class="event-info"
+                                                            (click)="getMatchResultFilterData(0,sport.sport_id,sport.sport_name)">
+                                                            <div class="event-format-strip">
+                                                                <div class="event-team">
+                                                                    <div class="team-name">{{sport?.sport_name}}
+                                                                        
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group mb-0">
+
+                                                <input name="searchSeries"
+                                                    class="search-input dropdown-toggle form-control"
+                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false" type="text" autocomplete="off"
+                                                    [(ngModel)]="searchSeries" placeholder="Search Series Name...">
+
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <a class="dropdown-item"
+                                                        *ngFor="let sport of SeriesList |search: searchSeries :'series_name'">
+                                                        <div class="event-info"
+                                                            (click)="getMatchResultFilterData(1,sport.series_id,sport.series_name)">
+                                                            <div class="event-format-strip">
+                                                                <div class="event-team">
+                                                                    <div class="team-name">{{sport?.series_name}}</div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group mb-0">
+
+                                                <input name="searchMatch"
+                                                    class="search-input dropdown-toggle form-control"
+                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false" type="text" autocomplete="off"
+                                                    [(ngModel)]="searchMatch" placeholder="Search Match Name...">
+
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <a class="dropdown-item"
+                                                        *ngFor="let sport of MatchList |search: searchMatch :'match_name'">
+                                                        <div class="event-info"
+                                                            (click)="getMatchResultFilterData(2,sport.match_id,sport.match_name)">
+                                                            <div class="event-format-strip">
+                                                                <div class="event-team">
+                                                                    <div class="team-name">{{sport?.match_name}} </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group mb-0">
+
+                                                <input name="searchMarket"
+                                                    class="search-input dropdown-toggle form-control"
+                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false" type="text" autocomplete="off"
+                                                    [(ngModel)]="searchMarket" placeholder="Search Market Name...">
+
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <a class="dropdown-item"
+                                                        *ngFor="let sport of MarketList |search: searchMarket :'market_name'">
+                                                        <div class="event-info"
+                                                            (click)="(sport.type == '1') ? getMatchResultFilterData(3,sport.market_id,sport.market_name) : getMatchResultFilterData(4,sport.market_id,sport.market_name)">
+                                                            <div class="event-format-strip">
+                                                                <div class="event-team">
+                                                                    <div class="team-name">{{sport?.market_name}} </div>
+                                                                </div>
+                                                               
+                                                            </div>
+
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-md-1" style="width: 15%;margin:0 5px 5px 5px;">
+                                    
+                                        <ng-select [ngModelOptions]="{standalone: true}" [(ngModel)]="searchSport"
+                                            (change)="getMatchResultFilterData(0,searchSport.sport_id,searchSport.sport_name) "
+                                            (blur)="getMatchResultFilterData(0,searchSport.sport_id,searchSport.sport_name)" placeholder="Search Sport Name"
+                                            (clear)="getMatchResultFilterData(0,undefined,undefined)">
+                                            <ng-option *ngFor="let sport of SportList" [value]="sport">{{sport.sport_name}}</ng-option>
+                                        </ng-select>
+                                    </div>
+                                    <div class="col-md-1" style="width: 15%;margin:0 5px;">
+                                        <ng-select [ngModelOptions]="{standalone: true}" [(ngModel)]="searchSeries"
+                                            (change)="getMatchResultFilterData(1,searchSeries.series_id,searchSeries.series_name) "
+                                            (blur)="getMatchResultFilterData(1,searchSeries.series_id,searchSeries.series_name)"
+                                            placeholder="Search Series Name" (clear)="getMatchResultFilterData(1,undefined,undefined)">
+                                            <ng-option *ngFor="let series of SeriesList" [value]="series">{{series.series_name}}</ng-option>
+                                        </ng-select>
+                                    </div>
+                                    <div class="col-md-1" style="width: 15%;margin:0 5px;">
+                                        <ng-select [ngModelOptions]="{standalone: true}" [(ngModel)]="searchMatch"
+                                            (change)="getMatchResultFilterData(2,searchMatch.match_id,searchMatch.match_name) "
+                                            (blur)="getMatchResultFilterData(2,searchMatch.match_id,searchMatch.match_name)"
+                                            placeholder="Search Match Name" (clear)="getMatchResultFilterData(2,undefined,undefined)">
+                                            <ng-option *ngFor="let match of MatchList" [value]="match">{{match.match_name}}</ng-option>
+                                        </ng-select>
+                                    </div>
+                                  
+                                    <!-- <hr> -->
+                                    <div class="col-md-1" style="width: 15%;margin:0 5px;">
+                                        <ng-select [ngModelOptions]="{standalone: true}" [(ngModel)]="searchMarket"
+                                            (change)="(searchMarket.type == '1') ? getMatchResultFilterData(3,searchMarket.market_id,searchMarket.market_name) : getMatchResultFilterData(4,searchMarket.market_id,searchMarket.market_name) "
+                                            (blur)="(searchMarket.type == '1') ? getMatchResultFilterData(3,searchMarket.market_id,searchMarket.market_name) : getMatchResultFilterData(4,searchMarket.market_id,searchMarket.market_name)"
+                                            placeholder="Search Market Name"
+                                            (clear)="(searchMarket.type == '1') ? getMatchResultFilterData(3,undefined,undefined) :getMatchResultFilterData(4,undefined,undefined)">
+                                            <ng-option *ngFor="let event of MarketList" [value]="event">{{event.market_name}}</ng-option>
+                                        </ng-select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group mb-0">
+
+                                                <input name="searchUser"
+                                                    class="search-input dropdown-toggle form-control"
+                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false" type="text" autocomplete="off"
+                                                    [(ngModel)]="searchUser" placeholder="Search Winner Namee...">
+
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <a class="dropdown-item"
+                                                        *ngFor="let sport of userlist |search: searchUser :'user_name'">
+                                                        <div class="event-info" (click)="getFancy(sport.match_id)">
+                                                            <div class="event-format-strip">
+                                                                <div class="event-team">
+                                                                    <div class="team-name">{{sport?.user_name}} </div>
+                                                                </div>
+                                                                <!-- <div class="event-full-date">
+                                                                    <span class="date">{{moment(sport?.match_date).utcOffset("+0").format('D')}}
+                                                                        {{moment(sport?.match_date).utcOffset("+0").format('MMM')}}
+                                                                        {{moment(sport?.match_date).utcOffset("+0").format('HH:mm')}} IST</span>
+                                                                </div>
+                                 -->
+                                                            </div>
+
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner text-end">
+                                            <div class="btn-list">
+                                                <button type="button" class="btn btn-success">Filter</button>
+                                                <button type="button" class="btn btn-danger" style="z-index: 9;"
+                                                    (click)="clear()">Clear</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="filterDiv">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form>
+                                <div class="row form-field">
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group mb-0">
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>Sport Name</option>
+                                                    <option value="1">Open</option>
+                                                    <option value="2">Settled</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group mb-0">
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>Match Name</option>
+                                                    <option value="1">Open</option>
+                                                    <option value="2">Settled</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group mb-0">
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>Market Name</option>
+                                                    <option value="1">Open</option>
+                                                    <option value="2">Settled</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group mb-0">
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>Winner Name</option>
+                                                    <option value="1">Open</option>
+                                                    <option value="2">Settled</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-inner text-end">
+                                            <div class="btn-list">
+                                                <button type="button" class="btn btn-success">Save Result</button>
+                                                <button type="button" class="btn btn-info">Abandoned</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="filter-tab">
+
+                    <div class="report-table">
+                        <table datatable class="table">
+                            <thead>
+                                <tr>
+                                    <!-- <th><input type="checkbox"></th> -->
+                                    <th>S.No.</th>
+                                    <th>Sport Name
+                                        <i class="fa fa-sort-amount-asc" aria-hidden="true" *ngIf="assendingSportname"
+                                            (click)="filterList('sport_name','asc')"></i>
+                                        <i class="fa fa-sort-amount-desc" aria-hidden="true" *ngIf="!assendingSportname"
+                                            (click)="filterList('sport_name','desc')"></i>
+                                    </th>
+                                    <th>Series Name
+                                        <i class="fa fa-sort-amount-asc" aria-hidden="true" *ngIf="assendingSeriesname"
+                                            (click)="filterList('series_name','asc')"></i>
+                                        <i class="fa fa-sort-amount-desc" aria-hidden="true"
+                                            *ngIf="!assendingSeriesname" (click)="filterList('series_name','desc')"></i>
+                                    </th>
+                                    <th>Match Name
+                                        <i class="fa fa-sort-amount-asc" aria-hidden="true" *ngIf="assendingMatchname"
+                                            (click)="filterList('match_name','asc')"></i>
+                                        <i class="fa fa-sort-amount-desc" aria-hidden="true" *ngIf="!assendingMatchname"
+                                            (click)="filterList('match_name','desc')"></i>
+                                    </th>
+                                    <th>Market Name</th>
+                                    <th>Selection Name</th>
+                                    <th>Date
+                                        <i class="fa fa-sort-amount-asc" aria-hidden="true" *ngIf="assendingDate"
+                                            (click)="filterList('createdAt','asc')"></i>
+                                        <i class="fa fa-sort-amount-desc" aria-hidden="true" *ngIf="!assendingDate"
+                                            (click)="filterList('createdAt','desc')"></i>
+                                    </th>
+                                    <th>Result</th>
+                                    <th>Rollbacks</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let match of unDeclaredMatch;let i = index;">
+                                    <tr>
+                                        <!-- <td><input type="checkbox"></td> -->
+                                        <td>{{i+1}}</td>
+                                        <td>{{match?.sport_name}} </td>
+                                        <td>{{match?.series_name}}</td>
+                                        <td>{{match?.match_name}} <br>
+                                            <div
+                                                [ngClass]="{'red':match.result_status != 'Result declared successfully...','green':match.result_status == 'Result declared successfully...'}">
+                                                {{match.result_status == '' ? '' : match.result_status}}</div>
+                                        </td>
+                                        <td>{{match?.market_name}}</td>
+                                        <td *ngIf="match.result != null">{{match.selection_name}}</td>
+                                        <td>{{(match?.createdAt | date :'dd-MM-yyyy hh:mm:ss aa')}}</td>
+                                        <td>{{match?.is_abandoned == 0 ? '1' : 'Abonded'}}</td>
+                                        <td>0</td>
+                                        <td>
+                                            <button type="button" class="btn-info td-btn" (click)="rollback(match)">Roll
+                                                Back</button>
+                                            <button type="button" class="btn-info td-btn">Fancy P|L</button>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

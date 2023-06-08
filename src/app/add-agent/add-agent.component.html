@@ -1,0 +1,344 @@
+<app-header></app-header>
+<!-- <app-sidebar></app-sidebar> -->
+<main>
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="addAgent inner-content">
+                <div class="page-title">
+                    <h3> Add Agent Details</h3>
+                    <div class="breadcrumb">
+                        <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                class="fa fa-arrow-left"></i>Back</a>
+                    </div>
+                </div>
+                <div class="admin-form form-div">
+                    <form [formGroup]='addAgentFrom' (ngSubmit)="addAgent()">
+
+                        <div class="row">
+                            <div class="col-md-12 col-12 col pl-0 pr-0">
+                                <div class="col-inner">
+                                    <div class="col-title">
+                                        <h4>Personal Details</h4>
+                                    </div>
+                                    <div class="field-list row">
+                                        <div class="col-md-3 col-sm-6 col-12 col">
+                                            <div class="form-group">
+                                                <label class="form-label">Parent Name</label>
+                                                <input type="text" formControlName="parent_user_name" placeholder=""
+                                                    class="form-control" readonly />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-6 col-12 col">
+                                            <div class="form-group">
+                                                <label class="form-label">Agent Name</label>
+                                                <input type="text" formControlName="name" #t="ngbTooltip"
+                                                    triggers="manual" (mouseenter)=" t.open()" (key)="t.open()"
+                                                    (blur)="t.open()"
+                                                    (keyup)="setUserTypeName($event.target.value); t.open()"
+                                                    placeholder="" [autoClose]="false" class="form-control"
+                                                    ngbTooltip="{{addAgentFrom.controls.name.errors  |DisplayErrorMessage}}" />
+                                                <!-- <span *ngIf="addAgentFrom.controls.name.errors && addAgentFrom.get('name').touched" class="red-alert-message">
+                                                        {{addAgentFrom.controls.name.errors |DisplayErrorMessage}}
+                                                    </span> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-12 col">
+                                            <div class="form-group">
+                                                <label class="form-label">Username</label>
+                                                <input type="text" placeholder="" class="form-control"
+                                                    [autoClose]="false" #t1="ngbTooltip" triggers="manual"
+                                                    (mouseenter)=" t1.open()" (key)="t1.open()" (blur)="t1.open()"
+                                                    ngbTooltip="{{addAgentFrom.controls.user_name.errors  |DisplayErrorMessage}}"
+                                                    (change)="checkUserName($event.target.value)"
+                                                    formControlName="user_name" />
+                                                <!-- <span *ngIf="addAgentFrom.controls.user_name.errors && addAgentFrom.get('user_name').touched" class="red-alert-message">
+                                                    {{addAgentFrom.controls.user_name.errors |DisplayErrorMessage}}
+                                                </span> -->
+                                                <!-- <div *ngIf="isUserNameExist && !addAgentFrom.controls.user_name.errors" class="red-alert-message"> user name already exist </div> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-12 col">
+                                            <div class="form-group inner-addon right-addon">
+                                                <label class="form-label">Password</label>
+                                                <div class="input-group">
+                                                    <input [type]="showPassword ? 'text' : 'password'"
+                                                        id="password-field" pwd-control formControlName="password"
+                                                        placeholder="" class="form-control" [autoClose]="false"
+                                                        #t2="ngbTooltip" triggers="manual" (mouseenter)=" t2.open()"
+                                                        (key)="t2.open()" (blur)="t2.open()"
+                                                        ngbTooltip="{{addAgentFrom.controls.password.errors  |DisplayErrorMessage}}" />
+                                                    <div>
+                                                        <i alt="show" class="fa fa-eye eye-show"
+                                                            (click)="showPassword = !showPassword"
+                                                            [class.hide]="showPassword"></i>
+                                                        <i alt="hide" class="fa fa-eye-slash eye-hide"
+                                                            (click)="showPassword = !showPassword"
+                                                            [class.hide]="!showPassword"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-12 col" *ngIf="loggedInUserTypeId == 0">
+                                            <div class="form-group">
+                                                <label class="form-label">Domain List</label>
+                                                <ng-select [items]="websiteList" [autoClose]="false" #t3="ngbTooltip"
+                                                    triggers="manual" (mouseenter)=" t3.open()" (key)="t3.open()"
+                                                    (blur)="t3.open()" (change)="selectedDomain($event)" bindLabel="host_name"
+                                                    bindValue="_id" placeholder="Select Domain" formControlName='domain'
+                                                    ngbTooltip="{{addAgentFrom.controls.domain.errors  |DisplayErrorMessage}}">
+                                                </ng-select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-12 col" *ngIf="loggedInUserTypeId != 0">
+                                            <div class="form-group">
+                                                <label class="form-label">Domain Name</label>
+                                                <input type="text" class="form-control" [autoClose]="false"
+                                                    #t4="ngbTooltip" triggers="manual" (mouseenter)=" t4.open()"
+                                                    (key)="t4.open()" (blur)="t4.open()" [(ngModel)]="domainName"
+                                                    [ngModelOptions]="{standalone: true}" ngbTooltip="{{addAgentFrom.controls.domain.errors  |DisplayErrorMessage}}" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-12 col">
+                                            <div class="form-group">
+                                                <label class="form-label">Child Level</label>
+                                                <select *ngIf="loggedInUserTypeId != 0" [autoClose]="false"
+                                                    #t5="ngbTooltip" triggers="manual" (mouseenter)=" t5.open()"
+                                                    (key)="t5.open()" (blur)="t5.open()" formControlName='child_level'
+                                                    ngbTooltip="{{addAgentFrom.controls.child_level.errors  |DisplayErrorMessage}}"
+                                                    class="form-select"
+                                                    (change)="onChangeChildLevel($event.target.value)">
+                                                    <ng-container *ngFor='let value of levels'>
+                                                        <option [value]="value.level" *ngIf="value.level != 1">
+                                                            {{value.level}}</option>
+                                                    </ng-container>
+
+                                                </select>
+
+                                                <input [autoClose]="false" #t6="ngbTooltip" triggers="manual"
+                                                    (mouseenter)=" t6.open()" (key)="t6.open()" (blur)="t6.open()"
+                                                    *ngIf="loggedInUserTypeId == 0" type="number" min="1" max="100"
+                                                    oninput="validity.valid||(value='');" formControlName='child_level'
+                                                    (keyup)="setUserTypeIdAndName($event.target.value)"
+                                                    placeholder="Can create number of child" class="form-control"
+                                                    ngbTooltip="{{addAgentFrom.controls.child_level.errors  |DisplayErrorMessage}}" />
+                                                <!-- <span *ngIf="addAgentFrom.controls.child_level.errors && addAgentFrom.get('child_level').touched" class="red-alert-message">
+                                                    {{addAgentFrom.controls.child_level.errors |DisplayErrorMessage}}
+                                                </span> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-12 col" style="padding-top: 15px;">
+                                            <div class="form-group">
+                                                <label class="form-label">Point</label>
+                                                <!-- <input type="number" formControlName='point'  [autoClose]="false" #t7="ngbTooltip" triggers="manual" (mouseenter)=" t7.open()" (key)="t7.open()" (blur)="t7.open()" placeholder="" class="form-control" ngbTooltip="{{addAgentFrom.controls.point.errors  |DisplayErrorMessage}}" *ngIf="userDetail?.user_type_id == 0" />
+                                                <input type="number" formControlName='point'  [autoClose]="false" #t8="ngbTooltip" triggers="manual" (mouseenter)=" t8.open()" (key)="t8.open()" (blur)="t8.open()"placeholder="" class="form-control" ngbTooltip="{{addAgentFrom.controls.point.errors  |DisplayErrorMessage}}" *ngIf="userDetail?.user_type_id != 0" readonly/> -->
+                                                <!-- <span *ngIf="addAgentFrom.controls.point.errors && addAgentFrom.get('point').touched" class="red-alert-message">
+                                                    {{addAgentFrom.controls.point.errors |DisplayErrorMessage}}
+                                                </span> -->
+                                                <input type="text" *ngIf="userDetail?.user_type_id != 0" placeholder=""
+                                                    class="form-control" formControlName="point"
+                                                    #pointTooltip="ngbTooltip" triggers="manual" [autoClose]="false"
+                                                    (mouseenter)=" pointTooltip.open()" (key)="pointTooltip.open()"
+                                                    (blur)="pointTooltip.open()"
+                                                    ngbTooltip="{{addAgentFrom.controls.point.errors |DisplayErrorMessage}}"
+                                                    [readonly]="userDetail?.user_type_id != 0" />
+
+                                                <select *ngIf="userDetail?.user_type_id == 0" class="form-control"
+                                                    formControlName="point" #pointTooltip="ngbTooltip" triggers="manual"
+                                                    [autoClose]="false" (mouseenter)=" pointTooltip.open()"
+                                                    (key)="pointTooltip.open()" (blur)="pointTooltip.open()"
+                                                    ngbTooltip="{{addAgentFrom.controls.point.errors |DisplayErrorMessage}}">
+                                                    <option value="1">1</option>
+                                                    <option value="100">100</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-6 col-12 col">
+                                            <div class="form-group">
+                                                <label class="form-label">Exposure Limit</label>
+                                                <input type="number" formControlName='exposure_limit' placeholder=""
+                                                    [autoClose]="false" #t9="ngbTooltip" triggers="manual"
+                                                    (mouseenter)=" t9.open()" (key)="t9.open()" (blur)="t9.open()"
+                                                    class="form-control"
+                                                    ngbTooltip="{{addAgentFrom.controls.exposure_limit.errors  |DisplayErrorMessage}}" />
+                                                <span>[Note: Point (If no limit then enter -1)]</span><br>
+                                                <!-- <span *ngIf="addAgentFrom.controls.exposure_limit.errors  && addAgentFrom.get('exposure_limit').touched" class="red-alert-message">
+                                                    {{addAgentFrom.controls.exposure_limit.errors |DisplayErrorMessage}}
+                                                </span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12 col pl-0">
+                                <div class="col-inner">
+                                    <div class="col-title">
+                                        <h4>Sharing</h4>
+                                    </div>
+                                    <div class="field-list">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Game</th>
+                                                    <th class="text-center">Share</th>
+                                                    <th class="text-end">Parent Share</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+
+                                                <tr *ngFor="let sport of userSportPartnerShip; let i=index">
+                                                    <td>{{sport?.name}}</td>
+                                                    <td class="form-group">
+                                                        <input [autoClose]="false" #tindex="ngbTooltip"
+                                                            triggers="manual" (mouseenter)=" tindex.open()"
+                                                            (key)="tindex.open()" (blur)="tindex.open()" type="number"
+                                                            min="0" max="100" oninput="validity.valid||(value='');"
+                                                            [(ngModel)]="sport?.percentage[sport.percentage.length -1].user_share"
+                                                            [ngModelOptions]="{standalone: true}"
+                                                            (ngModelChange)="addUserEnteredShareInList(sport?.percentage[sport.percentage.length -1].user_share,sport,i)"
+                                                            #sharePercentage="ngModel" required
+                                                            [ngbTooltip]="(sharePercentage.invalid) ? 'Please enter share' : shareMessageValidation[i]" />
+                                                        <span>%</span>
+
+                                                        <!-- <p *ngIf="sharePercentage.invalid" class="red-alert-message">Please enter share</p>
+                                                        <p *ngIf="shareMessageValidation[i]" class="red-alert-message"> Please enter share less than or equal to parent share </p> -->
+                                                    </td>
+
+                                                    <!-- <td class="text-end" >{{sport.percentage[sport.percentage.length -1].user_share -
+                                                        sport.percentage[sport.percentage.length -1].user_share == 'NaN' || sport.percentage[sport.percentage.length -1].user_share -
+                                                        sport.percentage[sport.percentage.length -1].user_share <= 0 ? sport.percentage[sport.percentage.length -1].user_share : sport.percentage[sport.percentage.length -1].user_share -
+                                                        sport.percentage[sport.percentage.length -1].user_share}}%</td> -->
+                                                    <td class="text-end">
+                                                        {{(addedSportShareList[i]?.percentage[this.addedSportShareList[i]?.percentage.length
+                                                        -1 ].parent_share) - (sport?.percentage[sport.percentage.length
+                                                        -1].user_share) }}%</td>
+
+                                                    <!-- <td class="text-end"  >
+                                                                {{ (sport?.percentage[sport.percentage.length -1].parent_share) - (addedSportShareList[i]?.percentage[this.addedSportShareList[i]?.percentage.length -1 ].parent_share)  }}%</td> -->
+
+                                                    <!-- <td class="text-end"  *ngIf="addedSportShareList[i]?.percentage[this.addedSportShareList[i]?.percentage.length -1 ].parent_share != addedSportShareList[i]?.percentage[this.addedSportShareList[i]?.percentage.length -1 ].user_share" >
+                                                        {{addedSportShareList[i]?.percentage[this.addedSportShareList[i]?.percentage.length -1 ].parent_partnership_share}}%</td> -->
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-12 col">
+                                <div class="col-inner">
+                                    <div class="col-title">
+                                        <h4>Commission Setting</h4>
+                                    </div>
+                                    <div class="field-list">
+                                        <div class="form-group">
+                                            <label class="form-label">Market Commission</label>
+                                            <input type="number" min="0" max="99" oninput="validity.valid||(value='');"
+                                                ngbTooltip="{{addAgentFrom.controls.match_commission.errors  |DisplayErrorMessage}}"
+                                                formControlName='match_commission' placeholder="" class="form-control"
+                                                [autoClose]="false" #tMarket="ngbTooltip" triggers="manual"
+                                                (mouseenter)=" tMarket.open()" (key)="tMarket.open()"
+                                                (blur)="tMarket.open()" />
+                                            <!-- <span *ngIf="addAgentFrom.controls.match_commission.errors  && addAgentFrom.get('match_commission').touched" class="red-alert-message">
+                                                    {{addAgentFrom.controls.match_commission.errors |DisplayErrorMessage}}
+                                                </span> -->
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Session Commission</label>
+                                            <input type="number" min="0" max="99" [autoClose]="false"
+                                                #tsession="ngbTooltip" triggers="manual" (mouseenter)=" tsession.open()"
+                                                (key)="tsession.open()" (blur)="tsession.open()"
+                                                oninput="validity.valid||(value='');"
+                                                formControlName='session_commission'
+                                                ngbTooltip="{{addAgentFrom.controls.session_commission.errors  |DisplayErrorMessage}}"
+                                                placeholder="" class="form-control" />
+                                            <!-- <span *ngIf="addAgentFrom.controls.session_commission.errors && addAgentFrom.get('match_commission').touched" class="red-alert-message">
+                                                    {{addAgentFrom.controls.session_commission.errors |DisplayErrorMessage}}
+                                                </span> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-12 col pr-0">
+                                <div class="col-inner">
+                                    <div class="col-title">
+                                        <h4>Permissions</h4>
+                                    </div>
+                                    <div class="field-list">
+                                        <div class="form-check" *ngFor="let permission of permissions ; let ind=index">
+                                            <ng-container *ngIf="permission.is_allow">
+                                                <input class="form-check-input" type="checkbox"
+                                                    [value]="permission.is_allow"
+                                                    (change)='checkedPermissions($event,ind)'
+                                                    id="flexCheckDefault+{{ind}}" [checked]="permission.is_allow">
+                                                <label class="form-check-label"
+                                                    for="flexCheckDefault+{{ind}}">{{permission.name}}</label>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="btn-col text-right">
+                                    <button type="submit" class="btn btn-success">Add Agent</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<ng-template #parent>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Select Parent</h4>
+            <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i
+                    class="fa fa-times"></i></a>
+        </div>
+        <div class="modal-body">
+            <div class="body-inner">
+                <ul>
+                    <li class="branch">
+                        <i class="fa fa-chevron-down"></i>
+                        <input type="radio" class="radio-input" name="parentName"> Putin
+                        <ul>
+                            <li class="branch">66666666
+                                <i class="fa fa-chevron-down"></i>
+                                <input type="radio" class="radio-input" name="parentName"> Agent1
+                            </li>
+                            <li class="branch">
+                                <i class="fa fa-chevron-down"></i>
+                                <input type="radio" class="radio-input" name="parentName"> Agent2
+                                <ul>
+                                    <li class="branch">
+                                        <i class="fa fa-chevron-down"></i>
+                                        <input type="radio" class="radio-input" name="parentName"> user1
+                                    </li>
+                                    <li class="branch">
+                                        <i class="fa fa-chevron-down"></i>
+                                        <input type="radio" class="radio-input" name="parentName"> user2
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <a href="javascript:void(0)" class="modal-close red_button btn" data-dismiss="modal"
+                (click)="modalRef.hide()">Close</a>
+        </div>
+    </div>
+</ng-template>

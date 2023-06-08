@@ -1,0 +1,218 @@
+<app-header></app-header>
+<!-- <app-sidebar></app-sidebar> -->
+
+<main>
+    <div class="account-info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="divider-top">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="card card-report">
+                                    <div class="card-body p-0">
+                                        <form>
+                                            <div class="row form-field">
+                                                <div class="filter-column">
+                                                    <div class="col-inner">
+                                                        <div class="form-group dateTimePicker">
+                                                            <input type="text" class="form-control" [popover]="popTemplate" placement="bottom" [outsideClick]="true" #startpopoverRef="bs-popover" value="{{startdateTime | date:'yyyy-MM-dd HH:mm:ss '}}" (click)="showDate()">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="filter-column">
+                                                    <div class="col-inner">
+                                                        <div class="form-group dateTimePicker">
+                                                            <input type="text" class="form-control" [popover]="popTemplate1" placement="bottom" [outsideClick]="true" #endpopoverRef="bs-popover" value="{{enddateTime | date:'yyyy-MM-dd HH:mm:ss '}}" (click)="showDate()">
+                                                        </div>
+                                                    </div>
+                                                </div><div class="filter-column">
+                                                    <ng-select [ngModelOptions]="{standalone: true}" [(ngModel)]="searchSeries"
+                                                        (change)="getProfitLossFilterData(1,searchSeries?.series_id,searchSeries?.series_name,'filterBtnClick') "
+                                                        (blur)="getProfitLossFilterData(1,searchSeries?.series_id,searchSeries?.series_name,'filterBtnClick')"
+                                                        placeholder="Search Series Name" (clear)="getProfitLossFilterData(1,undefined,undefined,'filterBtnClick')">
+                                                        <ng-option *ngFor="let series of SeriesList" [value]="series">{{series.series_name}}</ng-option>
+                                                    </ng-select>
+                                                </div>
+                                                <div class="filter-column">
+                                                    <ng-select [ngModelOptions]="{standalone: true}" [(ngModel)]="searchMatch"
+                                                        (change)="getProfitLossFilterData(2,searchMatch.match_id,searchMatch.match_name,'filterBtnClick') "
+                                                        (blur)="getProfitLossFilterData(2,searchMatch.match_id,searchMatch.match_name,'filterBtnClick')"
+                                                        placeholder="Search Match Name" (clear)="getProfitLossFilterData(2,undefined,undefined,'filterBtnClick')">
+                                                        <ng-option *ngFor="let match of MatchList" [value]="match">{{match.match_name}}</ng-option>
+                                                    </ng-select>
+                                                </div>
+                                                <div class="filter-column">
+                                                    <ng-select [ngModelOptions]="{standalone: true}" [(ngModel)]="searchMarket"
+                                                        (change)="(searchMarket.type == '1') ? getProfitLossFilterData(3,searchMarket.event_id,searchMarket.event_name,'filterBtnClick') : getProfitLossFilterData(4,searchMarket.event_id,searchMarket.event_name,'filterBtnClick') "
+                                                        (blur)="(searchMarket.type == '1') ? getProfitLossFilterData(3,searchMarket.event_id,searchMarket.event_name,'filterBtnClick') : getProfitLossFilterData(4,searchMarket.event_id,searchMarket.event_name,'filterBtnClick')"
+                                                        placeholder="Search Market Name"
+                                                        (clear)="(searchMarket.type == '1') ? getProfitLossFilterData(3,undefined,undefined,'filterBtnClick') :getProfitLossFilterData(4,undefined,undefined,'filterBtnClick')">
+                                                        <ng-option *ngFor="let event of MarketList" [value]="event">{{event.event_name}}</ng-option>
+                                                    </ng-select>
+                                                </div>
+                                                <div class="filter-column">
+                                                    <div class="col-inner text-end">
+                                                        <div class="btn-list">
+                                                            <button type="button" class="btn btn-success"
+                                                                (click)="profitLossData('filterBtnClick')">Filter</button>
+                                                            <button type="button" class="btn btn-danger"
+                                                                (mousedown)="onClickClearBtn()">Clear</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="card card-accent-primary">
+                                    <div class="card-header account-detail-head">
+                                        Fancy P|L 
+                                    </div>
+
+                                    <div class="card-body account-stat-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered dataTable no-footer">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>S.No.</th>
+                                                                <th>Date</th>
+                                                                <th>Sports | Series</th>
+                                                                <th>Match | Market</th>
+                                                                <th>P | L</th>
+                                                                <th>Commission</th>
+                                                                <th>Net PNL</th>
+                                                                <th>ViewBets</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr
+                                                                *ngFor="let profit of profitData| paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems };let i = index;">
+                                                                <td>{{itemsPerPage *(currentPage-1)+i+1}}</td>
+                                                                <td>
+                                                                    <span class="date">{{profit?.result_date| date :'dd-MM-yyyy'}}</span><br>
+                                                                    <span class="date">{{profit?.result_date| date :'hh:mm:ss aa'}}</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="sport-name">{{profit?.sport_name}}</span><br>
+                                                                    <span class="series-name">{{profit?.series_name}}</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="match-name">{{profit?.match_name}}</span><br>
+                                                                    <span class="event-name">{{profit?.event_name}}</span>
+                                                                </td>
+                                                                <td [ngClass]="{'red':profit.p_l < 0 ,'green':profit.p_l >= 0}">{{profit?.p_l | number :
+                                                                    '0.0-2'}}</td>
+                                                                <td [ngClass]="{'red':profit.commission < 0 ,'green':profit.commission >= 0}">
+                                                                    {{profit?.commission | number : '0.0-2'}}</td>
+                                                                <td [ngClass]="{'red':profit.net_pl < 0 ,'green':profit.net_pl >= 0}">{{profit?.net_pl |
+                                                                    number : '0.0-2'}}</td>
+                                                                <td><button type="button" class="btn btn-sm btn-success"
+                                                                        (click)="goToViewBets(profit)">View Bets</button>&nbsp;&nbsp;
+                                                                    <button type="button" class="btn btn-sm btn-success"
+                                                                        (click)="goToSportsPl(profit)">P|L</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>Total</td>
+                                                                <td [ngClass]="{'red':pl < 0 ,'green':pl >= 0}">{{pl | number : '0.0-2'}}</td>
+                                                                <td [ngClass]="{'red':commission < 0 ,'green':commission >= 0}">{{commission | number :
+                                                                    '0.0-2'}}</td>
+                                                                <td [ngClass]="{'red':netPl < 0 ,'green':netPl >= 0}">{{netPl | number : '0.0-2'}}</td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="report-bottom-paginate">
+                                                        <div class="col-inner item-perpage-select">
+                                                            <label>Items per page:</label>
+                                
+                                                            <select name="betType" class="form-select" [(ngModel)]="itemsPerPage"
+                                                                [ngModelOptions]="{standalone: true}" aria-label="Default select example"
+                                                                (ngModelChange)="pageChange()">
+                                                                <option selected disabled></option>
+                                                                <option value="50">50</option>
+                                                                <option value="100">100</option>
+                                                                <option value="150">150</option>
+                                                                <option value="200">200</option>
+                                                            </select>
+                                                        </div>
+                                                       
+                                                        <pagination-controls (pageChange)="pageChange($event)"
+                                                        class="user-list-pagination" ></pagination-controls>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!-- Date Time Picker -->
+<ng-template #popTemplate>
+    <datepicker [hidden]="!isDateVisible" [(ngModel)]="date" [minDate]="minDate"[maxDate] ="todayDateTime" [showWeeks]="false"
+        (ngModelChange)="updateDate()" (selectionDone)="dateSelectionDone()">
+    </datepicker>
+    <timepicker [hidden]="!isDateVisible" [(ngModel)]="time" (ngModelChange)="updateTime()" [showMeridian]="isMeridian" showSeconds="true">
+    </timepicker>
+
+    <div style="padding:5px">
+        <span class="btn-group pull-left" style="margin-right:10px;">
+            <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+            <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group pull-right">
+            <!-- <button type=button class="btn btn-sm btn-light" [hidden]="isDateVisible" 
+            (click)="showDate()">Date
+            </button>
+            <button type=button class="btn btn-sm btn-light" [hidden]="!isDateVisible" 
+            (click)="showTime()">Time
+            </button> -->
+            <button type=button class="btn btn-sm btn-success" (click)="close()">Close</button>
+        </span> <span class=clearfix></span>
+    </div>
+</ng-template>
+<ng-template #popTemplate1>
+    <datepicker [hidden]="!isDateVisible" [(ngModel)]="endDate" [minDate]="date" [maxDate] ="todayDateTime"[showWeeks]="false"
+        (ngModelChange)="updateEndDate()" (selectionDone)="dateSelectionDone()">
+    </datepicker>
+    <timepicker [hidden]="!isDateVisible" [(ngModel)]="endTime" (ngModelChange)="updateEndTime()"
+        [showMeridian]="isMeridian" showSeconds="true">
+    </timepicker>
+
+    <div style="padding:5px">
+        <span class="btn-group pull-left" style="margin-right:10px;">
+            <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+            <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group pull-right">
+            <!-- <button type=button class="btn btn-sm btn-light" [hidden]="isDateVisible" 
+            (click)="showDate()">Date
+            </button>
+            <button type=button class="btn btn-sm btn-light" [hidden]="!isDateVisible" 
+            (click)="showTime()">Time
+            </button> -->
+            <button type=button class="btn btn-sm btn-success" (click)="closeEndDatepicker()">Close</button>
+        </span> <span class=clearfix></span>
+    </div>
+</ng-template>

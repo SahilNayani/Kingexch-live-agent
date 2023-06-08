@@ -1,0 +1,84 @@
+<app-header></app-header>
+<!-- <app-sidebar></app-sidebar> -->
+
+<!-- <main>
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="closed-user inner-content">
+                <div class="page-title">
+                    <h3>My Market</h3>
+                    <div class="breadcrumb">
+                        <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                class="fa fa-arrow-left"></i>Back</a>
+                    </div>
+                </div>
+
+                <div class="report-table">
+                    <table datatable class="table">
+                        <thead>
+                            <tr>
+                        
+                                <th>S.No.</th>
+                                <th>Sport Name</th>
+                                <th>Match Name</th>
+                                <th>Market Name</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <ng-container *ngIf="popData == true">
+                        <tbody *ngFor="let expo of exposureData;let i = index">
+                            <tr *ngIf="i < (expoLength-1)">
+                                <td>{{i+1}}</td>
+                                <td>{{expo?.sport_name}}</td>
+                                <td style="color: blue !important;cursor: pointer;" (click)="expoRoute(expo)">{{expo?.match_name}}</td>
+                                <td>{{expo?.event_name}}</td>
+                                <td [ngClass]="{'red': expo?.liability < 0 ,'green': expo?.liability >= 0}">{{expo?.liability | number : '0.0-2'}}</td>   
+                            </tr>
+                            <tr *ngIf="i == (expoLength-1)">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Total</td>
+                                <td [ngClass]="{'red': expo?.liabilitySum < 0 ,'green': expo?.liabilitySum >= 0}">{{expo?.liabilitySum | number : '0.0-2'}}</td>   
+                            </tr>
+                        </tbody>
+                    </ng-container>
+                        <ng-container *ngIf="popData == false">{{message}}</ng-container>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main> -->
+
+<div id="layoutSidenav">
+    <div id="layoutSidenav_content" class="pt-3">
+       <main>
+          <div class="container-fluid px-3 market-analysis-list">
+             <div class="row">                     
+                <div class="col-sm-12 col-md-12">
+                   <div class="tabs-content"  *ngFor="let homeMatch of homeData | keyvalue;let i = index;">
+                      <div id="my_profile" class="tab-table" >
+                         <div class="header-tab bg-tab">
+                            <h3>{{homeMatch?.key}}</h3>
+                         </div>
+                         <div class="card">
+                            <div class="card-body">
+                               <table cellspacing="0" cellpadding="0" class="dataTable-table w-100">
+                                  <tbody>
+                                     <tr *ngFor="let matchData of homeMatch.value;let j = index;">
+                                        <td > <a (click)="matchDetail(matchData)" href="javascript:void();"><b>{{matchData?.match_name}}</b></a></td>
+                                     </tr>
+                                  </tbody>
+                               </table>
+                            </div>
+                         </div>
+                      </div>
+                     
+                   </div>
+                </div>
+             </div>
+          </div>
+       </main>
+    </div>
+ </div>

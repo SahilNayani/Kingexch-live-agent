@@ -1,0 +1,22 @@
+.event-full-date:after, .inplay-div:after {
+  
+   
+    font-weight: normal;
+    color: #777777;
+    top: 0;
+}
+.event-full-date .date {
+    font-size: 12px;
+    font-weight: 400;
+    color: #777;
+}
+.event-format-strip {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+.event-format-strip > * {
+    position: relative;
+    padding: 0 15px 0 0;
+    line-height: 20px;
+}

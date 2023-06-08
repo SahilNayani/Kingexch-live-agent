@@ -1,0 +1,91 @@
+<app-header></app-header>
+<main>
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="import-market inner-content">
+                <div class="page-title">
+                    <h3>Sport</h3>
+                </div>
+                <div class="filterDiv">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success" (click)="openModalAddSport(addSport)">Add
+                                Sport</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="report-table">
+                    <table datatable class="table">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Cricket</td>
+                                <td><input type="checkbox" checked></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Tennis</td>
+                                <td><input type="checkbox" checked></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Soccer</td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Live Games</td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Add Sport Modal -->
+<ng-template #addSport>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Add Sport</h4>
+            <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i
+                    class="fa fa-times"></i></a>
+        </div>
+
+        <form>
+            <div class="modal-body no-scroll-body">
+                <div class="body-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-label">Sport Name</label>
+                                <input type="text" placeholder="" class="form-control" id="" name="">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-label">Sport id</label>
+                                <input type="text" placeholder="" class="form-control" id="" name="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="text-end">
+                    <button type="button" class="btn btn-success">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>

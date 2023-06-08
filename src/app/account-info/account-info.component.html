@@ -1,0 +1,643 @@
+<app-header></app-header>
+
+<!-- <main>
+    <div class="account-info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4 col-md-3">
+                    <div class="card card-accent-primary">
+                        <div class="card-header account-detail-head">My Account </div>
+                        <div class="card-body account-detail-body p-0">
+                            <div class="sidebar-account">
+                                <a (click)="account(user_id,user_type_id)">My Profile</a>
+                                <a (click)="openBet(user_id,user_type_id)" *ngIf="user_type_id == 1">Bet History</a>
+                                <a (click)="proloss(user_id,user_type_id)" *ngIf="user_type_id == 1">Profit & Loss</a>
+                                <a (click)="statement(user_id,user_type_id)">Account Statement</a>
+                                <a (click)="onlineUser(user_id,user_type_id)">Activity Log</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="divider-top">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="card card-accent-primary">
+                                    <div class="card-header account-detail-head"> Account Details </div>
+                                    <div class="card-body account-detail-body">
+                                        <div class="bd-example">
+                                            <dl class="row">
+                                                <dt class="col-sm-2">Name</dt>
+                                                <dd class="col-sm-10">{{userDetail?.name}}</dd>
+                                                
+                                                <dt class="col-sm-2">Commission</dt>
+                                                <dd class="col-sm-10">
+                                                    <span class="mr-3">{{userDetail?.match_commission}}</span>
+                                                    <a (click)="openModalComissionSetting(comissionSetting)" *ngIf="adminDetails.user_id == currentUser"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                                                </dd>
+
+                                                <dt class="col-sm-2">Rolling Commission</dt>
+                                                <dd class="col-sm-10">
+                                                    <a *ngIf="adminDetails.user_id == currentUser"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                                                </dd>
+
+                                                <dt class="col-sm-2" *ngIf="user_type_id != 1">Agent Rolling Commission</dt>
+                                                <dd class="col-sm-10" *ngIf="user_type_id != 1">
+                                                    <a *ngIf="adminDetails.user_id == currentUser"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                                                </dd>
+                                                
+                                                <dt class="col-sm-2">Currency</dt>
+                                                <dd class="col-sm-10">IR</dd>
+                                                
+                                                <dt class="col-sm-2" *ngIf="user_type_id != 1">Partnership</dt>
+                                                <dd class="col-sm-10" *ngIf="user_type_id != 1">
+                                                    <span class="mr-3">{{(userDetail?.partnership == undefined) ? '0' : (userDetail?.partnership)}} 
+                                                        <a *ngIf="adminDetails.user_id == currentUser" (click)="openModalRateModal(rateModal);"><i class="fa fa-pencil-square-o"></i></a>
+                                                    </span>
+                                                </dd>
+
+                                                <dt class="col-sm-2" *ngIf="user_type_id == 1">Exposure Limit</dt>
+                                                <dd class="col-sm-10" *ngIf="user_type_id == 1">
+                                                    <span class="mr-3">{{(userDetail?.exposure_limit == undefined)  ? '0' : (userDetail?.exposure_limit)}}</span>
+                                                    <a *ngIf="adminDetails.user_id == currentUser" (click)="openModalExposureLimit(exposureLimit);"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                                                </dd>
+                                                
+                                                <dt class="col-sm-2">Mobile Number</dt>
+                                                <dd class="col-sm-10">
+                                                    <span class="mr-3">{{(userDetail?.mobile == undefined) ? '1234567890' : (userDetail?.mobile)}}   </span>
+                                                    <a *ngIf="adminDetails.user_id == currentUser" (click)="openModalMobileNumber(mobileNumber);"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                                                </dd>
+
+                                                <dt class="col-sm-2">Password</dt>
+                                                <dd class="col-sm-10">
+                                                    <span class="mr-3">******</span>
+                                                    <a  *ngIf="adminDetails?.user_id == currentUser || adminDetails?.user_id == currentId" (click)="openModalUserPwd(userPwd);"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<ng-template #userPwd>
+    <ng-container>
+        <div class="modal-header">
+            <h4 class="modal-title">Reset Password </h4>
+            <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i
+                    class="fa fa-times"></i></a>
+        </div>
+        <div class="modal-body no-scroll-body">
+            <div class="body-inner">
+                <div class="form-group inner-addon right-addon">
+                    <label class="form-label">Password</label>
+                    <div class="input-group" [formGroup]="resetPasswordForm">
+                        <input [type]="showPassword ? 'text' : 'password'" id="password-field" pwd-control
+                            formControlName="password" placeholder="" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="text-end">
+                <button type="submit" class="btn btn-success"
+                    (click)="changeChildPwd()">Submit</button>
+            </div>
+        </div>
+    </ng-container>
+</ng-template>
+
+<ng-template #comissionSetting>
+    <div class="modal-header">
+        <h4 class="modal-title">Update Comission Setting of username </h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="modal-body no-scroll-body">
+        <div class="body-inner">
+            <div class="form-list">
+                <label class="form-heading">Commission</label>
+                <input type="number" min="0" max="99" placeholder="Commission" [(ngModel)]="marketCommission"
+                    value="0" class="password-box form-attribute">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-end">
+            <button type="submit" class="btn btn-success" (click)="updateUserCommission()">Submit</button> &nbsp;
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modalRef.hide()">Cancel</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #mobileNumber>
+    <div class="modal-header">
+        <h4 class="modal-title">Change Mobile Number </h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="modal-body no-scroll-body">
+        <div class="body-inner">
+          
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label class="col-md-3">Mobile Number
+                        <span class="asterisk_input"></span>
+                    </label>
+                    <label class="col-md-8">
+                        <input  placeholder="Mobile.." required="" type="number" [(ngModel)]="updatedMobile">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-end">
+            <button type="submit" class="btn btn-success" (click) = "upMobile()">Yes</button> &nbsp;
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modalRef.hide()">No</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #exposureLimit>
+    <div class="modal-header">
+        <h4 class="modal-title">Edit Exposure Limit</h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="modal-body no-scroll-body">
+        <div class="body-inner">
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label class="col-md-3" >Current : </label>
+                    <label class="col-md-8">
+                        <strong>{{userDetail?.exposure_limit}}</strong>
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label class="col-md-3" >New</label>
+                    <label class="col-md-8">
+                        <input  placeholder="New Exposure Limit.." required="" type="number" [(ngModel)]="updateExposureLimit">
+                    </label>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-end">
+            <button type="submit" class="btn btn-success" (click)="updateExpoLimit()">Submit</button> &nbsp;
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modalRef.hide()">Cancel</button>
+        </div>
+    </div>
+</ng-template>
+<ng-template #rateModal>
+    <div class="modal-header">
+        <h4 class="modal-title">Change Partnership </h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="modal-body no-scroll-body">
+        <div class="body-inner">
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label class="col-md-3" >Current : </label>
+                    <label class="col-md-8">
+                        <strong>{{userDetail?.partnership}}</strong>
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label class="col-md-3" >New : </label>
+                    <label class="col-md-8">
+                        <input placeholder="Partnership.." required="" type="number" [(ngModel)]="updatedRate">
+                    </label>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-end">
+            <button type="submit" class="btn btn-success" (click)="upRate()">Submit</button> &nbsp;
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modalRef.hide()">Cancel</button>
+        </div>
+    </div>
+</ng-template> -->
+
+
+
+
+<div id="layoutSidenav" class="pt-3">
+   <div id="layoutSidenav_content" class="p-0">
+      <main>
+         <div class="container-fluid px-3">
+            <div class="row">
+               <div class="col-sm-4 col-md-3">
+                  <app-account-sidebar [user_id]="user_id" [user_type_id]="user_type_id"></app-account-sidebar>
+               </div>
+               <div class="col-sm-8 col-md-9">
+                  <div class="tabs-content bbr-5">
+                     <div id="my_profile" class="tab-table">
+                        <div class="header-tab bg-tab btr-5">
+                           <h3>Account Details</h3>
+                        </div>
+                        <div class="card mb-4">
+                           <div class="card-body">
+                              <table cellspacing="0" cellpadding="0" class="dataTable-table w-100">
+                                 <tbody>
+                                    <tr>
+                                       <td style="width: 15%;"><strong>Name</strong></td>
+                                       <td style="width:85%;"> {{userDetail?.name}}</td>
+                                    </tr>
+                                    <tr>
+                                       <td style="width: 15%;"><strong>Commission</strong></td>
+                                       <td style="width: 85%;"><span
+                                             class="mr-3">{{userDetail?.match_commission}}</span><a
+                                             (click)="openModalComissionSetting(comissionSetting)"><i
+                                                class="fa-solid fa-pen-to-square primary-color"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                       <td style="width: 15%;"><strong>Rolling <br> Commission</strong></td>
+                                       <td style="width: 85%;"><a
+                                             (click)="openModalRollingCommission(rollingCommission)"><i
+                                                class="fa-solid fa-pen-to-square primary-color"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                       <td style="width: 17%;" *ngIf="user_type_id != 1"><strong> Agent Rolling
+                                             Commission</strong></td>
+                                       <td style="width: 83%;" *ngIf="user_type_id != 1"><a a
+                                             (click)="openModalAgentRollingCommission(agentRollingCommission)"><i
+                                                class="fa-solid fa-pen-to-square primary-color"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                       <td style="width: 15%;"><strong>Currency</strong></td>
+                                       <td style="width: 85%;">IRP</td>
+                                    </tr>
+                                    <tr>
+                                       <td style="width: 15%;" *ngIf="user_type_id != 1"><strong>Partnership</strong>
+                                       </td>
+                                       <td style="width: 85%;" *ngIf="user_type_id != 1"><span
+                                             class="mr-3">{{(userDetail?.partnership == undefined) ? '0' :
+                                             (userDetail?.partnership)}}</span>
+                                          <a *ngIf="adminDetails.user_id == currentUser"
+                                             (click)="openModalRateModal(rateModal);">
+                                             <i class="fa-solid fa-pen-to-square primary-color"></i>
+                                          </a>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td style="width: 15%;" *ngIf="user_type_id == 1"><strong>Exposure Limit</strong>
+                                       </td>
+                                       <td style="width: 85%;" *ngIf="user_type_id == 1"><span
+                                             class="mr-3">{{(userDetail?.exposure_limit == undefined) ? '0' :
+                                             (userDetail?.exposure_limit)}}</span>
+                                          <a *ngIf="adminDetails.user_id == currentUser"
+                                             (click)="openModalExposureLimit(exposureLimit);">
+                                             <i class="fa-solid fa-pen-to-square primary-color"></i>
+                                          </a>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td style="width: 15%;"><strong>Mobile Number</strong></td>
+                                       <td style="width: 85%;">{{(userDetail?.mobile == undefined) ? '1234567890' :
+                                          (userDetail?.mobile)}}
+                                          <a *ngIf="adminDetails.user_id == currentUser"
+                                             (click)="openModalMobileNumber(mobileNumber);">
+                                             <i class="fa-solid fa-pen-to-square primary-color"></i>
+                                          </a>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td style="width: 15%;"><strong>Password</strong></td>
+                                       <td style="width: 85%;">*********
+                                          <a *ngIf="adminDetails?.user_id == currentUser || adminDetails?.user_id == currentId"
+                                             (click)="openModalUserPwd(userPwd);">
+                                             <i class="fa-solid fa-pen-to-square primary-color"></i>
+                                          </a>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </main>
+   </div>
+</div>
+
+
+<ng-template #comissionSetting>
+   <div class="modal-header bg-primary">
+      <h5 class="modal-title text-white">Update Commission - {{userDetail?.name}}</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+         <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   <form id="" class="">
+      <div class="modal-body row">
+         <div class="col-md-6">
+            <div class="form-group">
+               <label for="meta_keywords">Commission <sup>*</sup></label><input class="form-control" name="betfair_com"
+                  placeholder="Enter Commission" [(ngModel)]="marketCommission" required="" type="text">
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="form-group">
+               <label for="meta_keywords">Your Password <sup>*</sup></label><input class="form-control"
+                  name="masterPassword" placeholder="Your Password.." required="" type="password">
+            </div>
+         </div>
+      </div>
+   </form>
+   <div class="modal-footer">
+      <button type="button" data-dismiss="modal" class="btn btn-success bg-dark"
+         (click)="updateUserCommission()">Yes</button>
+      <button type="button" class="btn btn-gray" (click)="modalRef.hide()">No</button>
+   </div>
+</ng-template>
+
+<ng-template #rollingCommission>
+   <div class="modal-header bg-primary">
+      <h5 class="modal-title text-white"> Rolling Commission - <span>{{userDetail?.name}}</span></h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+         <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   <div class="modal-body">
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">Fancy</label>
+            <div class="col-md-8"><input class="form-control ng-pristine ng-valid ng-touched" name="rfancyCommission"
+                  placeholder="Fancy Rolling Commission.." type="text"></div>
+         </div>
+      </div>
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">Matka</label>
+            <div class="col-md-8"><input class="form-control" name="rmatkaCommission"
+                  placeholder="Matka Rolling Commission.." type="text"></div>
+         </div>
+      </div>
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">Casino</label>
+            <div class="col-md-8"><input class="form-control" name="rcasinoCommission"
+                  placeholder="Casino Rolling Commission.." type="text"></div>
+         </div>
+      </div>
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">Binary</label>
+            <div class="col-md-8"><input class="form-control" name="rbinaryCommission"
+                  placeholder="Binary Rolling Commission.." type="text"></div>
+         </div>
+      </div>
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">Sportbook</label>
+            <div class="col-md-8"><input class="form-control" name="rsportbookCommission"
+                  placeholder="Sportbook Rolling Commission.." type="text"></div>
+         </div>
+      </div>
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">Bookmaker</label>
+            <div class="col-md-8"><input class="form-control" name="rbookmakerCommission"
+                  placeholder="Bookmaker Rolling Commission.." type="text"></div>
+         </div>
+      </div>
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">Password</label>
+            <div class="col-md-8"><input class="form-control" name="rate" placeholder="Password.." required=""
+                  type="password"></div>
+         </div>
+      </div>
+   </div>
+   <div class="modal-footer">
+      <button class="btn btn-primary" type="button">Submit</button>
+      <button class="btn btn-default" type="button" (click)="modalRef.hide()">Cancel</button>
+   </div>
+</ng-template>
+
+<ng-template #agentRollingCommission>
+   <div class="modal-header bg-primary">
+      <h5 class="modal-title text-white"> Agent Rolling Commission - <span>{{userDetail?.name}}</span></h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+         <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   <div class="modal-body">
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">Fancy</label>
+            <div class="col-md-8"><input class="form-control ng-pristine ng-valid ng-touched" name="rfancyCommission"
+                  placeholder="Fancy Rolling Commission.." type="text"></div>
+         </div>
+      </div>
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">Matka</label>
+            <div class="col-md-8"><input class="form-control" name="rmatkaCommission"
+                  placeholder="Matka Rolling Commission.." type="text"></div>
+         </div>
+      </div>
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">Casino</label>
+            <div class="col-md-8"><input class="form-control" name="rcasinoCommission"
+                  placeholder="Casino Rolling Commission.." type="text"></div>
+         </div>
+      </div>
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">Binary</label>
+            <div class="col-md-8"><input class="form-control" name="rbinaryCommission"
+                  placeholder="Binary Rolling Commission.." type="text"></div>
+         </div>
+      </div>
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">Sportbook</label>
+            <div class="col-md-8"><input class="form-control" name="rsportbookCommission"
+                  placeholder="Sportbook Rolling Commission.." type="text"></div>
+         </div>
+      </div>
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">Bookmaker</label>
+            <div class="col-md-8"><input class="form-control" name="rbookmakerCommission"
+                  placeholder="Bookmaker Rolling Commission.." type="text"></div>
+         </div>
+      </div>
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">Password</label>
+            <div class="col-md-8"><input class="form-control" name="rate" placeholder="Password.." required=""
+                  type="password"></div>
+         </div>
+      </div>
+   </div>
+   <div class="modal-footer">
+      <button class="btn btn-primary" type="button">Submit</button>
+      <button class="btn btn-default" type="button" (click)="modalRef.hide()">Cancel</button>
+   </div>
+</ng-template>
+
+<ng-template #exposureLimit>
+   <div class="modal-header bg-primary">
+      <h5 class="modal-title text-white">Edit Exposure Limit - <span>{{userDetail?.name}}</span></h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+         <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   <div class="modal-body">
+      <div class="col-md-12">
+         <div class="form-group row"><label class="col-md-2">Current</label><label
+               class="col-md-8"><strong>{{userDetail?.exposure_limit}}</strong></label></div>
+      </div>
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">New</label>
+            <div class="col-md-8"><input class="form-control" name="exposureLimit" placeholder="New Exposure Limit.."
+                  required="" type="number" [(ngModel)]="updateExposureLimit"></div>
+         </div>
+      </div>
+      <div class="col-md-12">
+         <div class="form-group row">
+            <label class="col-md-2 col-form-label">Password</label>
+            <div class="col-md-8"><input class="form-control" name="rate" placeholder="Password.." required=""
+                  type="password"></div>
+         </div>
+      </div>
+   </div>
+   <div class="modal-footer">
+      <div class="text-end">
+         <button type="submit" class="btn btn-success" (click)="updateExpoLimit()">Submit</button> &nbsp;
+         <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modalRef.hide()">Cancel</button>
+      </div>
+   </div>
+</ng-template>
+
+<ng-template #rateModal>
+   <div class="modal-header bg-primary">
+      <h4 class="modal-title text-white">Change Partnership </h4>
+      <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+   </div>
+   <div class="modal-body no-scroll-body">
+      <div class="body-inner">
+         <div class="col-md-12">
+            <div class="form-group row">
+               <label class="col-md-3">Current : </label>
+               <label class="col-md-8">
+                  <strong>{{userDetail?.partnership}}</strong>
+               </label>
+            </div>
+         </div>
+         <div class="col-md-12">
+            <div class="form-group row">
+               <label class="col-md-3">New : </label>
+               <label class="col-md-8">
+                  <input placeholder="Partnership.." required="" class="form-control" type="number"
+                     [(ngModel)]="updatedRate">
+               </label>
+            </div>
+         </div>
+
+      </div>
+   </div>
+   <div class="modal-footer">
+      <div class="text-end">
+         <button type="submit" class="btn btn-success" (click)="upRate()" disabled>Submit</button> &nbsp;
+         <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modalRef.hide()">Cancel</button>
+      </div>
+   </div>
+</ng-template>
+
+<ng-template #mobileNumber>
+   <div class="modal-header bg-primary">
+      <h5 class="modal-title text-white">Change Mobile Number</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+         <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   <form id="" class="user-changed-password">
+      <div class="modal-body row">
+         <div class="col-md-6">
+            <div class="form-group">
+               <label for="your_password">Your Password<sup>*</sup></label>
+               <input class="form-control" name="your_password" placeholder="Your Password.." required=""
+                  type="password">
+               <span class="error-message text-red d-none">Your Password..</span>
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="form-group">
+               <label for="new_password">Mobile Number<sup>*</sup></label>
+               <input class="form-control" name="new_password" placeholder="New Password.." required="" type="number"
+                  [(ngModel)]="updatedMobile">
+               <span class="error-message text-red d-none">Mobile Number</span>
+            </div>
+         </div>
+      </div>
+   </form>
+   <div class="modal-footer">
+      <button type="button" data-dismiss="modal" class="btn btn-success bg-dark" (click)="upMobile()">Yes</button>
+      <button type="button" class="btn btn-gray" (click)="modalRef.hide()">No</button>
+   </div>
+</ng-template>
+
+<ng-template #userPwd>
+   <ng-container>
+      <div class="modal-header bg-primary">
+         <h5 class="modal-title text-white">Change Password</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+      <form id="" class="user-changed-password">
+         <div class="modal-body row" [formGroup]="resetPasswordForm">
+            <div class="col-md-6">
+               <div class="form-group">
+                  <label for="your_password">Your Password<sup>*</sup></label>
+                  <input class="form-control" name="your_password" placeholder="Your Password.." required=""
+                     type="password" formControlName="password">
+                  <span class="error-message text-red d-none">Please enter your password</span>
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="form-group">
+                  <label for="new_password">New Password<sup>*</sup></label>
+                  <input class="form-control" formControlName="password" name="new_password"
+                     placeholder="New Password.." required="" type="password">
+                  <span class="error-message text-red d-none">Please enter new password</span>
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="form-group">
+                  <label for="confirm_password">Confirm Password<sup>*</sup></label>
+                  <input class="form-control" name="confirm_password" placeholder="Confirm Password.." required=""
+                     type="password">
+                  <span class="error-message text-red d-none">Please enter confirm password</span>
+               </div>
+            </div>
+         </div>
+      </form>
+      <div class="modal-footer">
+         <button type="button" data-dismiss="modal" class="btn btn-success bg-dark"
+            (click)="changeChildPwd()">Yes</button>
+         <button type="button" class="btn btn-gray" (click)="modalRef.hide()">No</button>
+      </div>
+   </ng-container>
+</ng-template>

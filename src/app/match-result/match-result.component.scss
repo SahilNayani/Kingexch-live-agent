@@ -1,0 +1,64 @@
+.form-field .col-inner .form-group {
+    padding-right: 15px;
+}
+.btn-list {
+    .btn-success {
+        margin-right: 10px;
+    }
+}
+.filter-tab .report-table {
+    margin-top: 0;
+    box-shadow: none;
+    border-radius: 0;
+    th{
+        i{
+            padding-top: 5px;
+             float: right;
+             font-size: 10px;
+             cursor: pointer;
+         }
+     }
+}
+.filter-tab {
+    box-shadow: 0 2px 4px rgb(15 34 58 / 12%);
+    margin-top: 0;
+    background-color: var(--white-bg);
+    border-radius:4px;
+    overflow: hidden;
+}
+.filter-tab .nav-tabs {
+    background-color: var(--light-blue-bg);
+    border-bottom: 1px solid var(--light-blue-bg);
+}
+.filter-tab .nav-tabs .nav-link.active {
+    border: none;
+    background-color: var(--blue-bg);
+    color: var(--white-text);
+}
+.filter-tab .nav-tabs .nav-link {
+    color: var(--blue-text);
+    background-color: var(--light-blue-bg);
+    border-radius: 0;
+    font-weight: 600;
+    font-size: 12px;
+    border: none !important;
+}
+.UserPermissionDiv {
+    background: #eee;
+    display:  inline-block;
+    position: absolute;
+    border-radius: 5px;
+    right:42%;
+    z-index: 1;
+    //top: 30px;
+    box-shadow: 0 0 5px 2px #b0b0b0;
+}
+table.dataTable thead .sorting {
+     background-image: none !important
+}
+.user-list-pagination {
+    float: right;
+}
+// .UserPermissionDiv{
+//     display: inline-block;
+// }

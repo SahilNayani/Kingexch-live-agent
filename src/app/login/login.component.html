@@ -1,0 +1,151 @@
+<div class="loginPage d-none">
+    <div class="login-main">
+
+        <div class="logo">
+            <img src="assets/loginLogo/{{logo}}.png" alt="{{logo}}">
+        </div>
+        <div class="login-inner">
+            <div class="row">
+                <div class="col-md-6 p-0 left-col">
+                    <div class="col-inner right">
+                        <div class="form-div">
+                            <form [formGroup]='Form' (ngSubmit)='onSubmitLogin()'>
+                                <div class="login-title">LOGIN</div>
+                                <div class="form-group username">
+                                    <label class="form-label">Username</label>
+                                    <div class="input-icons">
+                                        <i class="fa fa-user-o icon"></i>
+                                        <input type="text" placeholder="Enter Username" class="form-control"
+                                            formControlName='user_name'>
+                                    </div>
+                                    <!-- <div *ngIf="submitted && f.userName.errors">
+                                        <div *ngIf="f.userName.errors.required">Username is required</div>
+                                    </div> -->
+                                </div>
+                                <div class="form-group inner-addon right-addon">
+                                    <label class="form-label">Password</label>
+                                    <div class="input-group">
+                                        <!-- <i class="fa fa-key icon"></i> -->
+                                        <input [type]="showPassword ? 'text' : 'password'" placeholder="Enter Password"
+                                            class="form-control" formControlName='password' id="password-field">
+                                        <div>
+                                            <i alt="show" class="fa fa-eye eye-show"
+                                                (click)="showPassword = !showPassword" [class.hide]="showPassword"></i>
+                                            <i alt="hide" class="fa fa-eye-slash eye-hide"
+                                                (click)="showPassword = !showPassword" [class.hide]="!showPassword"></i>
+                                        </div>
+                                    </div>
+                                  
+                                    <!-- <div *ngIf="submitted && f.password.errors">
+                                        <div *ngIf="f.password.errors.required">Password is required</div>
+                                    </div> -->
+                                </div>
+                                <!-- <div class="checkbox">
+                                    <label><input type="checkbox" value=""> Keep me signed in</label>
+                                </div> -->
+                                <div>
+                                <input type="checkbox" formControlName="isRememberMe" /> Remember Me
+                            </div> 
+                                <div class="btn-list">
+                                    <button type="submit" class="btn " [disabled]="loginButtonDisable">LOGIN NOW <i
+                                            class="fa fa-sign-in icon"></i></button>
+                                    <!-- <div class="downloadapk">
+                                        Download APK
+                                        <button class="downloadBtn"> <i class="fa fa-download icon"></i></button>
+                                    </div> -->
+                                </div>
+
+                                <p class="red-message" *ngIf="showResponseMessage"> {{showResponseMessage}}</p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 p-0 right-col hide-on-small">
+                    <div class="col-inner left text-center">
+                        <div class="form-div">
+                            <div class="right-title">PLAY TO GAIN <span></span><b>SPEND TO EARN</b></div>
+                            <img src="assets/images/app_mockup.png" height="300" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row bottom-icons">
+            <div class="footer">
+                <div class="footer-logo">
+                    <ul>
+                        <li><img src="assets/images/18plus.png" alt=""></li>
+                        <li><img src="assets/images/gamecare.png" alt=""></li>
+                        <li><img src="assets/images/gt.png" alt=""></li>
+                        <li><img src="assets/images/bet-logo.png" alt=""></li>
+                    </ul>
+                </div>
+                <div class="browser-wrap">
+                   <!-- <img src="assets/images/transparent.gif"> -->
+                   Our website works best in the newest and last prior version of these browsers: <br>
+                   Google Chrome. Firefox 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="login-main-section">
+    <div class="bg-login">
+       <div id="layoutAuthentication">
+          <div id="layoutAuthentication_content">
+             <main class="login-main vh-100">
+                <div class="container">
+                   <div class="row justify-content-center">
+                      <div class="col-lg-6">
+                         <div class="login-form-main">
+                            <div class="card shadow-lg border-0 rounded-lg bg-dark">
+                               <div class="row align-items-center ">
+                                  <div class="col-md-6 p-0 image-block">
+                                        <img class="login-img" src="./assets/img/loginside.jpeg" />
+                                        <div class="overlay-logo">
+                                            <img src="{{logo}}" alt="">
+                                         </div>
+                                  </div>
+                                  <div class="col-md-6 p-0">
+                                        <img class="login-img-mobile" src="{{logo}}" />
+                                     <div class="login-form">
+                                        <form [formGroup]='Form' (ngSubmit)='onSubmitLogin()'>
+                                            <div>
+                                                <h4 class="text-left font-weight-light my-4 text-white">Agent Login</h4>
+                                            </div>
+                                            <div class=" mb-2">
+                                                <input class="form-control" id="inputEmail" type="email" placeholder="Username" formControlName='user_name'>
+                                                <div *ngIf="submitted && f.user_name.errors">
+                                                    <span *ngIf="submitted && f.user_name.errors.required" class="error text-danger">Please enter username</span>
+                                                </div>
+                                            </div>
+                                            <div class="mb-2">
+                                                <input class="form-control" id="inputPassword" type="password" placeholder="Password" formControlName='password'>
+                                                <div *ngIf="submitted && f.password.errors">
+                                                    <span *ngIf="submitted && f.password.errors.required" class="error text-danger">Please enter password</span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mt-2 mb-0">
+                                                <button type="submit" class="btn btn-primary shadow-none w-100" [disabled]="loginButtonDisable">Login
+                                                    <img class="icon-login" src="assets/img/transparent-login.png">
+                                                </button>
+                                            </div>
+                                            <p class="text-danger" *ngIf="showResponseMessage">{{showResponseMessage}}</p>
+                                        </form>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </main>
+          </div>
+       </div>
+    </div>
+ </div>

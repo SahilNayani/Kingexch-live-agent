@@ -1,0 +1,352 @@
+<app-header [walletBalance]="walletBalance"></app-header>
+
+<!-- <main>
+  <div class="account-info">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="divider-top">
+            <div class="row">
+              <div class="col-sm-12 col-md-12">
+                <div class="card card-report">
+                  <div class="card-body p-0">
+                    <form>
+                      <div class="row form-field">
+                        <div class="filter-column">
+                          <div class="col-inner">
+                            <div class="form-group dateTimePicker">
+                              <label>From : </label><br>
+                              <input type="text" class="form-control" [popover]="popTemplate" placement="bottom"
+                                [outsideClick]="true" #startpopoverRef="bs-popover"
+                                value="{{startdateTime | date:'yyyy-MM-dd HH:mm:ss'}}" (click)="showDate()">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="filter-column">
+                          <div class="col-inner">
+                            <div class="form-group dateTimePicker">
+                              <label>To : </label><br>
+                              <input type="text" class="form-control" [popover]="popTemplate1" placement="bottom"
+                                [outsideClick]="true" #endpopoverRef="bs-popover"
+                                value="{{enddateTime | date:'yyyy-MM-dd HH:mm:ss'}}" (click)="showDate()">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="filter-column">
+                          <div class="col-inner text-end">
+                            <div class="btn-list"><br>
+                              <button type="button" class="btn btn-success" (click)="this.sportsPl('','filterBtnClick')">Get
+                                P&L</button>
+                              <button type="button" class="btn btn-danger" >Reset</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12 col-md-12">
+                <div class="card card-accent-primary">
+                  <div class="card-header account-detail-head">
+                    Profit Loss
+                  </div>
+                  <div class="filter-tab" style="padding: 25px;background:#e2e2e2!important">
+                    <div class="report-table">
+                      <div class="col-inner" style="padding: 10px;">
+                        <label>Search:</label>
+                        <input type="text" style="margin-left: 7px;" [(ngModel)]="searchUser" placeholder="Search UserName">
+                      </div>
+                      <table datatable class="table" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                        <thead>
+                          <tr>
+                              <th>Name</th>
+                              <th>Profit/Loss</th>
+                              <th>Downline Profit/Loss</th>
+                              <th>Commission</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+
+                          <tr *ngFor="let profit of userPlList |search: searchUser :'user_name';let i = index;">
+                              <td (click)="profit?.user_type_id == 1 ? '' : sportsPl(profit.user_id,'filterBtnClick')"
+                                  style="cursor: pointer;">
+                                  {{profit?.user_name}}
+                              </td>
+                              <td [ngClass]="{'red':profit.profitloss < 0 ,'green':profit.profitloss >= 0}">
+                                {{profit?.profitloss}}
+                              </td>
+                              <td [ngClass]="{'red':profit.downlineprofitloss < 0 ,'green':profit.downlineprofitloss >= 0}">
+                                {{profit?.downlineprofitloss}}
+                              </td>
+                              <td [ngClass]="{'red':profit.commission < 0 ,'green':profit.commission >= 0}">
+                                {{profit?.commission}}
+                              </td>
+                             
+                          </tr>
+                          <div *ngIf="userPlList.length == 0" style="text-align: center;">
+                              No data avalible
+                          </div>
+                      </tbody>
+                      <tbody>
+                          <tr>
+                              <td>Total </td>
+                              <td [ngClass]="{'red':profitloss < 0 ,'green':profitloss >= 0}">{{profitloss}}</td>
+                              <td [ngClass]="{'red':downlineprofitloss < 0 ,'green':downlineprofitloss >= 0}">{{downlineprofitloss}}</td>
+                              <td [ngClass]="{'red':commission < 0 ,'green':commission >= 0}">{{commission}}</td>
+                          </tr>
+                      </tbody>
+                      </table>
+                   
+                    </div>
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+<ng-template #popTemplate>
+  <datepicker [hidden]="!isDateVisible" [(ngModel)]="date" [minDate]="minDate" [maxDate]="todayDateTime"
+    [showWeeks]="false" (ngModelChange)="updateDate()" (selectionDone)="dateSelectionDone()">
+  </datepicker>
+  <timepicker [hidden]="!isDateVisible" [(ngModel)]="time" (ngModelChange)="updateTime()" [showMeridian]="isMeridian"
+    showSeconds="true">
+  </timepicker>
+
+  <div style="padding:5px">
+    <span class="btn-group pull-left" style="margin-right:10px;">
+      <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+      <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+    </span>
+    <span class="btn-group pull-right">
+
+      <button type=button class="btn btn-sm btn-success" (click)="close()">Close</button>
+    </span> <span class=clearfix></span>
+  </div>
+</ng-template>
+
+<ng-template #popTemplate1>
+  <datepicker [hidden]="!isDateVisible" [(ngModel)]="endDate" [minDate]="date" [maxDate]="todayDateTime"
+    [showWeeks]="false" (ngModelChange)="updateEndDate()" (selectionDone)="dateSelectionDone()">
+  </datepicker>
+  <timepicker [hidden]="!isDateVisible" [(ngModel)]="endTime" (ngModelChange)="updateEndTime()"
+    [showMeridian]="isMeridian" showSeconds="true">
+  </timepicker>
+
+  <div style="padding:5px">
+    <span class="btn-group pull-left" style="margin-right:10px;">
+      <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+      <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+    </span>
+    <span class="btn-group pull-right">
+   
+      <button type=button class="btn btn-sm btn-success" (click)="closeEndDatepicker()">Close</button>
+    </span> <span class=clearfix></span>
+  </div>
+</ng-template>
+
+
+<ng-template #userParentList>
+  <div class="modal-header">
+    <h4 class="modal-title">Parent List of {{userParentName}}</h4>
+    <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+  </div>
+  <table class="table">
+    <tbody>
+      <ng-container *ngFor="let parent of parentList; let i =index">
+        <tr>
+          <td>{{parent?.name}}({{parent?.user_name}})</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</ng-template> -->
+
+
+
+<!-- <div id="layoutSidenav">
+  <div id="layoutSidenav_content" class="p-0">
+     <main>
+        <div class="container-fluid px-3">
+           <div class="card mb-4">
+              <div class="card-body">
+                 <div class="header-tab bg-tab btr-5">
+                    <h3>Profit Loss</h3>
+                 </div>
+                 <div class="table-profit">
+                    <table class="dataTable-table table-bordered no-filter-table">
+                       <thead>
+                          <tr>
+                             <th class="text-center">User Name</th>
+                             <th class="text-center">Profit/Loss</th>
+                             <th class="text-center">Downline Profit/Loss</th>
+                             <th class="text-center">Commission</th>
+                          </tr>
+                       </thead>
+                       <tbody>
+                          <tr *ngFor="let profit of userPlList |search: searchUser :'user_name';let i = index;">
+                             <td class="text-center">
+                                <span class="text-uppercase"><a class="event-color" (click)="profit?.user_type_id == 1 ? '' : sportsPl(profit.user_id,'filterBtnClick')" style="cursor: pointer;">{{profit?.user_name}}</a></span>
+                             </td>
+                             <td class="text-green text-center" [ngClass]="{'red':profit.profitloss < 0 ,'green':profit.profitloss >= 0}">{{profit?.profitloss}}</td>
+                             <td class="text-red text-center" [ngClass]="{'red':profit.downlineprofitloss < 0 ,'green':profit.downlineprofitloss >= 0}">{{profit?.downlineprofitloss}}</td>
+                             <td class="text-center" [ngClass]="{'red':profit.commission < 0 ,'green':profit.commission >= 0}">{{profit?.commission}}</td>
+                          </tr>
+                          <tr *ngIf="userPlList?.length == 0" >
+                            No data avalible...
+                          </tr>
+                        </tbody>
+                    </table>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </main>
+  </div>
+</div> -->
+
+
+<div id="layoutSidenav">
+  <div id="layoutSidenav_content" class="pt-3">
+     <main>
+        <div class="container-fluid px-3">
+           <div class="mb-4">
+              <div class="col-sm-12 col-md-12">
+                 <div class="card card-report-datepicker">
+                    <div class="card-body card-cal p-0">
+                       <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="input-group form-group">
+                               <label for="type" style="width: 100%;">From</label>
+
+                               <input type="text" class="form-control" [popover]="popTemplate" placement="bottom"
+                               [outsideClick]="true" #startpopoverRef="bs-popover"
+                               value="{{startdateTime | date:'yyyy-MM-dd HH:mm:ss'}}" (click)="showDate()">
+
+                               <div class="input-group-append">
+                                  <button class="btn btn-secondary" type="button"><i class="fa-solid fa-calendar-days"></i></button>
+                               </div>
+                               <!-- <input class="form-control" disabled="" placeholder="00:00" style="display: inline-block;width: 20px;margin-left: 10px;"> -->
+                            </div>
+                         </div>
+                         <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="input-group form-group">
+                               <label for="type" style="width: 100%;">To</label>
+
+                               <input type="text" class="form-control" [popover]="popTemplate1" placement="bottom"
+                               [outsideClick]="true" #endpopoverRef="bs-popover"
+                               value="{{enddateTime | date:'yyyy-MM-dd HH:mm:ss'}}" (click)="showDate()">
+
+                               <div class="input-group-append">
+                                  <button class="btn btn-secondary" type="button"><i class="fa-solid fa-calendar-days"></i></button>
+                               </div>
+                               <!-- <input class="form-control" disabled="" placeholder="23:59" style="display: inline-block;width: 20px;margin-left: 10px;"> -->
+                            </div>
+                         </div>
+                         <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="form-group"><label for="type" style="width: 100%;">&nbsp;</label><button class="btn btn-primary" type="button" (click)="rerender()"><strong>Get P&L</strong></button></div>
+                         </div>
+                        </div>
+                          <!-- <div class="col-md-2 col-6">
+                             <div class="form-group">
+                                <label for="type">Data Source</label>
+                                <select class="form-control">
+                                   <option disabled="" value="">Data Source</option>
+                                   <option value="LIVE">LIVE DATA</option>
+                                   <option value="BACKUP">BACKUP DATA</option>
+                                   <option value="OLD">OLD DATA</option>
+                                </select>
+                             </div>
+                          </div> -->
+                        
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <div class="header-tab bg-tab btr-5">
+                 <h3>Profit Loss</h3>
+              </div>
+              <div class="table-profit">
+                 <div class="card mb-4">
+                    <div class="card-body text-center">
+                       <table class="dataTable-table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                          <!-- <thead>
+                             <tr>
+                                <th class="text-center">Sport Name</th>
+                                <th class="text-center">Upline Profit/Loss</th>
+                                <th class="text-center">Downline Profit/Loss</th>
+                                <th class="text-center">Commission</th>
+                             </tr>
+                          </thead>
+                          <tbody>
+                             <tr *ngFor="let profit of sportPlList |search: searchSport :'sport_name';let i = index;">
+                                <td class="table-font-weight text-center">
+                                   <span class="text-uppercase"><a target="_blank" class="event-color" (click)="eventWisePl(profit)"  style="cursor: pointer;">{{profit?.sport_name}}</a></span>
+                                </td>
+                                <td class="table-font-weight text-red" [ngClass]="{'red':profit.profitloss < 0 ,'green':profit.profitloss >= 0}">{{profit?.profitloss | number : '0.0-2'}}</td>
+                                <td class="table-font-weight text-green" [ngClass]="{'red':profit.downlineprofitloss < 0 ,'green':profit.downlineprofitloss >= 0}">{{profit?.downlineprofitloss | number : '0.0-2'}}</td>
+                                <td class="table-font-weight" [ngClass]="{'red':profit.commission < 0 ,'green':profit.commission >= 0}">{{profit?.commission | number : '0.0-2'}}</td>
+                             </tr>
+                             <tr *ngIf="sportPlList?.length == 0" >
+                              No data avalible...
+                             </tr>
+                          </tbody> -->
+                       </table>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </main>
+  </div>
+</div>
+
+<ng-template #popTemplate>
+  <datepicker [hidden]="!isDateVisible" [(ngModel)]="date" [minDate]="minDate" [maxDate]="todayDateTime"
+    [showWeeks]="false" (ngModelChange)="updateDate()" (selectionDone)="dateSelectionDone()">
+  </datepicker>
+  <timepicker [hidden]="!isDateVisible" [(ngModel)]="time" (ngModelChange)="updateTime()" [showMeridian]="isMeridian"
+    showSeconds="true">
+  </timepicker>
+
+  <div style="padding:5px">
+    <span class="btn-group pull-left" style="margin-right:10px;">
+      <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+      <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+    </span>
+    <span class="btn-group pull-right">
+     
+      <button type=button class="btn btn-sm btn-success" (click)="close()">Close</button>
+    </span> <span class=clearfix></span>
+  </div>
+</ng-template>
+<ng-template #popTemplate1>
+  <datepicker [hidden]="!isDateVisible" [(ngModel)]="endDate" [minDate]="date" [maxDate]="todayDateTime"
+    [showWeeks]="false" (ngModelChange)="updateEndDate()" (selectionDone)="dateSelectionDone()">
+  </datepicker>
+  <timepicker [hidden]="!isDateVisible" [(ngModel)]="endTime" (ngModelChange)="updateEndTime()"
+    [showMeridian]="isMeridian" showSeconds="true">
+  </timepicker>
+
+  <div style="padding:5px">
+    <span class="btn-group pull-left" style="margin-right:10px;">
+      <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+      <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+    </span>
+    <span class="btn-group pull-right">
+
+      <button type=button class="btn btn-sm btn-success" (click)="closeEndDatepicker()">Close</button>
+    </span> <span class=clearfix></span>
+  </div>
+</ng-template>

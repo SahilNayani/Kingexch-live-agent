@@ -1,0 +1,98 @@
+@media (min-width: 993px){
+  .main-div .right-section {
+      width: 1130px !important;
+      position: fixed;
+      height: auto;
+      top: 95px;
+      bottom: 0;
+      right: 10px;
+      z-index: 1;
+      border-radius: 4px;
+  }
+  }
+  .right-section .live-game .game-body .game-item {
+    width: 24.5%;
+    height: auto;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    margin: 0 2px;
+    transition: all .4s ease-out;
+    z-index: 1;
+    border: 1px solid transparent;
+    height: 145px;
+    display: inline-block;
+  }
+  .right-section .live-game .game-body .game-item:before {
+    background-color: #005d96;
+    background-image: linear-gradient(#3f3f4f 10%,#000);
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: .3;
+    transition: all .3s cubic-bezier(.645,.045,.355,1);
+  }
+  .right-section .live-game .game-body .game-item .thumb {
+    margin-bottom: -5px;
+    height: 100%;
+  }
+  .right-section .live-game .game-body .game-item .thumb img {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+  }
+  .right-section .live-game .game-body .game-item .play-btn {
+    transition: .7s;
+    position: absolute;
+    top: 28%;
+    left: 25%;
+    transform: translate(-50%,-50%);
+    z-index: 9;
+    height: 25px;
+    opacity: 0;
+  }
+  .right-section .live-game .game-body .game-item .play-btn a {
+    color: var(--white-text);
+    transition: all .3s cubic-bezier(.645,.045,.355,1);
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+    letter-spacing: .2px;
+    text-transform: uppercase;
+    text-decoration: none!important;
+    text-shadow: 1px 2px 3px rgb(0 0 0 / 50%);
+  }
+  .right-section .live-game .game-body .game-item .caption {
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+  }
+  .right-section .live-game .game-body .game-item .caption h3 {
+    color: #fff;
+    margin: 2px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .right-section .live-game .game-body .game-item:hover {
+    border: 1px solid var(--blue-bg);
+  }
+  .right-section .live-game .game-body .game-item:hover:before {
+    opacity: .9;
+  }
+  .right-section .live-game .game-body .game-item:hover .play-btn {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+  .right-section .live-game .game-body .game-item:hover .caption {
+    opacity: 0;
+    transition: all .3s cubic-bezier(.645,.045,.355,1);
+  }
+  

@@ -1,0 +1,160 @@
+<app-header></app-header>
+<main>
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="bet-history inner-content">
+                <div class="page-title">
+                    <h3>Fancy Result</h3>
+                    <div class="row col-md-12">
+                        <div class="col-md-2 mr-4 ">
+                            <div class="col-inner">
+                                <div class="form-group mb-0">
+
+                                    <input name="searchSport" class="search-input dropdown-toggle form-control"
+                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" type="text" autocomplete="off" [(ngModel)]="searchSport"
+                                        placeholder="Search Match Name">
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item"
+                                            *ngFor="let sport of homeData |search: searchSport :'match_name'">
+                                            <div class="event-info" (click)="getFancy(sport.match_id)">
+                                                <div class="event-format-strip">
+                                                    <div class="event-team">
+                                                        <div class="team-name">{{sport?.match_name}}
+                                                            <!-- &#8739;  -->
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="event-full-date">
+                                                    <span class="date">{{moment(sport?.match_date).utcOffset("+0").format('D')}}
+                                                        {{moment(sport?.match_date).utcOffset("+0").format('MMM')}}
+                                                        {{moment(sport?.match_date).utcOffset("+0").format('HH:mm')}} IST</span>
+                                                </div> -->
+
+                                                </div>
+
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="col-inner">
+                                <div class="form-group mb-0">
+
+                                    <input name="searchFancy" class="search-input dropdown-toggle form-control"
+                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" type="text" autocomplete="off" [(ngModel)]="searchFancy"
+                                        placeholder="Search Fancy Name...">
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item"
+                                            *ngFor="let sport of homeData |search: searchFancy :'match_name'">
+                                            <div class="event-info" (click)="getFancy(sport.match_id)">
+                                                <div class="event-format-strip">
+                                                    <div class="event-team">
+                                                        <div class="team-name">{{sport?.match_name}} &#8739; </div>
+                                                    </div>
+                                                    <div class="event-full-date">
+                                                        <span
+                                                            class="date">{{moment(sport?.match_date).utcOffset("+0").format('D')}}
+                                                            {{moment(sport?.match_date).utcOffset("+0").format('MMM')}}
+                                                            {{moment(sport?.match_date).utcOffset("+0").format('HH:mm')}}
+                                                            IST</span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="col-inner">
+                                <div class="form-group mb-0">
+
+                                    <input name="searchFancy" class="search-input dropdown-toggle form-control"
+                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" type="text" autocomplete="off" [(ngModel)]="searchFancy"
+                                        placeholder="Search Result Declare Fancy...">
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item"
+                                            *ngFor="let sport of betdataType ">
+                                            <div class="event-info" >
+                                                <div class="event-format-strip">
+                                                    <div class="event-team">
+                                                        <div class="team-name">{{sport}}  </div>
+                                                    </div>
+                                                    <!-- <div class="event-full-date">
+                                                        <span
+                                                            class="date">{{moment(sport?.match_date).utcOffset("+0").format('D')}}
+                                                            {{moment(sport?.match_date).utcOffset("+0").format('MMM')}}
+                                                            {{moment(sport?.match_date).utcOffset("+0").format('HH:mm')}}
+                                                            IST</span>
+                                                    </div> -->
+
+                                                </div>
+
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="breadcrumb">
+                        <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                class="fa fa-arrow-left"></i>Back</a>
+                    </div>
+                </div>
+                <div class="report-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S.no.</th>
+                                <th>Fancy Name</th>
+                                <th>Status <i class="fa fa-refresh" aria-hidden="true"
+                                        (click)="getFancy(null,'onload')"></i></th>
+                                <!-- <th>Selection</th>
+                                <th>Rate</th>
+                                <th>Stake</th>
+                                <th>P/L</th>
+                                <th>Placed Time</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let fancy of fancyList;let i= index;">
+                                <tr>
+                                    <td>{{i+1}}</td>
+                                    <td>{{fancy?.fancy_name}} ({{fancy?.bet_count}})</td>
+
+                                    <td>
+                                        <input _ngcontent-c8="" type="number"
+                                            class="input-text ng-untouched ng-pristine ng-valid box-size"
+                                            name="280{{index}}" id="{{index}}" [(ngModel)]="fancy.fancyResultValue"
+                                            class="input-text"
+                                            style="color:black;font-size: 16px;width:100px; margin-right: 10px;">
+
+                                        <span _ngcontent-c8=""><button _ngcontent-c8="" class="btn-success" href=""
+                                                (click)="fancyResultDeclare(fancy,fancy.fancyResultValue)">Result</button>
+                                        </span>&nbsp;&nbsp;
+                                        <span><button _ngcontent-c8="" class="btn-success btn-success2"
+                                                (click)="fancyAbondoned(fancy)">Abandoned</button></span>
+                                    </td>
+                                    <!-- <td> <span *ngIf="fancy.is_active == 0 ">First create Fancy</span></td> -->
+                                    <!-- <td>{{bet?.p_l}}</td>
+                                    <td>{{bet?.created_at* 1000 | date : 'medium'}}</td> -->
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

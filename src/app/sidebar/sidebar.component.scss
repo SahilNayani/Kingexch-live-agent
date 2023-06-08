@@ -1,0 +1,263 @@
+::ng-deep .mat-expansion-panel.no-submenu .mat-expansion-indicator {
+    display: none;
+}
+.scroll-sidebar.scroller {
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.sidebar{
+    width: 250px;
+    position: fixed;
+    height: 100%;
+    top: 104px;
+    bottom: 0;
+    left: 0;
+    background: var(--header-background);
+    z-index: 2;
+    background-color: #fff;
+    // overflow-y: auto;
+    // overflow-x: hidden;
+    transition: transform .3s ease-in-out,width .3s ease-in-out;
+    box-shadow: 0px 4px 9px rgb(0 0 0 / 4%);
+    .navbar-brand { 
+        padding: 9px 20px;
+        margin: 0;
+        text-align: center;
+        display: block;
+        border-bottom: 0.5px solid #EEEEEE;
+        border-right: 0.5px solid #EEEEEE;
+        img {
+            max-width: 140px;
+        }
+    }
+    .menu-section{ 
+        padding: 0;
+        margin-top: 0;
+        h4{
+            font-size: 16px;
+            line-height: 35px;
+            margin: 0;
+            position: relative;
+            font-weight: 500;
+            font-family: "oswald";
+            border: 0.5px solid #F7F7F7;
+            border-radius: 0;
+            padding: 0 10px;
+            background: #F7F7F7;
+        }
+        ul{
+            padding: 0;
+            li{
+                margin-right: 0;
+                border: none;
+                border-radius: 0;
+                line-height: 22px;
+                margin: 0;
+                .submenu-list{
+                    padding-left: 20px;
+                }
+                a{
+                    color: #000;
+                    font-size: 13px;
+                    font-weight: 400;
+                    padding: 0 4px 0 15px;
+                    text-align: left;
+                    position: relative;
+                    display: block;
+                    cursor: pointer;
+                    line-height: 30px;
+                    border-top: 1px solid #fff;
+                    span{
+                        width: calc(100% - 10px);
+                        display: inline-block;
+                        line-height: 20px;
+                    }
+                    &::after{
+                        content: '\f105';
+                        font-family: 'FontAwesome';
+                        border: none;
+                        padding-left: 25px;
+                        font-size: 16px;
+                        vertical-align: middle;
+                        margin: 0;
+                        position: absolute;
+                        right: 4px;
+                        height: 100%;
+                        top: calc(50% - 17px);
+                    }
+                    &:hover{
+                        background-color: transparent;
+                        color: var(--blue-text);
+                    }
+                    img{
+                        width: 16px;
+                        margin-right: 10px;
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+    }
+}
+.mat-expansion-panel-spacing {
+    margin: 0px;
+}
+.mat-expansion-panel{
+   //padding: 0;
+   box-shadow: none;
+   background:var(--header-background);
+   &.active{
+       // .mat-expansion-panel-header{
+       //     border-bottom: 1px solid #d1cfcf;
+       //     background-color: #efefef;
+       // }
+   }
+  
+   .mat-expansion-panel-header{
+       line-height: 20px;
+       padding: 0 10px 0 0;
+       border-top: 1px solid #d2d6e2;
+       height: auto !important;
+       .mat-expansion-panel-header-description, .mat-expansion-indicator::after {
+           color: var(--text-color) !important;
+       }
+       :host.mat-expansion-indicator::after {
+           border-style: solid;
+           border-width: 0 2px 2px 0;
+           content: "";
+           display: inline-block;
+           padding: 3px;
+           transform: rotate(
+       45deg);
+           vertical-align: middle;
+           color:var(--text-color) !important;;
+       }
+       a{
+           color: #223869;
+           padding: 0.3rem 1rem;
+           font-size: 13px;
+           font-weight: 400;
+           text-align: left;
+           position: relative;
+           text-transform: capitalize;
+           display: block;
+           cursor: pointer;
+           &::after{
+               border: none;
+               padding-left: 25px;
+               font-size: 16px;
+               vertical-align: middle;
+               margin: 0;
+               position: absolute;
+               right: 4px;
+           }
+           &:hover{
+               background-color: transparent;
+               color: var(--blue-text);
+           }
+           img{
+               width: 16px;
+               margin-right: 10px;
+               display: inline-block;
+               vertical-align: middle;
+           }
+       }
+   }
+}
+::ng-deep .mat-expansion-panel-body {
+   padding: 0px !important;
+   margin-left: 0;
+   background-color: #efefef;
+
+}
+::-webkit-scrollbar-thumb {
+    background: var(--light-border);
+}
+
+
+@media (min-width: 993px){
+    .sidebar{
+        display: block;
+        margin-left: 20px;
+    }
+}
+@media (max-width: 992px){
+    .sidebar{
+        transform: translateX(-105%);
+        bottom: 0;
+        z-index: 9999;
+        border-radius: 0;
+        width: 50%;
+        left: 0;
+        will-change: transform;
+        padding-top: 50px;
+    }
+    .sidebar.mobile-nav-active {
+        transform: translateX(0%);
+    }
+    
+    .mobile-nav-overly {
+        width: 100%;
+        height: 100%;
+        z-index: 9;
+        top: 50px;
+        left: 0;
+        position: fixed;
+        background: rgba(28, 34, 50, 0.5);
+        overflow: hidden;
+        display: none;
+    }
+    .mobile-nav-overly.mobile-nav-block {
+        display: block;
+    }
+}
+
+.top-head-sport{
+    background: var(--sportMenuHead);
+    color: var(--sportHeadColor)!important;
+    line-height: 25px;
+    font-size: 12px;
+    height: 25px;
+    font-weight: 500;
+    padding: 0 10px;
+    .path-back {
+        color: var(--sportHeadColor);
+        position: absolute;
+        z-index: 2;
+        height: 25px;
+        font-size: 22px;
+        width: 40px;
+        left: 15px;
+        top: 2px;
+        line-height: 16px;
+    }
+    li {
+        list-style: none;
+        margin-left: 10px;
+        font-weight: 500;
+        a {
+            color: var(--sportHeadColor)!important;
+            text-align: right !important;
+            border-top: none !important;
+            line-height: 24px !important;
+            &:after{
+                display: none;
+            }
+        }
+    }
+}
+::ng-deep .mat-expansion-indicator::after{
+    background-image: url('../../assets/aura777/sprite-icon.png');
+    background-position: 100% -1000px;
+    height: 25px;
+    width: 23px;
+    background-repeat: no-repeat;
+    line-height: 25px;
+    top: 6px;
+    right: 6px;
+    transform: unset !important;
+    border-width: 0 !important;
+    margin-right: -6px;
+}

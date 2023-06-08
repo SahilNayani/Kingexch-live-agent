@@ -1,0 +1,144 @@
+<app-header></app-header>
+<!-- <app-sidebar></app-sidebar> -->
+
+<main>
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="live-bet-history inner-content">
+                <div class="page-title">
+                    <h3>Live Bet History</h3>
+                    <div class="breadcrumb">
+                        <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                class="fa fa-arrow-left"></i>Back</a>
+                    </div>
+                </div>
+
+                <div class="filterDiv">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form>
+                                <div class="row form-field">
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group dateTimePicker">
+                                                <input type="text" class="form-control" [popover]="popTemplate"
+                                                    placement="bottom" [outsideClick]="true" #popoverRef="bs-popover"
+                                                    value="{{dateTime | date:'yyyy-MM-dd hh:mm'}}" (click)="showDate()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group dateTimePicker">
+                                                <input type="text" class="form-control" [popover]="popTemplate"
+                                                    placement="bottom" [outsideClick]="true" #popoverRef="bs-popover"
+                                                    value="{{dateTime | date:'yyyy-MM-dd hh:mm'}}" (click)="showDate()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Search by user">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group">
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>All Game</option>
+                                                    <option value="1">Teenpatti T20</option>
+                                                    <option value="2">Poker</option>
+                                                    <option value="3">Teenpatti One Day</option>
+                                                    <option value="4">Andar Bahar</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group">
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>Select Match Status</option>
+                                                    <option value="1">Open</option>
+                                                    <option value="2">Settled</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner text-end">
+                                            <div class="btn-list">
+                                                <button type="button" class="btn btn-success">Filter</button>
+                                                <button type="button" class="btn btn-danger">Clear</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="report-table">
+                    <table datatable class="table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <th>Date-Time</th>
+                                <th>Client</th>
+                                <th>Game</th>
+                                <th>Round Id</th>
+                                <th>Bet Details</th>
+                                <th>Result</th>
+                                <th>Type</th>
+                                <th>Winner</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>Jun 26, 2021, 8:23:20 PM</td>
+                                <td>Sujit</td>
+                                <td>Teenpatti T20</td>
+                                <td>10738635</td>
+                                <td>Back</td>
+                                <td>0</td>
+                                <td>Plain</td>
+                                <td>B</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!-- Date Time Picker -->
+<ng-template #popTemplate>
+    <datepicker [hidden]="!isDateVisible" [(ngModel)]="date" [minDate]="minDate" [showWeeks]="false"
+        (ngModelChange)="updateDate()" (selectionDone)="dateSelectionDone()">
+    </datepicker>
+    <timepicker [hidden]="!isDateVisible" [(ngModel)]="time" (ngModelChange)="updateTime()" [showMeridian]="isMeridian" showSeconds="true">
+    </timepicker>
+
+    <div style="padding:5px">
+        <span class="btn-group pull-left" style="margin-right:10px;">
+            <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+            <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group pull-right">
+            <!-- <button type=button class="btn btn-sm btn-light" [hidden]="isDateVisible" 
+            (click)="showDate()">Date
+            </button>
+            <button type=button class="btn btn-sm btn-light" [hidden]="!isDateVisible" 
+            (click)="showTime()">Time
+            </button> -->
+            <button type=button class="btn btn-sm btn-success" (click)="close()">Close</button>
+        </span> <span class=clearfix></span>
+    </div>
+</ng-template>

@@ -1,0 +1,205 @@
+<app-header></app-header>
+<div id="layoutSidenav">
+  <div id="layoutSidenav_content" class="pt-3">
+     <main>
+        <div class="container-fluid px-3">
+           <div class="mb-4">
+              <!-- <div class="col-sm-12 col-md-12">
+                 <div class="card card-report-datepicker">
+                    <div class="card-body row p-0">
+                       <div class="col-md-12 row">
+                          <div class="col-md-2 col-6">
+                             <div class="form-group">
+                                <label for="type">Data Source</label>
+                                <select class="form-control">
+                                   <option disabled="" value="">Data Source</option>
+                                   <option value="LIVE">LIVE DATA</option>
+                                   <option value="BACKUP">BACKUP DATA</option>
+                                   <option value="OLD">OLD DATA</option>
+                                </select>
+                             </div>
+                          </div>
+                          <div class="col-md-3 col-6">
+                             <div class="input-group form-group">
+                                <label for="type" style="width: 100%;">From</label>
+
+                                <input class="form-control" name="mydate" id="date_picker4" placeholder="Start Date" [popover]="popTemplate" style="width: 50%;" value="{{startdateTime | date:'yyyy-MM-dd HH:mm:ss'}}" (click)="showDate()">
+
+                                <div class="input-group-append">
+                                   <button class="btn btn-secondary" type="button"><i class="fa-solid fa-calendar-days"></i></button>
+                                </div>
+                                <input class="form-control" disabled="" placeholder="00:00" style="display: inline-block;width: 20px;margin-left: 10px;">
+                             </div>
+                          </div>
+                          <div class="col-md-3 col-6">
+                             <div class="input-group form-group">
+                                <label for="type" style="width: 100%;">To</label>
+
+                                <input class="form-control" name="mydate" id="date_picker5" placeholder="End Date" [popover]="popTemplate"  style="width: 50%;" value="{{enddateTime | date:'yyyy-MM-dd HH:mm:ss'}}" (click)="showDate()">
+
+                                <div class="input-group-append">
+                                   <button class="btn btn-secondary" type="button"><i class="fa-solid fa-calendar-days"></i></button>
+                                </div>
+                                <input class="form-control" disabled="" placeholder="23:59" style="display: inline-block;width: 20px;margin-left: 10px;">
+                             </div>
+                          </div>
+                          <div class="col-md-3 col-6">
+
+                             <div class="form-group"><label for="type" style="width: 100%;">&nbsp;</label><button class="btn btn-primary" type="button" (click)="eventpl('filterBtnClick')"><strong>Get P&L</strong></button></div>
+
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div> -->
+              <div class="header-tab bg-tab btr-5">
+                 <h3>Profit Loss Events</h3>
+              </div>
+              <div class="table-profit">
+                 <div class="card mb-4">
+                    <div class="card-body text-center">
+                       <table class="dataTable-table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                          <!-- <thead>
+                             <tr>
+                                <th class="text-center">Sport Name</th>
+                                <th class="text-center">Upline Profit/Loss</th>
+                                <th class="text-center">Downline Profit/Loss</th>
+                                <th class="text-center">Commission</th>
+                             </tr>
+                          </thead>
+                          <tbody>
+                             <tr *ngFor="let profit of sportPlList |search: searchSport :'sport_name';let i = index;">
+                                <td class="table-font-weight text-center">
+                                   <span class="text-uppercase"><a target="_blank" class="event-color" (click)="eventWisePl(profit)"  style="cursor: pointer;">{{profit?.sport_name}}</a></span>
+                                </td>
+                                <td class="table-font-weight text-red" [ngClass]="{'red':profit.profitloss < 0 ,'green':profit.profitloss >= 0}">{{profit?.profitloss | number : '0.0-2'}}</td>
+                                <td class="table-font-weight text-green" [ngClass]="{'red':profit.downlineprofitloss < 0 ,'green':profit.downlineprofitloss >= 0}">{{profit?.downlineprofitloss | number : '0.0-2'}}</td>
+                                <td class="table-font-weight" [ngClass]="{'red':profit.commission < 0 ,'green':profit.commission >= 0}">{{profit?.commission | number : '0.0-2'}}</td>
+                             </tr>
+                             <tr *ngIf="sportPlList?.length == 0" >
+                              No data avalible...
+                             </tr>
+                          </tbody> -->
+                       </table>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </main>
+  </div>
+</div>
+<!-- <main>
+    <div class="full-wrap" id="contentToConvert" #contentToConvert>
+        <div class="report-page">
+            <div class="user-list inner-content">
+
+              <div class="card-header account-detail-head">
+                Profit Loss Match
+              </div>
+
+                <div class="card my-exchange-head">
+                    <div class="card-body">
+                        
+                        <div class="table-filter">
+                            <div class="col-inner">
+                                <label>Items per page:</label>
+    
+                                <select name="betType" class="form-select" [(ngModel)]="itemsPerPage"
+                            [ngModelOptions]="{standalone: true}" aria-label="Default select example"
+                            (change)="setSelectedOption($event.target.value)">
+                            <option value="50" selected>50</option>
+                            <option value="100">100</option>
+                            <option value="200">200</option>
+                            <option value="500">500</option>
+                        </select>
+                            </div>
+
+                            <div class="col-inner">
+                                <label>Search:</label>
+                                <input type="text"  [(ngModel)]="searchMatch" (ngModelChange)="searchFilter()" [ngModelOptions]="{standalone: true}" placeholder="Search Match">
+                            </div>
+                        </div>
+                        <div class="table-responsive" *ngIf="user_id == undefined">
+                            <table class="table table-bordered">
+                              <thead>
+                                <tr>
+                                    <th>Sport Name</th>
+                                    <th>Upline Profit/Loss</th>
+                                    <th>Downline Profit/Loss</th>
+                                    <th>Commission</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let profit of matchPlList| paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: total_items };let i = index;">
+                                  <td (click)="matchwisePl(profit)"  style="cursor: pointer;color: blue !important;">
+                                      {{profit?.match_name}}
+                                  </td>
+                                  <td [ngClass]="{'red':profit.profitloss < 0 ,'green':profit.profitloss >= 0}">
+                                    {{profit?.profitloss | number : '0.0-2'}}
+                                  </td>
+                                  <td [ngClass]="{'red':profit.downlineprofitloss < 0 ,'green':profit.downlineprofitloss >= 0}">
+                                    {{profit?.downlineprofitloss | number : '0.0-2'}}
+                                  </td>
+                                  <td [ngClass]="{'red':(profit.commission) < 0 ,'green':profit.commission >= 0}">
+                                    {{profit?.commission | number : '0.0-2'}}
+                                  </td>
+                              </tr>
+                                <div *ngIf="matchPlList?.length == 0" style="text-align: center;">
+                                    No data avalible
+                                </div>
+                            </tbody>
+                            <tbody *ngIf="matchPlList?.length != 0">
+                              <tr>
+                                  <td>Total </td>
+                                  <td [ngClass]="{'red':profitloss < 0 ,'green':profitloss >= 0}">{{profitloss | number : '0.0-2'}}</td>
+                                  <td [ngClass]="{'red':downlineprofitloss < 0 ,'green':downlineprofitloss >= 0}">{{downlineprofitloss | number : '0.0-2'}}</td>
+                                  <td [ngClass]="{'red':commission < 0 ,'green':commission >= 0}">{{commission | number : '0.0-2'}}</td>
+                              </tr>
+                          </tbody>
+                            </table>
+                        </div>
+                        <div class="table-responsive" *ngIf="user_id != undefined">
+                            <table class="table table-bordered">
+                              <thead>
+                                <tr>
+                                    <th>Sport Name</th>
+                                    <th>Event Name</th>
+                                    <th>Profit/Loss</th>
+                                    <th>Commission</th>
+                                    <th>Total P&L</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let profit of matchPlList| paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: total_items };let i = index;">
+                                <td> {{profit?.sport_name}}</td>
+                                  <td (click)="matchwisePl(profit)"  style="cursor: pointer;color: blue !important;">
+                                      {{profit?.match_name}}
+                                  </td>
+                                  <td [ngClass]="{'red':profit.total < 0 ,'green':profit.total >= 0}">
+                                    {{profit?.total | number : '0.0-2'}}
+                                  </td>
+                                  <td [ngClass]="{'red':profit.commission < 0 ,'green':profit.commission >= 0}">
+                                    {{profit?.commission | number : '0.0-2'}}
+                                  </td>
+                                  <td [ngClass]="{'red':((profit?.total) + (profit?.commission)) < 0 ,'green':((profit?.total) + (profit?.commission)) >= 0}">
+                                    {{((profit?.total) + (profit?.commission))  | number : '0.0-2'}}
+                                  </td>
+                              </tr>
+                                <div *ngIf="matchPlList?.length == 0" style="text-align: center;">
+                                    No data avalible
+                                </div>
+                            </tbody>
+                            </table>
+                        </div>
+
+                        <div class="report-bottom-paginate">
+                            <pagination-controls (pageChange)="pageChange($event)" class="user-list-pagination">
+                            </pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main> -->

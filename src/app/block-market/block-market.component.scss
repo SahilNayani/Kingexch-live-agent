@@ -1,0 +1,282 @@
+#multilevelList a{
+    position: relative;
+    display: inline-block;
+}
+// #multilevelList ul ul {
+// display: none;
+// }
+#multilevelList ul li a{
+    line-height: 30px;
+    font-size: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+#multilevelList li.active>ul {
+display: block;
+}
+#multilevelList ul ul{
+    margin-left: 25px;
+}
+// #multilevelList a:after {
+//     content: "\f058";
+//     font-family: 'fontawesome';
+//     position: absolute;
+//     right: 0;
+//     top: 0;
+//     font-size: 14px;
+//     color: var(--positive);
+// }
+#multilevelList a:before {
+    content: "\f067";
+    font-family: 'fontawesome';
+    position: absolute;
+    left: 10px;
+    top: 50;
+    font-size: 10px;
+}
+#multilevelList .active>a:before {
+content: "\f068";
+}
+#multilevelList > ul >li.parent-list{
+    margin-bottom: 15px;
+}
+#multilevelList > ul >li > a{
+    font-size: 18px;
+    display: block;
+    background-color: #dfdfdf;
+    line-height: 40px;
+    padding: 0 25px;
+    border-radius: 4px;
+    color: #000;
+    display: flex;
+}
+#multilevelList > ul >li > ul > li >a{
+    font-size: 16px;
+    display:flex;
+    line-height: 25px;
+    align-items: center;
+    .switch{
+        margin:0;
+    }
+}
+.list-div{
+    margin-top: 15px;
+    background-color: var(--white-bg);
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgb(15 34 58 / 12%);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 20px;
+    vertical-align: middle;
+    margin: 10px;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+input:checked+.slider {
+    background-color: #007a1d;
+}
+.slider.round {
+    border-radius: 34px;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #a00;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+.slider.round:before {
+    border-radius: 50%;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 4px;
+    bottom: 3px;
+    background-color: #fff;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+input:checked+.slider .on {
+    display: block;
+}
+.on {
+    display: none;
+}
+.on {
+    color: #fff;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 40%;
+    font-size: 10px;
+    font-family: Verdana,sans-serif;
+}
+input:checked+.slider .off {
+    display: none;
+}
+.off {
+    color: #fff;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 62%;
+    font-size: 10px;
+    font-family: Verdana,sans-serif;
+}
+.setting-btn{
+    padding:0 10px ;
+}
+.manualInplayBtn{
+    padding:0 10px ;
+    font-size: 10px;
+    //border: 1px solid #000;
+    // background-color: #ccc;
+    border-radius: 10px;
+    color: #000 !important;
+}
+
+.form-main{
+    .btn-list{
+        margin-bottom: 10px;
+        .btn{
+            margin-left: 5px;
+        }
+    }
+    .accordion{
+        .accordion-item{
+            margin-bottom:15px;
+            border-radius: 0;
+            border-width: 0 0 1px;
+            .accordion-header{
+                .accordion-title {
+                    width: 100%;
+                    background-color: rgb(1 49 113 / 25%);
+                    padding: 0 0 0 10px;
+                    line-height: 36px;
+                    font-size: 15px;
+                    color: var(--blue-text);
+                    font-weight: 600;
+                    border-radius: 4px 4px 0 0;
+                    &:after {
+                        content: '\f068';
+                        float: right;
+                        font-family: 'FontAwesome';
+                        background-color: var(--blue-bg);
+                        color: var(--white-text);
+                        width: 36px;
+                        text-align: center;
+                        border-radius: 0 4px 4px 0;
+                    }
+                }
+                .collapsed{
+                    &:after {
+                        content: '\f067';
+                    }
+                }
+            }
+            .accordion-body{
+                padding: 15px 0 0;
+                .col-inner {
+                    padding: 0 5px;
+                    .form-group {
+                        margin-bottom: 15px;
+                        span{
+                            font-size: 12px;
+                            color: #989898;
+                        }
+                    }
+                    .form-check {
+                        display: inline-block;
+                    }
+                }
+                .detail-row-heading {
+                    padding: 0;
+                    h4 {
+                        padding: 0 0 5px;
+                        font-size: 16px;
+                        font-weight: 600;
+                        margin: 0 0 20px;
+                        color: var(--blue-text);
+                        width: auto;
+                        position: relative;
+                        &:after {
+                            content: '';
+                            position: absolute;
+                            left: 0px;
+                            bottom: 0;
+                            width: 120px;
+                            height: 2px;
+                            background-color: #bfcbdb;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.form-group{
+    ::ng-deep .tooltip-inner {
+        background-color: #000000b8;
+        border:1px solid #cccc;
+       width:auto ;
+       
+       overflow :visible;
+       right:500px;
+       text-align: justify;
+       white-space: pre-line;
+       word-wrap: break-word;
+      color:#ffffff;
+       //max-width: none !important;
+      }
+      ::ng-deep .arrow::before {
+        border-top-color: #000;
+        background-color: #fff;
+       
+      }
+ 
+}
+
+.icon-background{
+    padding: 0;
+    margin: 5px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px !important;
+}
+
+.search-input{
+    width:150px;
+    height: 30px;
+    margin: 5px;
+}
+.red {
+    background-color: red !important;
+}
+.green{
+    background-color: green !important;
+}

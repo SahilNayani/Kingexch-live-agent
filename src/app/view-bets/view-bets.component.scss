@@ -1,0 +1,148 @@
+
+.btn-list {
+  .btn-success {
+      margin-right: 10px;
+  }
+}
+.filter-btn{
+  padding-bottom: 10px;
+}
+.user-list-pagination {
+  float: right;
+}
+.loss{
+  color:#FF4148;
+}
+.profit{
+  color:#00C14D;
+}
+.name-cell{
+    text-decoration: underline;
+    color: #0094E7;
+    font-size: 13px;
+    font-weight: 500;
+}
+.btn.btn-warning{
+  height: 26px;
+  line-height: 24px;
+  width: 28px;
+  padding: 0;
+}
+
+.page-title .col-md-10 {
+  width: auto;
+}
+.form-group{
+  margin-bottom: 5px;
+}
+.hierarchy{
+  margin-bottom: 0;
+    /* mouse over link */
+    padding: 0 0 5px;
+    span{
+        &:last-child{
+            i{
+                display: none;
+            }
+        }
+    }
+    li{
+      color:#fff;
+   
+    }
+    li:hover {
+      color: #195991;
+    }
+}
+.betDetailNav {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 10px;
+  margin-bottom: -5px;
+ ul {
+     display: flex;
+     flex-direction: row;
+     white-space: nowrap;
+     margin: 5px 0 0;
+  //    background-color: rgb(0 48 96 / 5%);
+     width: min-content;
+     li{ 
+         width: auto; height: 26px; background: rgb(0 48 96 / 15%); position: relative;
+         margin-left: 16px;
+         color:var(--blue-text);
+         padding-left: 10px;
+         line-height: 26px;
+         text-align: center;
+         font-weight: 500;
+         font-size: 13px;
+     }
+     li:before { 
+         content: ""; 
+         position: absolute; 
+         top: 0; 
+         left: -13px;
+         width: 0; 
+         height: 0; 
+         border-top: 13px solid rgb(0 48 96 / 15%);
+         border-bottom: 13px solid rgb(0 48 96 / 15%);
+         border-left: 13px solid transparent;
+     
+     }
+     
+     li:after { 
+         content: ""; 
+         position: absolute; 
+         right: -13px; 
+         bottom: 0; 
+         width: 0; 
+         height: 0; 
+         border-top: 13px solid transparent;
+         
+         border-bottom: 13px solid transparent;
+         
+         border-left: 13px solid rgb(0 48 96 / 15%);
+     }
+ }
+}
+
+.select-option{
+  color: #000 !important;
+}
+.btn-list {
+  .btn-success {
+      margin-right: 10px;
+  }
+}
+.filter-btn{
+  padding-bottom: 10px;
+}
+.user-list-pagination {
+  float: right;
+ 
+}
+
+.select-option{
+  color: #000 !important;
+}
+
+main {
+  .container-fluid {
+      padding: 0 30px;
+  }
+  .row{
+      margin-right: -15px;
+      margin-left: -15px;
+      .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto{
+          padding-right: 15px;
+          padding-left: 15px;
+      }
+  }
+}
+.card-report{
+  padding:10px 30px 10px;
+}
+.filter-column {
+  width: 100%;
+  margin: 0 2px;
+  max-width: 180px;
+}

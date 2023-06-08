@@ -1,0 +1,259 @@
+<app-header></app-header>
+<!-- <app-sidebar></app-sidebar> -->
+
+<main>
+    <div class="account-info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="divider-top">
+                        <div class="total_all">
+                            <div class="nav-list">
+                                <div class="hierarchy">
+                                    <ul>
+                                        <li *ngIf="sport_name != undefined">{{sport_name}}</li>
+                                        <li *ngIf="series_name != undefined">{{series_name}}</li>
+                                        <li *ngIf="match_name != undefined">{{match_name}}</li>
+                                        <li *ngIf="market_name != undefined">{{market_name}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="card card-report">
+                                    <div class="card-body p-0">
+                                        <form>
+                                            <div class="row form-field">
+                                                <div class="filter-column">
+                                                    <div class="col-inner">
+                                                        <div class="form-group mb-0">
+            
+                                                            <input name="searchSeries"
+                                                                class="search-input dropdown-toggle form-control"
+                                                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false" type="text" autocomplete="off"
+                                                                [(ngModel)]="searchSelection" placeholder="Search Selection...">
+            
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                <a class="dropdown-item"
+                                                                    *ngFor="let selection of selectionList |search: searchSelection :'selection_name'">
+                                                                    <div class="event-info"
+                                                                        (click)="onClickFilterViewBets(selection)">
+                                                                        <div class="event-format-strip">
+                                                                            <div class="event-team">
+                                                                                <div class="team-name">{{selection?.selection_name}}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+            
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+            
+                                                <div class="filter-column">
+                                                    <div class="col-inner">
+                                                        <div class="form-group">
+                                                            <select name="betType" class="form-select" [(ngModel)]="betType"
+                                                                [ngModelOptions]="{standalone: true}"
+                                                                aria-label="Default select example"
+                                                                (change)="onClickFilterViewBets()">
+                                                                <option class="select-option" selected disabled>Bet Type</option>
+                                                                <option class="select-option" value="all">All</option>
+                                                                <option class="select-option" value="1">Back</option>
+                                                                <option class="select-option" value="0">Lay</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="filter-column">
+                                                    <div class="col-inner">
+                                                        <div class="form-group mb-0">
+            
+                                                            <input name="searchRate" class="search-input form-control" type="number"
+                                                                autocomplete="off" [(ngModel)]="searchRate" placeholder="Rate"
+                                                                (ngModelChange)="onClickFilterInputViewBets(searchRate)">
+            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="filter-column">
+                                                    <div class="col-inner">
+                                                        <div class="form-group mb-0">
+            
+                                                            <input name="searchStake" class="search-input form-control"
+                                                                type="number" autocomplete="off" [(ngModel)]="searchStake"
+                                                                placeholder="Stake" (ngModelChange)="onClickFilterInputViewBets(searchStake)">
+            
+            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="filter-column">
+                                                    <div class="col-inner">
+                                                        <div class="form-group dateTimePicker">
+                                                            <input class="form-control" name="startDate" [max]="todayDate"
+                                                                [(ngModel)]="openStartDate" datetime="HH:mm:ss" 
+                                                                placeholder="Placed date">
+                                                            <owl-date-time #dt1 hour12Timer="true" showSecondsTimer="true">
+                                                            </owl-date-time>
+                                                            <!-- <input type="text" class="form-control" [popover]="popTemplate" placement="bottom" [outsideClick]="true" #startpopoverRef="bs-popover" value="{{startdateTime | date:'yyyy-MM-dd hh:mm:ss'}}" (click)="showDate()"> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="filter-column">
+                                                    <div class="col-inner text-end">
+                                                        <div class="btn-list">
+                                                            <button type="button" class="btn btn-success"
+                                                                (click)="onClickFilterViewBets('filterBtnClick')">Filter</button>
+                                                            <button type="button" class="btn btn-danger"
+                                                                (click)="clear()">Clear</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="card card-accent-primary">
+                                    <div class="card-header account-detail-head">
+                                        View Bets
+                                        <div class="breadcrumb">
+                                            <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                                    class="fa fa-arrow-left"></i>Back</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body account-stat-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered dataTable no-footer">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>S.No.</th>
+                                                                <th *ngIf="type == 0">Domain</th>
+                                                                <th>Name</th>
+                                                                <th>Market</th>
+                                                                <th>Bet Type</th>
+                                                                <th>Selection</th>
+                                                                <th>Rate</th>
+                                                                <th>Stake</th>
+                                                                <th>P|L</th>
+                                                                <th>Result</th>
+                                                                <th>Placed Time</th>
+                                                                <th>BetId</th>
+                                                                <th>IP Address</th>
+                                                                <th *ngIf="type == 0">Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <ng-container
+                                                                *ngFor="let bet of betData| paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: total_items } ;let i= index;">
+                                                                <tr>
+                                
+                                                                    <td style="cursor: pointer;" ngxClipboard [cbContent]="'Content to be copied.'"
+                                                                        (cbOnSuccess)="contentCopied($event)" (click)="copyContent(bet.bet_id)">
+                                                                        {{itemsPerPage *(currentPage-1)+i+1}}<div class="box"
+                                                                            *ngIf="objectId == bet.bet_id && displayTooltip == true">
+                                                                            <h5>Copied</h5>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td *ngIf="type == 0">{{bet?.domain_name}}</td>
+                                                                    <td class="name-cell" (click)="openModalUserParentList(bet,userParentList)">{{bet?.user_name}}</td>
+                                                                    <td><span class="market-name">{{bet?.market_name}}</span></td>
+                                                                    <td *ngIf="(bet.is_back)==0">
+                                                                        <span [ngClass]="{'lay-btn':(bet.is_back)==0,'back-btn':(bet.is_back)==1}">Lay</span>
+                                                                    </td>
+                                                                    <td *ngIf="(bet.is_back)==1">
+                                                                        <span [ngClass]="{'lay-btn':(bet.is_back)==0,'back-btn':(bet.is_back)==1}">Back</span>
+                                                                    </td>
+                                                                    <td><span class="selection">{{bet.is_fancy == 0 ? bet.selection_name : bet.selection_name}}</span></td>
+                                                                    <td>{{bet?.odds}}</td>
+                                                                    <td>{{bet?.stack}}</td>
+                                                                    <td [ngClass]="{'loss':bet?.p_l < 0 ,'profit':bet?.p_l >= 0}">
+                                                                        {{(bet?.p_l)| number : '0.0-2'}}</td>
+                                                                    <td>{{bet?.winner_name}}</td>
+                                                                    <td>
+                                                                        <span class="date">{{moment(bet?.createdAt).utcOffset("+0").format('L')}}
+                                                                            &nbsp;{{moment(bet?.createdAt).utcOffset("+0").format('LTS')}}</span>
+                                                                    </td>
+                                                                    <td>{{bet?.bet_id}}</td>
+                                                                    <td>
+                                                                        {{bet?.ip_address}}
+                                                                    </td>
+                                                                    <td *ngIf="type == 0">
+                                                                        <a class="btn btn-warning btn-sm actionbtn" role="button" tabindex="0"
+                                                                            title="Delete bet" *ngIf="bet.delete_status == '0'"><i
+                                                                                class="fa fa-check"></i></a>
+                                                                        <button class="btn btn-danger" *ngIf="bet.delete_status =='1'">D</button>
+                                                                        <button class="btn btn-warning" *ngIf="bet.delete_status =='2'">v</button>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-container>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="report-bottom-paginate">
+                                                    <div class="col-inner item-perpage-select">
+                                                        <label>Items per page:</label>
+                                    
+                                                        <select name="betType" class="form-select" [(ngModel)]="itemsPerPage"
+                                                            [ngModelOptions]="{standalone: true}" aria-label="Default select example"
+                                                            (ngModelChange)="pageChange()">
+                                                            <option selected disabled></option>
+                                                            <option value="50">50</option>
+                                                            <option value="100">100</option>
+                                                            <option value="150">150</option>
+                                                            <option value="200">200</option>
+                                                        </select>
+                                                    </div>
+                                                   
+                                                    <pagination-controls (pageChange)="pageChange($event)"
+                                                    class="user-list-pagination" ></pagination-controls>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<ng-template #userParentList>
+    <div class="modal-header">
+        <h4 class="modal-title">Parent List of {{userParentName}}</h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+    <table class="table">
+        <tbody>
+            <ng-container *ngFor="let parent of parentList; let i =index">
+                <tr>
+                    <td>{{parent?.name}}({{parent?.user_name}})</td>
+                </tr>
+                <!-- <tr>
+                    <td>user2</td>
+                </tr>
+                <tr>
+                    <td>user3</td>
+                </tr> -->
+                
+            </ng-container>
+        </tbody>
+    </table>
+</ng-template>
+
+<!-- Date Time Picker -->

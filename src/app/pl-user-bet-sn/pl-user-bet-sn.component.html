@@ -1,0 +1,76 @@
+<app-header></app-header>
+<!-- <main>
+  <div class="full-wrap" id="contentToConvert" #contentToConvert>
+      <div class="report-page">
+          <div class="user-list inner-content">
+
+            <div class="card-header account-detail-head">
+              Bet History
+            </div>
+
+              <div class="card my-exchange-head">
+                  <div class="card-body">
+                      <div class="table-responsive">
+                          <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                  <th>Sport Name</th>
+                                  <th>Event Name</th>
+                                  <th>Market Name</th>
+                                  <th>Runner Name</th>
+                                  <th>Type</th>
+                                  <th>Price</th>
+                                  <th>Amount</th>
+                                  <th>Profit/Loss</th>
+                                  <th>Place Time</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <ng-container *ngFor="let profit of betList;let i = index;">
+                              <tr [ngClass]="{'pink':profit.is_back == 0,'blue':profit.is_back == 1}">
+                                <td >{{profit?.sport_name}}</td>
+                                <td>{{profit?.match_name}}</td>
+                                <td >{{profit?.market_name}}</td>
+                                <td >{{profit.is_fancy==0 ? (profit?.selection_name) : (profit?.odds)}}</td>
+                                <td *ngIf="profit.is_fancy == 0">{{profit.is_back == 1 ? 'Back' : 'Lay'}}</td>
+                                <td *ngIf="profit.is_fancy == 1">{{profit.is_back == 1 ? 'Yes' : 'No'}}</td>
+                                <td *ngIf="profit.is_fancy == 0">{{(profit?.odds)}}</td>
+                                <td *ngIf="profit.is_fancy == 1">{{(profit?.odds)}}/{{(profit?.size)}}</td>
+                                <td>{{profit?.stack}}</td>
+                                <td>{{profit?.p_l}}({{profit?.liability}})</td>
+                                <td>{{profit?.createdAt | date :'dd-MM-yyyy hh:mm:ss aa'}}</td>
+                            </tr>
+                          </ng-container>
+                          </tbody>
+                         
+                          </table>
+                      </div>
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</main> -->
+
+<div id="layoutSidenav">
+  <div id="layoutSidenav_content" class="pt-3">
+     <main>
+        <div class="container-fluid px-3">
+           <div class="mb-4">
+              <div class="header-tab bg-tab btr-5">
+                 <h3>Bet History</h3>
+              </div>
+              <div class="table-profit">
+                 <div class="card mb-4">
+                    <div class="card-body text-center">
+                       <table class="dataTable-table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                          </table>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </main>
+  </div>
+</div>

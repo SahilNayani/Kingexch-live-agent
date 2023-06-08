@@ -1,0 +1,1079 @@
+<!-- <div class="mobile-nav d-lg-none navbar" [ngClass]="status ? 'mobile-nav-active' : ''">
+	<ul>
+		
+		<li class="dropdown">
+			<a class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown">
+				<i class="fa fa-sitemap"></i>Downline List
+			</a>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+				
+							<li><a class="dropdown-item" (click)="user()"><i class="fa fa-address-card-o"></i> User Downline List</a></li>
+				<li *ngIf="adminDetails.user_type_id != 2"><a class="dropdown-item" (click)="addUser()"><i class="fa fa-address-book-o"></i> Master Downline List</a></li>
+
+				
+	
+			</ul>
+		</li>
+		<li (click)="account(adminDetails?.user_id,adminDetails?.user_type_id)">
+			<a>My Account</a>
+		</li>
+		<li class="dropdown">
+			<a class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown">
+				<i class="fa fa-sitemap"></i>My Report
+			</a>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+				<li><a class="dropdown-item" >Profit/loss Report by User Downline</a></li>
+				<li><a class="dropdown-item" >Profit/loss Report by User Event</a></li>
+				<li><a class="dropdown-item" >Profit/loss Report by Master Downline</a></li>
+				<li><a class="dropdown-item" >Profit/loss Report by Master Downline</a></li>
+			</ul>
+		</li>
+		<li (click)="settledBets()">
+			<a>BetList</a>
+		</li>
+		<li>
+			<a (click)="goToHome()"><i class="fa fa-home"></i>Market Analysis</a>
+		</li>
+		<li class="dropdown">
+			<a class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown">
+				<i class="fa fa-sitemap"></i>Banking
+			</a>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+				<li><a class="dropdown-item" routerLink="/banking">User Banking</a></li>
+				<li><a class="dropdown-item" routerLink="/master-banking">Master Banking</a></li>
+			</ul>
+		</li>
+		<li class="dropdown">
+			<a class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown">
+				<i class="fa fa-sitemap"></i>Commission
+			</a>
+		</li>
+		<li><a (click)="history()">Password History</a></li>
+		<li ><a class="dropdown-item" (click)="closedUser()"><i
+			class="fa fa-user-o"></i> Restore User</a></li>
+		<li class="dropdown">
+			<a class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown">
+				<i class="fa fa-file-code-o"></i>Reports
+			</a>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+					<li><a class="dropdown-item" (click)="eventpl()">Event Profit/Loss</a></li>
+					<li><a class="dropdown-item" (click)="downpl()">Downline Profit/Loss</a></li>
+			</ul>
+		</li>
+	</ul>
+	
+</div>
+<div class="mobile-nav-overly" [ngClass]="status ? 'mobile-nav-block' : ''" (click)="headerNav()"></div>
+<header class="header">
+	<div class="header-menu">
+		<nav class="navbar navbar-expand-lg navbar-light">
+			
+			<div class="navbar-collapse menu-list" id="navbarSupportedContent">
+				<button type="button" class="mobile-nav-toggle d-lg-none" (click)="headerNav()"><i
+						class="fa fa-bars"></i></button>
+				<a class="navbar-brand" (click)="dashboard()">
+					<img src="assets/headerLogo/{{logo}}.png" alt="{{logo}}">
+				</a>
+				<form class="navbar-nav me-auto mb-2 mb-lg-0 d-none">
+					<input name="searchSport" class="search-input dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false" type="text" autocomplete="off"
+						(focus)="onFocusSearchInputEvent($event)" [(ngModel)]="searchSport" placeholder="Search Sports...">
+
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+						<a class="dropdown-item" *ngFor="let sport of homeData |search: searchSport :'match_name'">
+							<div class="event-info" (click)="matchDetail(sport)">
+								<div class="event-format-strip">
+									<div *ngIf="sport?.inplay == true" class="inplay-div">
+										<div class="inplay-btn inplay"><span>InPlay</span> </div>
+									</div>
+									<div class="event-full-date">
+										<span class="date">{{(sport?.match_date| date :'dd-MM hh:mm aa')}} IST</span>
+									</div>
+									<span class="event-format-series">{{sport?.series_name}}</span>
+								</div>
+								<div class="event-team">
+									<div class="team-name">{{sport?.match_name}}</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</form>
+				<ul class="d-flex mobile-hide-list d-none">
+					<li class="balance" ngbTooltip="Child-level"><a>C-L : <span>{{adminDetails.user_type_id}}</span></a></li>
+					<li ngbTooltip="Exposure" (click)="openModalExposure(exposure)">
+						<a>Exp. : <span [ngClass]="{'red':(walletBalance?.liability <= 0),'balance':(walletBalance?.liability > 0) }">{{walletBalance?.liability| number : '0.0-2'}}</span></a>
+					</li>
+					<li class="balance" ngbTooltip="Balance">
+						<a>Bal. : <span>{{walletBalance?.balance | number : '0.0-2'}}</span></a>
+					</li>
+					<li ngbTooltip="Profit-Loss">
+						<a>P|L : <span [ngClass]="{'red':(walletBalance?.profit_loss < 0),'green':(walletBalance?.profit_loss > 0) }">{{walletBalance?.profit_loss| number : '0.0-2'}}</span></a>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+							<img src="assets/images/icon/user.svg"> {{adminDetails?.name}}
+						</a>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<div class="user-profile">
+								<div class="inner">
+									<img src="assets/images/icon/user.svg">
+									<div class="username">
+										<span class="user">{{adminDetails?.name}}</span>
+									</div>
+								</div>
+								<div class="log-out">
+									<a (click)="logoutUser()"><img src="assets/images/icon/logout.svg"></a>
+								</div>
+							</div>
+							<div class="acc-detail">
+								<div class="acc-list winning-list"><a [routerLink]="['/profit-loss']">Winning <span class="success"
+											[ngClass]="{'red':(walletBalance?.profit_loss < 0),'green':(walletBalance?.profit_loss > 0) }">{{walletBalance?.profit_loss
+											| number : '0.0-2'}}</span></a></div>
+
+								<div class="acc-list "
+									[ngClass]="{'exp-list': walletBalance?.liability < 0 ,'winning-list': walletBalance?.liability >= 0}">
+									Exposure <span>{{walletBalance?.liability| number : '0.0-2'}}</span></div>
+								<div class="acc-list avail-list"><a [routerLink]="['/statement']">Available Balance
+										<span>{{walletBalance?.balance | number : '0.0-2'}}</span></a></div>
+
+							</div>
+							<div class="report-menu">
+								<h4>Reports</h4>
+								<ul class="menu-list">
+									<li><a class="dropdown-item" (click)="myMarket()"><img src="assets/images/icon/my_market.png"> My Market</a></li>
+									<li><a class="dropdown-item" (click)="accountStatement()"><img src="assets/images/icon/statement.png">
+											Statements</a></li>
+									<li><a class="dropdown-item" (click)="profitLoss(adminDetails?.user_id,adminDetails?.user_type_id)"><img src="assets/images/icon/profit_loss.png">
+											Profit & Loss</a></li>
+									<li><a class="dropdown-item" (click)="openModalDeposit(deposite)"
+											*ngIf="adminDetails?.user_type_id == 0"><img src="assets/images/icon/profit_loss.png">
+											Deposit(SA)</a></li>
+									<li><a class="dropdown-item" (click)="openModalWithdraw(withdraw)"
+											*ngIf="adminDetails?.user_type_id == 0"><img src="assets/images/icon/profit_loss.png">
+											Withdraw(SA)</a></li>
+									<li><a class="dropdown-item" (click)="openModalWithdraw(socketSelection)"
+											*ngIf="adminDetails?.user_type_id == 0"><img src="assets/images/icon/profit_loss.png"> Socket
+											Status</a></li>
+								</ul>
+							</div>
+							<div class="other-menu">
+								<h4>Others</h4>
+								<ul class="menu-list">
+									<li><a class="dropdown-item" (click)="openModalResetPwd(resetPwd)"><img
+												src="assets/images/icon/password.png">
+											Change Password</a></li>
+									<li><a class="dropdown-item" (click)="openModalChangeStack(stackValue)"><img
+												src="assets/images/icon/change_stack.png"> Edit Stack</a></li>
+									<li><a class="dropdown-item" (click)="openModalSportSetting(sportSetting,adminDetails);"><img
+												src="assets/images/icon/change_stack.png"> Self Setting</a></li>
+									<li><a class="dropdown-item" (click)="logoutUser()"><img src="assets/images/icon/logout.svg"> Log
+											out</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<ul class="account-wrap">
+					<li>
+						<span>Master</span>
+						<strong (click)="openModalChangeStack(stackValue)">{{adminDetails?.name}}</strong>
+					</li>
+					<li>
+						<strong id="mainBalance">IRP {{walletBalance?.balance | number : '0.0-2'}}</strong>
+					</li>
+					<li class="head-refresh" (click)="getUserBalance()">
+						<a>Refresh</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<div class="header-top-menu navbar-nav navbar">
+		<div class="main-wrap">
+			<ul class="menu-row">
+				
+				<li class="dropdown">
+					<a class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown">
+						Downline List
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+						<li><a class="dropdown-item" (click)="user()"><i class="fa fa-address-card-o"></i> User Downline List</a></li>
+						<li *ngIf="adminDetails.user_type_id != 2"><a class="dropdown-item" (click)="addUser()"><i class="fa fa-address-book-o"></i> Master Downline List</a></li>
+		
+						
+					</ul>
+				</li>
+				<li (click)="account(adminDetails?.user_id,adminDetails?.user_type_id)">
+					<a>My Account</a>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown">
+						My Report
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+						
+						
+						<li><a class="dropdown-item" (click)="eventpl()">Event Profit/Loss</a></li>
+						<li><a class="dropdown-item" (click)="downpl()">Downline Profit/Loss</a></li>
+					</ul>
+				</li>
+				<li (click)="settledBets()">
+					<a>BetList</a>
+				</li>
+				<li>
+					<a (click)="goToHome()">Market Analysis</a>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown">
+						Banking
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+						<li><a class="dropdown-item" routerLink="/banking">User Banking</a></li>
+						<li><a class="dropdown-item" routerLink="/masterBanking">Master Banking</a></li>
+					</ul>
+				</li>
+				<li><a (click)="agentCommission()">Commission</a></li>
+				<li><a (click)="history()">Password History</a></li>
+				<li><a (click)="closedUser()">Restore User</a></li>
+				
+				<li class="logout">
+					<a (click)="logoutUser()">Logout <img src="assets/aura777/logout.svg"></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="marquee-text" *ngIf="adminData?.length != 0">
+		<i class="fa fa-feed"></i>
+		<marquee width="100%" direction="left">{{adminHeading}} </marquee>
+</div>
+</header>
+
+<ng-template #deposite>
+	<form [formGroup]='depositWithdrawlForm'>
+
+		<div class="modal-header">
+			<h4 class="modal-title">Deposit to ({{adminDetails?.user_name}}) </h4>
+			<a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+		</div>
+
+		<div class="modal-body no-scroll-body">
+			<div class="body-inner">
+				<table class="table">
+					<tbody>
+						<tr>
+							<td>Deposite Chips :</td>
+							<td>
+								<input type="number" class="form-control" placeholder="Enter Chips" formControlName="accChips">
+								<span *ngIf="depositWithdrawlForm.controls.accChips.errors" class="red-alert-message">
+									{{depositWithdrawlForm.controls.accChips.errors |DisplayErrorMessage}}
+								</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td>Remarks :</td>
+							<td><textarea name="" class="form-control" id="deposit-remark" formControlName="reMark"
+									rows="2"></textarea></td>
+						</tr>
+						<tr>
+							<td>Password :</td>
+							<td><input type="password" class="form-control" placeholder="password" formControlName="userPass"
+									autocomplete="off" required></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<button type="button" (click)="depositWithdrawl(1)" class="btn btn-success">Deposit</button>
+		</div>
+
+
+	</form>
+</ng-template>
+
+
+<ng-template #withdraw>
+	<form [formGroup]='depositWithdrawlForm'>
+
+		<div class="modal-header">
+			<h4 class="modal-title">Withdraw from ({{adminDetails.user_name}})</h4>
+			<a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+		</div>
+
+		<div class="modal-body no-scroll-body">
+			<div class="body-inner">
+				<table class="table">
+					<tbody>
+						<tr>
+							<td>Withdraw Chips :</td>
+							<td>
+								<input type="number" class="form-control" placeholder="Enter Chips" formControlName="accChips">
+								<span *ngIf="depositWithdrawlForm.controls.accChips.errors" class="red-alert-message">
+									{{depositWithdrawlForm.controls.accChips.errors |DisplayErrorMessage}}
+								</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td>Remarks :</td>
+							<td><textarea name="" class="form-control" id="withdraw-remark" formControlName="reMark"
+									rows="2"></textarea></td>
+						</tr>
+						<tr>
+							<td>Password :</td>
+							<td><input type="password" class="form-control" placeholder="password" formControlName="userPass"
+									autocomplete="off" required></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<button (click)="depositWithdrawl(2)" type="button" class="btn btn-success">Withdraw</button>
+		</div>
+
+	</form>
+</ng-template>
+
+<ng-template #resetPwd>
+	<div class="modal-header">
+		<h4 class="modal-title">Change Password</h4>
+		<a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()" *ngIf = "pass == false"><i class="fa fa-times"></i></a>
+	</div>
+	<form [formGroup]='changePasswordForm' (ngSubmit)='onSubmitChangePassword()'>
+		<div class="modal-body no-scroll-body">
+			<div class="body-inner">
+
+				<div class="form-group">
+					<label>Old Password</label>
+					<input type="password" placeholder="Old Password" class="form-control password-box"
+						formControlName='old_password'>
+					<div *ngIf="submitted && f.old_password.errors">
+						<div *ngIf="f.old_password.errors.required" class="red-message">Old password is required</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label>New Password</label>
+					<input type="password" placeholder="Password" class="form-control password-box"
+						formControlName='new_password'>
+					<div *ngIf="submitted && f.new_password.errors">
+						<div *ngIf="f.new_password.errors.required" class="red-message">Password is required</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label>Confirm Password</label>
+					<input type="password" placeholder="Password" class="form-control password-box"
+						formControlName='confirm_password'>
+					<div *ngIf="submitted && f.confirm_password.errors">
+						<div *ngIf="f.confirm_password.errors.required" class="red-message">Confirm password is required</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<div class="text-end">
+				<button type="submit" class="btn btn-success">Submit</button>
+			</div>
+		</div>
+	</form>
+</ng-template>
+
+<ng-template #stackValue>
+	<div class="modal-header">
+		<h4 class="modal-title">Change Stack Value</h4>
+		<a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+	</div>
+	<div name="form">
+		<div class="modal-body no-scroll-body">
+			<div class="body-inner">
+				<div class="row">
+					<div class="col-md-6 col-12" *ngFor="let stack of userMatchStack.match_stack;let k=index;trackBy:trackByFn;">
+						<div class="col-inner" style="padding-right: 10px;">
+							<div class="form-group">
+								<label class="form-label">Chip Value {{k+1}}</label>
+								<input type="number" [(ngModel)]="match_stack[k]" class="form-control">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<div class="text-end">
+				<button type="submit" class="btn btn-success" (click)="updateUserMatchStack()">Submit</button>
+			</div>
+		</div>
+	</div>
+</ng-template>
+
+
+<ng-template #socketSelection>
+	<ng-container>
+		<div class="modal-header">
+			<h4 class="modal-title">Socket setting is {{isSocket ==1 ? 'ON' : 'OFF'}} </h4>
+
+			<a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+		</div>
+
+		<div class="modal-footer">
+			<div class="text-end">
+				<button type="button" class="btn btn-success btn-text-style" (click)="updateSocketStatus()">Click here to
+					{{isSocket ==1 ? 'OFF' : 'ON'}} socket </button>
+			</div>
+		</div>
+	</ng-container>
+</ng-template>
+
+<ng-template #sportSettingold>
+	<div class="modal-header">
+		<h4 class="modal-title">User Sports Settings : {{showSelectedUserName}}</h4>
+		<a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+	</div>
+	<div class="modal-body">
+		<div class="body-inner">
+			<div class="form-main">
+				<form [formGroup]='sportsForm'>
+					<div class="accordion" id="accordionExample">
+						<div class="sports-setting-main-section" formArrayName="sports_settings">
+							<div class="market-session-setting"
+								*ngFor="let sportSettingitem of sportsSettingsFormArr.controls; let j=index">
+								<div class="accordion-item" [formGroupName]="j">
+									<h4 class="accordion-header" id="heading-{{j}}">
+										<a class="accordion-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{j}}"
+											aria-controls="collapse-{{j}}">
+											{{specificUserDetails[j]?.name}} Settings
+										</a>
+									</h4>
+									<div id="collapse-{{j}}" class="accordion-collapse collapse show" aria-labelledby="heading-{{j}}"
+										data-bs-parent="#accordionExample" *ngIf="hiddenpass[j]">
+										<div class="accordion-body">
+											<div class="detail-row">
+												<div class="detail-row-heading">
+													<h4>Market Setting</h4>
+												</div>
+												<div class="row">
+													<div class="col-md-3 col-sm-4 col-12">
+														<div class="col-inner">
+															<div class="form-group">
+																<label class="form-label">Min. Stake Amount</label>
+																<input type="number" formControlName="market_min_stack" placeholder=""
+																	class="form-control" (keyup)="applyValidatorsForMaxStack(j)" />
+																<span>[Note: Point]</span><br>
+																<span *ngIf="sportSettingitem.controls.market_min_stack.errors"
+																	class="red-alert-message">
+																	{{sportSettingitem.controls.market_min_stack.errors |DisplayErrorMessage}}
+																</span>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3 col-sm-4 col-12">
+														<div class="col-inner">
+															<div class="form-group">
+																<label class="form-label">Max. Stake Amount</label>
+																<input type="number" formControlName="market_max_stack" placeholder=""
+																	class="form-control" />
+																<span>[Note: Point(if no limit then enter -1)]</span><br>
+																<span *ngIf="sportSettingitem.controls.market_max_stack.errors"
+																	class="red-alert-message">
+																	{{sportSettingitem.controls.market_max_stack.errors |DisplayErrorMessage}}
+																</span>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3 col-sm-4 col-12">
+														<div class="col-inner">
+															<div class="form-group">
+																<label class="form-label">Min. Odds Rate</label>
+																<input type="number" formControlName="market_min_odds_rate" placeholder=""
+																	class="form-control" (keyup)="applyValidatorsForMaxOddsRate(j)" />
+																<span>[Note: Point]</span><br>
+																<span *ngIf="sportSettingitem.controls.market_min_odds_rate.errors"
+																	class="red-alert-message">
+																	{{sportSettingitem.controls.market_min_odds_rate.errors |DisplayErrorMessage}}
+																</span>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3 col-sm-4 col-12">
+														<div class="col-inner">
+															<div class="form-group">
+																<label class="form-label">Max. Odds Rate</label>
+																<input type="number" formControlName="market_max_odds_rate" placeholder=""
+																	class="form-control" />
+																<span>[Note: Point(if no limit then enter -1)]</span><br>
+																<span *ngIf="sportSettingitem.controls.market_max_odds_rate.errors"
+																	class="red-alert-message">
+																	{{sportSettingitem.controls.market_max_odds_rate.errors |DisplayErrorMessage}}
+																</span>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3 col-sm-4 col-12">
+														<div class="col-inner">
+															<div class="form-group">
+																<label class="form-label">Match Bets Delay</label>
+																<input type="number" formControlName="market_bet_delay" placeholder=""
+																	class="form-control" />
+																<span>[Second]</span><br>
+																<span *ngIf="sportSettingitem.controls.market_bet_delay.errors"
+																	class="red-alert-message">
+																	{{sportSettingitem.controls.market_bet_delay.errors |DisplayErrorMessage}}
+																</span>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3 col-sm-4 col-12">
+														<div class="col-inner">
+															<div class="form-group">
+																<label class="form-label">Market Max Profit</label>
+																<input type="number" formControlName="market_max_profit" placeholder=""
+																	class="form-control" />
+																<span>[Note: Point(if no limit then enter -1)]</span><br>
+																<span *ngIf="sportSettingitem.controls.market_max_profit.errors"
+																	class="red-alert-message">
+																	{{sportSettingitem.controls.market_max_profit.errors |DisplayErrorMessage}}
+																</span>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3 col-sm-4 col-12">
+														<div class="col-inner">
+															<div class="form-group">
+																<label class="form-label">Before Inplay Match Stake</label>
+																<input type="number" formControlName="market_advance_bet_stake" placeholder=""
+																	class="form-control" />
+																<span>[Note: Point(if no limit then enter -1)]</span><br>
+																<span *ngIf="sportSettingitem.controls.market_advance_bet_stake.errors"
+																	class="red-alert-message">
+																	{{sportSettingitem.controls.market_advance_bet_stake.errors |DisplayErrorMessage}}
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="detail-row" *ngIf="specificUserDetails[j]?.sport_id == '4'">
+												<div class="detail-row-heading">
+													<h4>Session Setting</h4>
+												</div>
+												<div class="row">
+													<div class="col-md-3 col-sm-4 col-12">
+														<div class="col-inner">
+															<div class="form-group">
+																<label class="form-label">Min. Stake Amount</label>
+																<input type="number" formControlName="session_min_stack"
+																	(keyup)="applyValidatorsForMaxstake(j)" placeholder="" class="form-control" />
+																<span>[Note: Point]</span><br>
+																<span *ngIf="sportSettingitem.controls.session_min_stack.errors"
+																	class="red-alert-message">
+																	{{sportSettingitem.controls.session_min_stack.errors |DisplayErrorMessage}}
+																</span>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3 col-sm-4 col-12">
+														<div class="col-inner">
+															<div class="form-group">
+																<label class="form-label">Max. Stake Amount</label>
+																<input type="number" formControlName="session_max_stack" placeholder=""
+																	class="form-control" />
+																<span>[Note: Point(if no limit then enter -1)]</span><br>
+																<span *ngIf="sportSettingitem.controls.session_max_stack.errors"
+																	class="red-alert-message">
+																	{{sportSettingitem.controls.session_max_stack.errors |DisplayErrorMessage}}
+																</span>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3 col-sm-4 col-12">
+														<div class="col-inner">
+															<div class="form-group">
+																<label class="form-label">Session Bet Delay</label>
+																<input type="number" formControlName="session_bet_delay" placeholder=""
+																	class="form-control" />
+																<span>[Second]</span><br>
+																<span *ngIf="sportSettingitem.controls.session_bet_delay.errors"
+																	class="red-alert-message">
+																	{{sportSettingitem.controls.session_bet_delay.errors |DisplayErrorMessage}}
+																</span>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3 col-sm-4 col-12">
+														<div class="col-inner">
+															<div class="form-group">
+																<label class="form-label">Session Max Profit</label>
+																<input type="number" formControlName="session_max_profit" placeholder=""
+																	class="form-control" />
+																<span>[Note: Point(if no limit then enter -1)]</span><br>
+																<span *ngIf="sportSettingitem.controls.session_max_profit.errors"
+																	class="red-alert-message">
+																	{{sportSettingitem.controls.session_max_profit.errors |DisplayErrorMessage}}
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-success"
+													(click)="updateSportWiseSettingDetails(sportSettingitem[j],j)">Save</button>
+											</div>
+
+										</div>
+									</div>
+
+
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+</ng-template>
+
+
+<ng-template #sportSetting>
+	<div class="modal-header">
+		<label class="modal-title">User Sports Settings : {{showSelectedUserName}}</label> &nbsp;&nbsp;&nbsp;
+		<label class="switch">
+			<input type="checkbox" value="true" (change)="parentValidationToggle(adminDetails,checkEventLimit)" name="Active"
+				class="chkPermission" [checked]="checkEventLimit">
+			<span class="slider round"></span>
+		</label>
+		<a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+	</div>
+	<div class="modal-body no-scroll-body sport-setting-body">
+		<div class="body-inner">
+
+			<div class="filter-tab">
+				<nav>
+					<div class="nav nav-tabs" id="nav-tab" role="tablist">
+						<ng-container *ngFor="let sportName of specificUserDetails;let i = index">
+							<a class="nav-link active" data-bs-toggle="tab" data-bs-target="#nav-{{sportName?.name}}"
+								[ngClass]="{'active': i === selectedIndex}" (click)="selectPill(i)">{{sportName?.name}}</a>
+						</ng-container>
+					</div>
+				</nav>
+				<div class="tab-content" id="nav-tabContent">
+					<div class="tab-pane fade show active" id="nav-{{sportName?.name}}">
+						<div class="form-main">
+							<form [formGroup]='sportsForm'>
+								<div class="sports-setting-main-section" formArrayName="sports_settings">
+									<div class="market-session-setting"
+										*ngFor="let sportSettingitem of sportsSettingsFormArr.controls; let j=index" [formGroupName]='j'>
+
+										<div class="detail-row" *ngIf="selectedIndex === j">
+											<div class="detail-row-heading">
+												<h4>Market Setting</h4>
+											</div>
+											<div class="row">
+												<div class="col-md-3 col-sm-4 col-12">
+													<div class="col-inner">
+														<div class="form-group">
+															<label class="form-label">Min. Stake Amount</label>
+															<input type="number" formControlName="market_min_stack"
+																ngbTooltip="{{sportSettingitem.controls.market_min_stack.errors |DisplayErrorMessage}}"
+																placeholder="" class="form-control" (keyup)="applyValidatorsForMaxStack(j)"
+																#t1="ngbTooltip" triggers="manual" [autoClose]="false" (mouseenter)="t1.open()"
+																(key)="t1.open()" (blur)="t1.open()" />
+
+														
+															<span *ngIf="sportErrorData?.market_min_stack" class="red-alert-message">
+																{{sportErrorData.market_min_stack[0].short_error}}
+																<i class="fa fa-info"
+																	ngbTooltip="{{sportErrorData.market_min_stack[1].long_error}}"></i>
+															</span>
+
+														</div>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-4 col-12">
+													<div class="col-inner">
+														<div class="form-group">
+															<label class="form-label">Max. Stake Amount</label>
+															<input type="number" formControlName="market_max_stack" placeholder=""
+																class="form-control"
+																ngbTooltip="{{sportSettingitem.controls.market_max_stack.errors |DisplayErrorMessage}}"
+																#t2="ngbTooltip" triggers="manual" [autoClose]="false" (mouseenter)="t2.open()"
+																(key)="t2.open()" (blur)="t2.open()" />
+
+															
+															<span *ngIf="sportErrorData?.market_max_stack" class="red-alert-message">
+																{{sportErrorData.market_max_stack[0].short_error}}
+																<i class="fa fa-info"
+																	ngbTooltip="{{sportErrorData.market_max_stack[1].long_error}}"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-4 col-12">
+													<div class="col-inner">
+														<div class="form-group">
+															<label class="form-label">Min. Odds Rate</label>
+															<input type="number" formControlName="market_min_odds_rate"
+																ngbTooltip="{{sportSettingitem.controls.market_min_odds_rate.errors |DisplayErrorMessage}}"
+																placeholder="" class="form-control" (keyup)="applyValidatorsForMaxOddsRate(j)"
+																#t3="ngbTooltip" triggers="manual" [autoClose]="false" (mouseenter)="t3.open()"
+																(key)="t3.open()" (blur)="t3.open()" />
+
+															
+															<span *ngIf="sportErrorData?.market_min_odds_rate" class="red-alert-message">
+																{{sportErrorData.market_min_odds_rate[0].short_error}}
+																<i class="fa fa-info"
+																	ngbTooltip="{{sportErrorData.market_min_odds_rate[1].long_error}}"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-4 col-12">
+													<div class="col-inner">
+														<div class="form-group">
+															<label class="form-label">Max. Odds Rate</label>
+															<input type="number" formControlName="market_max_odds_rate" placeholder=""
+																class="form-control"
+																ngbTooltip="{{sportSettingitem.controls.market_max_odds_rate.errors |DisplayErrorMessage}}"
+																#t4="ngbTooltip" triggers="manual" [autoClose]="false" (mouseenter)="t4.open()"
+																(key)="t4.open()" (blur)="t4.open()" />
+
+															
+															<span *ngIf="sportErrorData?.market_max_odds_rate" class="red-alert-message">
+																{{sportErrorData.market_max_odds_rate[0].short_error}}
+																<i class="fa fa-info"
+																	ngbTooltip="{{sportErrorData.market_max_odds_rate[1].long_error}}"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-4 col-12">
+													<div class="col-inner">
+														<div class="form-group">
+															<label class="form-label">Match Bets Delay</label>
+															<input type="number" formControlName="market_bet_delay" placeholder=""
+																class="form-control"
+																ngbTooltip="{{sportSettingitem.controls.market_bet_delay.errors |DisplayErrorMessage}}"
+																#t5="ngbTooltip" triggers="manual" [autoClose]="false" (mouseenter)="t5.open()"
+																(key)="t5.open()" (blur)="t5.open()" />
+
+															
+															<span *ngIf="sportErrorData?.market_bet_delay" class="red-alert-message">
+																{{sportErrorData.market_bet_delay[0].short_error}}
+																<i class="fa fa-info"
+																	ngbTooltip="{{sportErrorData.market_bet_delay[1].long_error}}"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-4 col-12">
+													<div class="col-inner">
+														<div class="form-group">
+															<label class="form-label">Market Max Profit</label>
+															<input type="number" formControlName="market_max_profit" placeholder=""
+																class="form-control"
+																ngbTooltip="{{sportSettingitem.controls.market_max_profit.errors |DisplayErrorMessage}}"
+																#t6="ngbTooltip" triggers="manual" [autoClose]="false" (mouseenter)="t6.open()"
+																(key)="t6.open()" (blur)="t6.open()" />
+
+															
+															<span *ngIf="sportErrorData?.market_max_profit" class="red-alert-message">
+																{{sportErrorData.market_max_profit[0].short_error}}
+																<i class="fa fa-info"
+																	ngbTooltip="{{sportErrorData.market_max_profit[1].long_error}}"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-4 col-12">
+													<div class="col-inner">
+														<div class="form-group">
+															<label class="form-label">Before Inplay Match Stake</label>
+															<input type="number" #t7="ngbTooltip" triggers="manual" [autoClose]="false"
+																(mouseenter)="t7.open()" (key)="t7.open()" (blur)="t7.open()"
+																formControlName="market_advance_bet_stake" placeholder="" class="form-control"
+																ngbTooltip="{{sportSettingitem.controls.market_advance_bet_stake.errors |DisplayErrorMessage}}" />
+
+															
+															<span *ngIf="sportErrorData?.market_advance_bet_stake" class="red-alert-message">
+																{{sportErrorData.market_advance_bet_stake[0].short_error}}
+																<i class="fa fa-info"
+																	ngbTooltip="{{sportErrorData.market_advance_bet_stake[1].long_error}}"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="detail-row" *ngIf="specificUserDetails[j]?.sport_id == '4' && selectedIndex === j">
+											<div class="detail-row-heading">
+												<h4>Session Setting</h4>
+											</div>
+											<div class="row">
+												<div class="col-md-3 col-sm-4 col-12">
+													<div class="col-inner">
+														<div class="form-group">
+															<label class="form-label">Min. Stake Amount</label>
+															<input type="number" formControlName="session_min_stack"
+																ngbTooltip="{{sportSettingitem.controls.session_min_stack.errors |DisplayErrorMessage}}"
+																placeholder="" class="form-control" (keyup)="applyValidatorsForMaxstake(j)"
+																#t8="ngbTooltip" triggers="manual" [autoClose]="false" (mouseenter)="t8.open()"
+																(key)="t8.open()" (blur)="t8.open()" />
+
+															
+															<span *ngIf="sportErrorData?.session_min_stack" class="red-alert-message">
+																{{sportErrorData.session_min_stack[0].short_error}}
+																<i class="fa fa-info"
+																	ngbTooltip="{{sportErrorData.session_min_stack[1].long_error}}"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-4 col-12">
+													<div class="col-inner">
+														<div class="form-group">
+															<label class="form-label">Max. Stake Amount</label>
+															<input type="number" formControlName="session_max_stack" placeholder=""
+																class="form-control"
+																ngbTooltip="{{sportSettingitem.controls.session_max_stack.errors |DisplayErrorMessage}}"
+																#t9="ngbTooltip" triggers="manual" [autoClose]="false" (mouseenter)="t9.open()"
+																(key)="t9.open()" (blur)="t9.open()" />
+
+															
+															<span *ngIf="sportErrorData?.session_max_stack" class="red-alert-message">
+																{{sportErrorData.session_max_stack[0].short_error}}
+																<i class="fa fa-info"
+																	ngbTooltip="{{sportErrorData.session_max_stack[1].long_error}}"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-4 col-12">
+													<div class="col-inner">
+														<div class="form-group">
+															<label class="form-label">Session Bet Delay</label>
+															<input type="number" formControlName="session_bet_delay" #t10="ngbTooltip"
+																triggers="manual" [autoClose]="false" (mouseenter)="t10.open()" (key)="t10.open()"
+																(blur)="t10.open()" placeholder="" class="form-control"
+																ngbTooltip="{{sportSettingitem.controls.session_bet_delay.errors |DisplayErrorMessage}}" />
+
+															
+															<span *ngIf="sportErrorData?.session_bet_delay" class="red-alert-message">
+																{{sportErrorData.session_bet_delay[0].short_error}}
+																<i class="fa fa-info"
+																	ngbTooltip="{{sportErrorData.session_bet_delay[1].long_error}}"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-4 col-12">
+													<div class="col-inner">
+														<div class="form-group">
+															<label class="form-label">Session Max Profit</label>
+															<input type="number" formControlName="session_max_profit" #t11="ngbTooltip"
+																triggers="manual" [autoClose]="false" (mouseenter)="t11.open()" (key)="t11.open()"
+																(blur)="t11.open()" placeholder="" class="form-control"
+																ngbTooltip="{{sportSettingitem.controls.session_max_profit.errors |DisplayErrorMessage}}" />
+
+															
+															<span *ngIf="sportErrorData?.session_max_profit" class="red-alert-message">
+																{{sportErrorData.session_max_profit[0].short_error}}
+																<i class="fa fa-info"
+																	ngbTooltip="{{sportErrorData.session_max_profit[1].long_error}}"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer" *ngIf="selectedIndex === j">
+											<div class="text-end">
+												<button type="submit" class="btn btn-success"
+													(click)="updateSportWiseSettingDetails(sportSettingitem[j],j)">Save</button> &nbsp;
+												<button type="button" class="btn btn-danger" data-dismiss="modal"
+													(click)="modalRef.hide()">Cancel</button>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</ng-template>
+
+<ng-template #exposure>
+	<div class="modal-header">
+		<h4 class="modal-title">Exposure of {{expo_User_name}}</h4>
+		<a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+	</div>
+	
+    <div class="modal-body">
+        <div class="body-inner">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>S.No.</th>
+						<th>SportName</th>
+						<th>Event Name</th>
+						<th>Market</th>
+						<th>Exposure</th>
+					</tr>
+				</thead>
+				<tbody>
+					<ng-container *ngFor="let expo of exposureData;let i=index;">
+						<tr *ngIf="i < (expoLength-1)">
+							<td>{{i+1}}</td>
+							<td>{{expo?.sport_name}}</td>
+							<td>{{expo?.match_name}}</td>
+							<td>{{expo?.event_name}}</td>
+							<td [ngClass]="{'red': expo?.liability < 0 ,'green': expo?.liability >= 0}">{{expo?.liability | number :
+								'0.0-2'}}</td>
+						</tr>
+						<tr *ngIf="i == (expoLength-1)">
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>Total</td>
+							<td [ngClass]="{'red': expo?.liabilitySum < 0 ,'green': expo?.liabilitySum >= 0}">{{expo?.liabilitySum |
+								number : '0.0-2'}}</td>
+						</tr>
+					</ng-container>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</ng-template> -->
+
+
+<div class="position-relative bg-dark">
+	<nav class="sb-topnav navbar navbar-expand navbar-dark">
+		<a class="navbar-brand ps-3" (click)="dashboard()"><img src="{{logo}}"></a>
+	   <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 d-none" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>          
+	   <div class="navbar-user">
+		  <ul class="account-wrap">
+			 <li><span class="user-name">{{walletBalance?.label}}</span><strong> {{adminDetails?.user_name}} </strong></li>
+			 <li><strong id="mainBalance">IRP {{walletBalance?.balance}}</strong></li>
+			 <li class="head-refresh" id="send" (click)="getUserBalance()">
+				<span class="refresh-loader-outer">
+				<img class="refresh-loader" id="loading" src="assets/img/loding-transparent.gif" >
+					</span>
+				<a class="refresh-bar" >Refresh </a>                     
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="main-header-menu bg-dark-green">
+		<div class="container-fluid px-0">
+			<div class="main-header-inner navbar-menu">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" role="button" (click)="dashboard()">Dashboard</a>
+					</li>
+					<li class="nav-item">
+						<a class="menu-drop" id="navbarDropdown" role="button"> Downline List</a>
+						<ul class="sub_menu">
+							<li><a (click)="user()">User Downline List </a></li>
+							<li *ngIf="adminDetails.user_type_id != 2"><a (click)="addUser()">Master Downline List </a></li>
+						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" (click)="account(adminDetails?._id,adminDetails?.user_type_id)"
+							role="button">My Account </a>
+					</li>
+					<li class="nav-item">
+						<a class="menu-drop" id="navbarDropdown" role="button">My Report</a>
+						<ul class="sub_menu">
+							<li><a (click)="eventpl()">Event Profit/Loss</a></li>
+							<li><a (click)="downpl()"> Downline Profit/Loss </a></li>
+						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" (click)="settledBets()" role="button">BetList</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" (click)="marketAnalysisDetail()" role="button">Market Analysis </a>
+					</li>
+					<li class="nav-item">
+						<a class="menu-drop" id="navbarDropdown" role="button">Banking</a>
+						<ul class="sub_menu">
+							<li><a routerLink="/banking">User Banking</a></li>
+							<li *ngIf="adminDetails.user_type_id != 2"><a routerLink="/masterBanking">Master Banking</a></li>
+						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" (click)="agentCommission()" role="button"> Commission </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" (click)="history()" role="button"> Password History </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" (click)="closedUser()" role="button"> Restore User </a>
+					</li>
+				</ul>
+				<ul class="logout-link">
+					<li><a (click)="logoutUser()">logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<ng-template #resetPwd>
+	<ng-container>
+		<div class="modal-header bg-primary">
+			<h5 class="modal-title text-white">Change Password</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		 <form  id="" class="user-changed-password">
+			<div class="modal-body row" [formGroup]="changePasswordForm">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="your_password">old Password<sup>*</sup></label>
+								 <input class="form-control" name="your_password" placeholder="Old Password.." required="" type="password" formControlName="old_password">
+						<span class="error-message text-red d-none">Please enter old password</span>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="new_password">New Password<sup>*</sup></label>
+								 <input class="form-control" formControlName="password" name="new_password" placeholder="New Password.." required="" type="password" formControlName="new_password">
+						<span class="error-message text-red d-none">Please enter new password</span>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="confirm_password">Confirm Password<sup>*</sup></label>
+								 <input class="form-control" name="confirm_password" placeholder="Confirm Password.." required="" type="password" formControlName="confirm_password">
+						<span class="error-message text-red d-none">Please enter confirm password</span>
+					</div>
+				</div>
+			</div>
+		</form>
+		<div class="modal-footer">
+				<button type="button" data-dismiss="modal" class="btn btn-success bg-dark" (click)="onSubmitChangePassword()">Yes</button>
+			<button type="button" class="btn btn-gray" (click)="modalRef.hide()">No</button>
+		</div>
+	</ng-container>
+</ng-template>

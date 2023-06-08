@@ -1,0 +1,65 @@
+.footer {
+    padding-bottom: 20px;
+    margin: 30px 0 0;
+    width: 100%;
+}
+.footer .browser-wrap {
+    margin: 5px auto;
+    display: block;
+    width: 578px;
+    max-width: 100%;
+    text-align: center;
+    color: rgba(0,0,0,.6);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.3;
+}
+.footer .browser-wrap img {
+    background-position: 0 1px;
+    height: 22px;
+    width: 55px;
+    background-image: url(/assets/images/login-icon-bg.png);
+    background-repeat: no-repeat;
+    display: block;
+    vertical-align: middle;
+    margin: auto;
+}
+
+.footer-menu {
+    border-bottom: 1px solid rgb(244 248 252);
+    padding: 10px 0;
+    ul{
+        text-align: center;
+        li {
+            margin: 0;
+            padding: 0 10px;
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 14px;
+            text-transform: capitalize;
+            font-weight: 500;
+            color: #195991;
+        }
+    }
+}
+.footer-logo {
+    ul{
+        text-align: center;
+        margin:25px 0;
+        li {
+            margin: 0;
+            padding: 0 10px;
+            display: inline-block;
+            vertical-align: middle;
+            img{
+                max-width: 80px;
+            }
+            &:last-child{
+                img{
+                    opacity: 0.5;
+                    max-width: 130px;
+                }
+            }
+        }
+    }
+}

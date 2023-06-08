@@ -1,0 +1,204 @@
+<app-header></app-header>
+<!-- <app-sidebar></app-sidebar> -->
+
+<main>
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="bet-history inner-content">
+                <div class="page-title">
+                    <h3>Bet History</h3>
+                    <div class="breadcrumb">
+                        <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                class="fa fa-arrow-left"></i>Back</a>
+                    </div>
+                </div>
+
+                <div class="filterDiv">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form>
+                                <div class="row form-field">
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group dateTimePicker">
+                                                <input type="text" class="form-control" [popover]="popTemplate"
+                                                    placement="bottom" [outsideClick]="true" #popoverRef="bs-popover"
+                                                    value="{{dateTime | date:'yyyy-MM-dd hh:mm'}}" (click)="showDate()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group dateTimePicker">
+                                                <input type="text" class="form-control" [popover]="popTemplate"
+                                                    placement="bottom" [outsideClick]="true" #popoverRef="bs-popover"
+                                                    value="{{dateTime | date:'yyyy-MM-dd hh:mm'}}" (click)="showDate()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Search by user">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group">
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>Select Match Status</option>
+                                                    <option value="1">Open</option>
+                                                    <option value="2">Settled</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-inner text-end">
+                                            <div class="btn-list">
+                                                <button type="button" class="btn btn-success">Filter</button>
+                                                <button type="button" class="btn btn-danger">Clear</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-tab">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#nav-all">All</a>
+                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-cricket">Cricket</a>
+                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-soccer">Soccer</a>
+                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-tennis">Tennis</a>
+                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-exchGame">Exchange Games</a>
+                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-fancy">Fancy</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-all">
+                            <div class="report-table">
+                                <table datatable class="table">
+                                    <thead>
+                                        <tr>
+                                            <th><input type="checkbox"></th>
+                                            <th>Client</th>
+                                            <th>Description</th>
+                                            <th>Selection</th>
+                                            <th>Type</th>
+                                            <th>Odds</th>
+                                            <th>Stack</th>
+                                            <th>Date</th>
+                                            <th>P | L</th>
+                                            <th>Profit/Liability</th>
+                                            <th>Bet Type</th>
+                                            <th>Status</th>
+                                            <th>IP</th>
+                                            <th>ID</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td>ademo01</td>
+                                            <td>England v Pakistan</td>
+                                            <td>England</td>
+                                            <td>Back</td>
+                                            <td>1.8</td>
+                                            <td>100</td>
+                                            <td>Jul 12, 2021, 1:19:18 PM</td>
+                                            <td>80</td>
+                                            <td>-100</td>
+                                            <td>Odds</td>
+                                            <td>Won</td>
+                                            <td>122.168.144.72</td>
+                                            <td>40</td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-cricket">
+                            <div class="report-table">
+                                <table datatable class="table">
+                                    <thead>
+                                        <tr>
+                                            <th><input type="checkbox"></th>
+                                            <th>Client</th>
+                                            <th>Description</th>
+                                            <th>Selection</th>
+                                            <th>Type</th>
+                                            <th>Odds</th>
+                                            <th>Stack</th>
+                                            <th>Date</th>
+                                            <th>P | L</th>
+                                            <th>Profit/Liability</th>
+                                            <th>Bet Type</th>
+                                            <th>Status</th>
+                                            <th>IP</th>
+                                            <th>ID</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td>ademo01</td>
+                                            <td>England v Pakistan</td>
+                                            <td>England</td>
+                                            <td>Back</td>
+                                            <td>1.8</td>
+                                            <td>100</td>
+                                            <td>Jul 12, 2021, 1:19:18 PM</td>
+                                            <td>80</td>
+                                            <td>-100</td>
+                                            <td>Odds</td>
+                                            <td>Won</td>
+                                            <td>122.168.144.72</td>
+                                            <td>40</td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-soccer">...</div>
+                        <div class="tab-pane fade" id="nav-tennis">...</div>
+                        <div class="tab-pane fade" id="nav-exchGame">...</div>
+                        <div class="tab-pane fade" id="nav-fancy">...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!-- Date Time Picker -->
+<ng-template #popTemplate>
+    <datepicker [hidden]="!isDateVisible" [(ngModel)]="date" [minDate]="minDate" [showWeeks]="false"
+        (ngModelChange)="updateDate()" (selectionDone)="dateSelectionDone()">
+    </datepicker>
+    <timepicker [hidden]="!isDateVisible" [(ngModel)]="time" (ngModelChange)="updateTime()" [showMeridian]="isMeridian"
+        showSeconds="true">
+    </timepicker>
+
+    <div style="padding:5px">
+        <span class="btn-group pull-left" style="margin-right:10px;">
+            <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+            <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group pull-right">
+            <!-- <button type=button class="btn btn-sm btn-light" [hidden]="isDateVisible" 
+            (click)="showDate()">Date
+            </button>
+            <button type=button class="btn btn-sm btn-light" [hidden]="!isDateVisible" 
+            (click)="showTime()">Time
+            </button> -->
+            <button type=button class="btn btn-sm btn-success" (click)="close()">Close</button>
+        </span> <span class=clearfix></span>
+    </div>
+</ng-template>

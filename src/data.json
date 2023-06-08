@@ -1,0 +1,3259 @@
+{
+  "message": "Success",
+  "code": 0,
+  "error": false,
+  "data": [
+    {
+      "market_id": "-100.98791.main",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Amar Akbar Anthony",
+      "match_id": "98791",
+      "series_id": "98791",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Amar Akbar Anthony",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "66730",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Amar",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "66730",
+          "sortPriority": 1
+        },
+        {
+          "id": "66731",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Akbar",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "66731",
+          "sortPriority": 2
+        },
+        {
+          "id": "66732",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Anthony",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "66732",
+          "sortPriority": 3
+        }
+      ]
+    },
+    {
+      "market_id": "-100.67570.plain",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Bollywood Casino",
+      "match_id": "67570",
+      "series_id": "67570",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Bollywood Casino",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "42001",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Don",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "42001",
+          "sortPriority": 1
+        },
+        {
+          "id": "42002",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Amar Akbar Anthony",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "42002",
+          "sortPriority": 2
+        },
+        {
+          "id": "42003",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Sahib Bibi Aur Gulam",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "42003",
+          "sortPriority": 3
+        },
+        {
+          "id": "42004",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Dharam Veer",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "42004",
+          "sortPriority": 4
+        },
+        {
+          "id": "42005",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Kis Kisko Pyaar Karoon",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "42005",
+          "sortPriority": 5
+        },
+        {
+          "id": "42006",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Ghulam",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "42006",
+          "sortPriority": 6
+        }
+      ]
+    },
+    {
+      "market_id": "-100.90100.main",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Race 20-20",
+      "match_id": "90100",
+      "series_id": "90100",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Race 20-20",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "41001",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "King of Spades",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "41001",
+          "sortPriority": 1
+        },
+        {
+          "id": "41002",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "King of Hearts",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "41002",
+          "sortPriority": 2
+        },
+        {
+          "id": "41003",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "King of Clubs",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "41003",
+          "sortPriority": 3
+        },
+        {
+          "id": "41004",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "King of Diamonds",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "41004",
+          "sortPriority": 4
+        }
+      ]
+    },
+    {
+      "market_id": "-100.98793.main",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "7 up & Down (Virtual)",
+      "match_id": "98793",
+      "series_id": "98793",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "7 up & Down (Virtual)",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "66778",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "7Up",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "66778",
+          "sortPriority": 1
+        },
+        {
+          "id": "66779",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "7",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "66779",
+          "sortPriority": 2
+        },
+        {
+          "id": "66780",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "7Down",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "66780",
+          "sortPriority": 3
+        }
+      ]
+    },
+    {
+      "market_id": "-100.92036.SINGLE",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Matka (Virtual)",
+      "match_id": "92036",
+      "series_id": "92036",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Matka (Virtual)",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "97533",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "1",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97533",
+          "sortPriority": 1
+        },
+        {
+          "id": "97534",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "2",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97534",
+          "sortPriority": 2
+        },
+        {
+          "id": "97535",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "3",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97535",
+          "sortPriority": 3
+        },
+        {
+          "id": "97536",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "4",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97536",
+          "sortPriority": 4
+        },
+        {
+          "id": "97537",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "5",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97537",
+          "sortPriority": 5
+        },
+        {
+          "id": "97538",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "6",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97538",
+          "sortPriority": 6
+        },
+        {
+          "id": "97539",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "7",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97539",
+          "sortPriority": 7
+        },
+        {
+          "id": "97540",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "8",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97540",
+          "sortPriority": 8
+        },
+        {
+          "id": "97541",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "9",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97541",
+          "sortPriority": 9
+        },
+        {
+          "id": "97542",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "0",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97542",
+          "sortPriority": 10
+        }
+      ]
+    },
+    {
+      "market_id": "-100.67563.plain",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Poker (Virtual)",
+      "match_id": "67563",
+      "series_id": "67563",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Poker (Virtual)",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "66776",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player A",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "66776",
+          "sortPriority": 1
+        },
+        {
+          "id": "66777",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player B",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "66777",
+          "sortPriority": 2
+        }
+      ]
+    },
+    {
+      "market_id": "-100.56969.plain",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Hi Low (Virtual)",
+      "match_id": "56969",
+      "series_id": "56969",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Hi Low (Virtual)",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "56011",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "HIGHER",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "56011",
+          "sortPriority": 1
+        },
+        {
+          "id": "56013",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "SNAP",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "56013",
+          "sortPriority": 2
+        },
+        {
+          "id": "56012",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "LOWER",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "56012",
+          "sortPriority": 3
+        }
+      ]
+    },
+    {
+      "market_id": "-100.56769.plain",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Teenpatti T20 (Virtual)",
+      "match_id": "56769",
+      "series_id": "56769",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Teenpatti T20 (Virtual)",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "76766",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player A",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "76766",
+          "sortPriority": 1
+        },
+        {
+          "id": "76767",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player B",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "76767",
+          "sortPriority": 2
+        }
+      ]
+    },
+    {
+      "market_id": "-100.87565.main",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Andar Bahar (Virtual)",
+      "match_id": "87565",
+      "series_id": "87565",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Andar Bahar (Virtual)",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "76785",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Bahar",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "76785",
+          "sortPriority": 1
+        },
+        {
+          "id": "76786",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Andar",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "76786",
+          "sortPriority": 2
+        }
+      ]
+    },
+    {
+      "market_id": "-100.56766.plain",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Teenpatti One-Day (Virtual)",
+      "match_id": "56766",
+      "series_id": "56766",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Teenpatti One-Day (Virtual)",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "76776",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player A",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "76776",
+          "sortPriority": 1
+        },
+        {
+          "id": "76777",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player B",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "76777",
+          "sortPriority": 2
+        }
+      ]
+    },
+    {
+      "market_id": "-100.98790.main",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Dragon Tiger",
+      "match_id": "98790",
+      "series_id": "98790",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Dragon Tiger",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "56021",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Dragon",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "56021",
+          "sortPriority": 1
+        },
+        {
+          "id": "56022",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Tiger",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "56022",
+          "sortPriority": 2
+        },
+        {
+          "id": "56040",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Tie (nly)",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "56040",
+          "sortPriority": 3
+        },
+        {
+          "id": "56041",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Suited Tie",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "56041",
+          "sortPriority": 4
+        }
+      ]
+    },
+    {
+      "market_id": "-100.56767.plain",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Live Teenpatti",
+      "match_id": "56767",
+      "series_id": "56767",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Live Teenpatti",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "76776",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player A",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "76776",
+          "sortPriority": 1
+        },
+        {
+          "id": "76777",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player B",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "76777",
+          "sortPriority": 2
+        }
+      ]
+    },
+    {
+      "market_id": "-100.56768.plain",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Teenpatti T20",
+      "match_id": "56768",
+      "series_id": "56768",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Teenpatti T20",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "76766",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player A",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "76766",
+          "sortPriority": 1
+        },
+        {
+          "id": "76767",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player B",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "76767",
+          "sortPriority": 2
+        }
+      ]
+    },
+    {
+      "market_id": "-100.67566.hands",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Six player poker (Virtual)",
+      "match_id": "67566",
+      "series_id": "67566",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Six player poker (Virtual)",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "66886",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player A",
+          "type": "hands",
+          "status": "SUSPENDED",
+          "selectionId": "66886",
+          "sortPriority": 1
+        },
+        {
+          "id": "66887",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player B",
+          "type": "hands",
+          "status": "SUSPENDED",
+          "selectionId": "66887",
+          "sortPriority": 2
+        },
+        {
+          "id": "66888",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player C",
+          "type": "hands",
+          "status": "SUSPENDED",
+          "selectionId": "66888",
+          "sortPriority": 3
+        },
+        {
+          "id": "66889",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player D",
+          "type": "hands",
+          "status": "SUSPENDED",
+          "selectionId": "66889",
+          "sortPriority": 4
+        },
+        {
+          "id": "66890",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player E",
+          "type": "hands",
+          "status": "SUSPENDED",
+          "selectionId": "66890",
+          "sortPriority": 5
+        },
+        {
+          "id": "66891",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player F",
+          "type": "hands",
+          "status": "SUSPENDED",
+          "selectionId": "66891",
+          "sortPriority": 6
+        }
+      ]
+    },
+    {
+      "market_id": "-100.67565.hands",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Six player poker",
+      "match_id": "67565",
+      "series_id": "67565",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Six player poker",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "66886",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player A",
+          "type": "hands",
+          "status": "SUSPENDED",
+          "selectionId": "66886",
+          "sortPriority": 1
+        },
+        {
+          "id": "66887",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player B",
+          "type": "hands",
+          "status": "SUSPENDED",
+          "selectionId": "66887",
+          "sortPriority": 2
+        },
+        {
+          "id": "66888",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player C",
+          "type": "hands",
+          "status": "SUSPENDED",
+          "selectionId": "66888",
+          "sortPriority": 3
+        },
+        {
+          "id": "66889",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player D",
+          "type": "hands",
+          "status": "SUSPENDED",
+          "selectionId": "66889",
+          "sortPriority": 4
+        },
+        {
+          "id": "66890",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player E",
+          "type": "hands",
+          "status": "SUSPENDED",
+          "selectionId": "66890",
+          "sortPriority": 5
+        },
+        {
+          "id": "66891",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player F",
+          "type": "hands",
+          "status": "SUSPENDED",
+          "selectionId": "66891",
+          "sortPriority": 6
+        }
+      ]
+    },
+    {
+      "market_id": "-100.92037.SINGLE",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Worli Matka",
+      "match_id": "92037",
+      "series_id": "92037",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Worli Matka",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "97533",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "1",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97533",
+          "sortPriority": 1
+        },
+        {
+          "id": "97534",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "2",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97534",
+          "sortPriority": 2
+        },
+        {
+          "id": "97535",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "3",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97535",
+          "sortPriority": 3
+        },
+        {
+          "id": "97536",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "4",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97536",
+          "sortPriority": 4
+        },
+        {
+          "id": "97537",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "5",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97537",
+          "sortPriority": 5
+        },
+        {
+          "id": "97538",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "6",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97538",
+          "sortPriority": 6
+        },
+        {
+          "id": "97539",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "7",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97539",
+          "sortPriority": 7
+        },
+        {
+          "id": "97540",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "8",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97540",
+          "sortPriority": 8
+        },
+        {
+          "id": "97541",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "9",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97541",
+          "sortPriority": 9
+        },
+        {
+          "id": "97542",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "0",
+          "type": "SINGLE",
+          "status": "SUSPENDED",
+          "selectionId": "97542",
+          "sortPriority": 10
+        }
+      ]
+    },
+    {
+      "market_id": "-100.56968.plain",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Hi Low",
+      "match_id": "56968",
+      "series_id": "56968",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Hi Low",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "56011",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "HIGHER",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "56011",
+          "sortPriority": 1
+        },
+        {
+          "id": "56013",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "SNAP",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "56013",
+          "sortPriority": 2
+        },
+        {
+          "id": "56012",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "LOWER",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "56012",
+          "sortPriority": 3
+        }
+      ]
+    },
+    {
+      "market_id": "-100.56967.plain",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "32 cards casino",
+      "match_id": "56967",
+      "series_id": "56967",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "32 cards casino",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "96001",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player 8",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "96001",
+          "sortPriority": 1
+        },
+        {
+          "id": "96002",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player 9",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "96002",
+          "sortPriority": 2
+        },
+        {
+          "id": "96003",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player 10",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "96003",
+          "sortPriority": 3
+        },
+        {
+          "id": "96004",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player 11",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "96004",
+          "sortPriority": 4
+        }
+      ]
+    },
+    {
+      "market_id": "-100.98789.main",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "7 up & Down",
+      "match_id": "98789",
+      "series_id": "98789",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "7 up & Down",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "66778",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "7Up",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "66778",
+          "sortPriority": 1
+        },
+        {
+          "id": "66779",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "7",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "66779",
+          "sortPriority": 2
+        },
+        {
+          "id": "66780",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "7Down",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "66780",
+          "sortPriority": 3
+        }
+      ]
+    },
+    {
+      "market_id": "-100.67564.plain",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Poker",
+      "match_id": "67564",
+      "series_id": "67564",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Poker",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "66776",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player A",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "66776",
+          "sortPriority": 1
+        },
+        {
+          "id": "66777",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Player B",
+          "type": "plain",
+          "status": "SUSPENDED",
+          "selectionId": "66777",
+          "sortPriority": 2
+        }
+      ]
+    },
+    {
+      "market_id": "-100.87564.main",
+      "match_date": "2021-07-07T07:30:00.000Z",
+      "name": "Andar Bahar",
+      "match_id": "87564",
+      "series_id": "87564",
+      "is_active": "1",
+      "is_fancy": 0,
+      "sport_id": "-100",
+      "sport_name": "Exchange Games",
+      "is_visible": "1",
+      "series_name": "Andar Bahar",
+      "is_favourite": "N",
+      "runner_json": [
+        {
+          "id": "76785",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Bahar",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "76785",
+          "sortPriority": 1
+        },
+        {
+          "id": "76786",
+          "lay": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "back": [
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            },
+            {
+              "size": "-",
+              "price": "-"
+            }
+          ],
+          "name": "Andar",
+          "type": "main",
+          "status": "SUSPENDED",
+          "selectionId": "76786",
+          "sortPriority": 2
+        }
+      ]
+    }
+  ]
+}

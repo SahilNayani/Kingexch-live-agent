@@ -1,0 +1,156 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<main class="full-wrap">
+    <div class="main-div">
+        <div class="left-section">
+            <div class="row main-row">
+                <div class="col-md-12">
+                    <div class="main-content">
+                        <!-- <div class="scroll-menu">
+                            <div (click)="scrollLeft()" class="left-scroll-icon">
+                                <i class="fa fa-caret-left"></i>
+                            </div>
+                            <div #widgetsContent class="scrollmenu">
+                                <div class="tab-btn-card" (click)="goToAll('All')">
+                                    <img src="assets/images/icon/inplay.png"> All
+                                </div>
+                                <div class="tab-btn-card" (click)="goToInplay('inplay')">
+                                    <img src="assets/images/icon/inplay.png"> In Play
+                                </div>
+                                <div class="tab-btn-card" *ngFor="let sports of allSportsList;let i= index" (click)="goToDashboard(sports.name)">
+                                    <img src="assets/images/icon/{{sports.sport_id}}.png"> {{sports.name}}
+                                </div>
+    
+                            </div>
+                            <div (click)="scrollRight()" class="right-scroll-icon">
+                                <i class="fa fa-caret-right"></i>
+                            </div>
+                        </div> -->
+
+                        <div class="market-div" *ngFor="let homeMatch of homeData | keyvalue;let i = index;">
+                            <div class="game-header">
+                                <img src="assets/images/icon/DashBoard-icons/{{homeMatch?.key}}.png"> {{homeMatch?.key}}
+                                <!-- <div class="viewAllBtn"><a>View All</a> </div> -->
+                            </div>
+                            <div class="game-body "
+                                *ngFor="let matchData of homeMatch.value|orderBy : 'match_date';let j = index;">
+                                <div class="even-list">
+                                    <div class="event-row">
+                                        <div class="event-list-item" (click)="matchDetail(matchData)">
+                                            <div class="event-info">
+                                                <div class="event-format-strip">
+                                                    <div *ngIf="matchData?.inplay == true || matchData?.manualInplay == true"
+                                                        class="inplay-div">
+                                                        <div class="inplay-btn inplay"><span>InPlay</span> </div>
+                                                    </div>
+                                                    <div class="event-full-date">
+                                                        <span class="date">{{(matchData?.match_date | date :'dd-MM hh:mm
+                                                            aa')}} IST</span>
+                                                    </div>
+                                                    <span class="event-format-series">{{matchData?.series_name}}</span>
+                                                </div>
+                                                <div class="event-team">
+                                                    <div class="team-name">{{matchData?.match_name}}</div>
+                                                </div>
+                                            </div>
+                                            <div class="url-links">
+                                                <div>
+                                                    <div style="margin: 0 10px; font-size: 18px;"
+                                                        *ngIf="matchData?.is_lock != false"><a><i
+                                                                class="fa fa-lock"></i></a></div>
+                                                    <span class="live-tv" *ngIf="matchData?.sport_id == 4"><img src="assets/images/icon/tv.png"></span>
+                                                    <span class="live-tv" *ngIf="matchData?.enable_fancy == 1"
+                                                        style="margin: 10px;"><i class="fa fa-facebook"
+                                                            aria-hidden="true"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="event-odds">
+                                                <div class="row">
+                                                    <div class="col-sm-4 col-md-4 col-4 text-center">
+                                                        <div class="row matchrate">
+                                                            <div class="col-sm-6 back-rate back-1">
+                                                                {{matchData?.runners[0] == undefined ? 0 :
+                                                                matchData?.runners[0]?.ex?.availableToBack[0]?.price}}
+                                                            </div>
+                                                            <div class="col-sm-6 lay-rate lay-1">{{matchData?.runners[0]
+                                                                == undefined ? 0 :
+                                                                matchData?.runners[0]?.ex?.availableToLay[0]?.price}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4 col-md-4 col-4 text-center">
+                                                        <div class="row matchrate">
+                                                            <div class="col-sm-6 back-rate back-2">
+                                                                {{matchData?.runners[2] == undefined ? '--' :
+                                                                matchData?.runners[2]?.ex?.availableToBack[0]?.price}}
+                                                            </div>
+                                                            <div class="col-sm-6 lay-rate lay-2">{{matchData?.runners[2]
+                                                                == undefined ? '--' :
+                                                                matchData?.runners[2]?.ex?.availableToLay[0]?.price}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4 col-md-4 col-4 text-center">
+                                                        <div class="row matchrate">
+                                                            <div class="col-sm-6 back-rate back-3">
+                                                                {{matchData?.runners[1]?.ex?.availableToBack[0]?.price
+                                                                == undefined ? 0 :
+                                                                matchData?.runners[1]?.ex?.availableToBack[0]?.price}}
+                                                            </div>
+                                                            <div class="col-sm-6 lay-rate lay-3">
+                                                                {{matchData?.runners[1]?.ex?.availableToLay[0]?.price ==
+                                                                undefined ? 0 :
+                                                                matchData?.runners[1]?.ex?.availableToLay[0]?.price}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Suspend Box -->
+                                                    <div class="suspend" *ngIf="matchData?.status == 'SUSPENDED'">
+                                                        <div class="suspend-status">Suspended</div>
+                                                    </div>
+                                                    <div class="suspend"
+                                                        *ngIf="matchData?.status != 'SUSPENDED' && matchData?.is_lock == true">
+                                                        <div class="suspend-status">LOCK</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <div class="right-sidebar">
+                <div class="live-game scroller">
+                    <div class="game-header">
+                        <img src="assets/images/icon/casino-icon.svg"> Live Casino Games
+                    </div>
+                    <div class="game-body">
+                        <div class="game-inner-list">
+                            <div class="list-title">
+                                <h3>Live Casino Games</h3>
+                            </div>
+                            <div class="game-item" *ngFor="let gameList of exchangeGameList;let i = index;">
+                                <div class="thumb">
+                                    <img src="assets/Casino/{{gameList?.match_id}}.jpeg">
+                                </div>
+                                <div class="play-btn">
+                                    <a>Play Now</a>
+                                </div>
+                                <div class="caption text-center">
+                                    <h3>{{gameList?.name}}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

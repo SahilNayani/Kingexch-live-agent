@@ -1,0 +1,397 @@
+<app-header></app-header>
+
+<!-- s<!-- s<main>
+    <div class="account-info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="divider-top">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="card card-report">
+                                    <div class="card-body p-0">
+                                        <form>
+                                            <div class="row form-field">
+                                                <div class="filter-column">
+                                                    <div class="col-inner">
+                                                        <div class="form-group dateTimePicker">
+                                                            <input type="text" class="form-control" [popover]="popTemplate" placement="bottom" [outsideClick]="true" #startpopoverRef="bs-popover" value="{{startdateTime | date:'yyyy-MM-dd HH:mm:ss'}}" (click)="showDate()">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="filter-column">
+                                                    <div class="col-inner">
+                                                        <div class="form-group dateTimePicker">
+                                                            <input type="text" class="form-control" [popover]="popTemplate1" placement="bottom" [outsideClick]="true" #endpopoverRef="bs-popover" value="{{enddateTime | date:'yyyy-MM-dd HH:mm:ss'}}" (click)="showDate()">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="filter-column">
+                                                    <div class="col-inner">
+                                                        <div class="form-group inner-addon right-addon">
+                                                            <select name="betType" class="form-select" placeholder="Select Bet Type"
+                                                                [(ngModel)]="betType" [ngModelOptions]="{standalone: true}"
+                                                                aria-label="Default select example"
+                                                                (ngModelChange)="selectMatchType()">
+                                                                <option class="select-option"selected disabled value="Bet Type">Type</option>
+                                                                <option  class="select-option" value="1">Settle Bet</option>
+                                                                <option  class="select-option" value="0">Unsettle Bet</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="filter-column">
+                                                    <div class="col-inner text-end">
+                                                        <div class="btn-list">
+                                                            <button type="button" class="btn btn-success"
+                                                                (click)="filter('filterBtnClick')">Filter</button>
+                                                            <button type="button" class="btn btn-danger"
+                                                                (mousedown)="onClickClear()">Clear</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="card card-accent-primary">
+                                    <div class="card-header account-detail-head">
+                                        Bet List
+                                    </div>
+
+                                    <div class="card-body account-stat-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered dataTable no-footer">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>S.No.</th>
+                                                                <th>Date</th>
+                                                                <th *ngIf="type == 0">Domain</th>
+                                                                <th>User Name</th>
+                                                                <th>Sports | Series</th>
+                                                                <th>Match | Market</th>
+                                                                <th>Selection | Type</th>
+                                                                <th>Rate / Size</th>
+                                                                <th>Stake</th>
+                                                                <th>P | L</th>
+                                                                <th>Result</th>
+                                                                <th>IP Address</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <ng-container
+                                                                *ngFor="let bet of settledBetData| paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems };let i = index;">
+                                                                <tr>
+                                                                    <td>{{itemsPerPage *(currentPage-1)+i+1}}</td>
+                                                                    <td>
+                                                                        <span class="date">{{bet?.createdAt| date :'dd-MM-yyyy'}}</span><br>
+                                                                        <span class="date">{{bet?.createdAt| date :'hh:mm:ss aa'}}</span>
+                                                                    </td>
+                                                                    <td *ngIf="type == 0">{{bet?.domain_name}}</td>
+                                                                    <td> <a (click)="openModalUserParentList(bet,userParentList)">{{bet?.user_name}}</a></td>
+                                                                    <td>
+                                                                        <span class="sport-name">{{bet?.sport_name}}</span><br>
+                                                                        <span class="series-name">{{bet?.series_name}}</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="match-name">{{bet?.match_name}}</span><br>
+                                                                        <span class="market-name">{{bet?.market_name}}</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="selection">{{bet?.selection_name}}</span><br>
+                                                                        <span *ngIf="bet.is_fancy == 0" [ngClass]="{'lay-btn':bet.is_back == 0,'back-btn':bet.is_back == 1}">{{bet.is_back == 1 ? 'Back' : 'Lay'}}</span>
+                                                                        <span *ngIf="bet.is_fancy == 1" [ngClass]="{'lay-btn':bet.is_back == 0,'back-btn':bet.is_back == 1}">{{bet.is_back == 1 ? 'Yes' : 'No'}} </span>
+                                                                    </td>
+                                                                    <td *ngIf="bet.is_fancy == 0">{{bet?.odds| number : '0.0-2'}}</td>
+                                                                    <td *ngIf="bet.is_fancy == 1">{{bet?.odds| number : '0.0-2'}} / {{bet?.size| number
+                                                                        : '0.0-2'}} </td>
+                                                                    <td>{{bet?.stack| number : '0.0-2'}}</td>
+                                                                    <td [ngClass]="{'red':bet.p_l < 0 ,'green':bet.p_l >= 0}">{{bet?.p_l| number :
+                                                                        '0.0-2'}}</td>
+                                                                    <td>{{bet?.winner_name}}</td>
+                                                                    <td>{{bet?.ip_address}}</td>
+                                                                </tr>
+                                                            </ng-container>
+                                                            <div *ngIf="settledBetData.length == 0" style="text-align: center;">
+                                                                No data avalible 
+                                                            </div>
+                                                        </tbody>
+                                                       
+                                                    </table>
+                                                    <div class="report-bottom-paginate">
+                                                        <div class="col-inner item-perpage-select">
+                                                            <label>Items per page:</label>
+                                
+                                                            <select name="betType" class="form-select" [(ngModel)]="itemsPerPage"
+                                                                [ngModelOptions]="{standalone: true}" aria-label="Default select example"
+                                                                (ngModelChange)="pageChange()">
+                                                                <option selected disabled></option>
+                                                                <option value="50">50</option>
+                                                                <option value="100">100</option>
+                                                                <option value="150">150</option>
+                                                                <option value="200">200</option>
+                                                            </select>
+                                                        </div>
+                                                       
+                                                        <pagination-controls (pageChange)="pageChange($event)"
+                                                        class="user-list-pagination" ></pagination-controls>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<ng-template #popTemplate>
+    <datepicker [hidden]="!isDateVisible" [(ngModel)]="date" [minDate]="minDate" [maxDate] ="todayDateTime" [showWeeks]="false"
+        (ngModelChange)="updateDate()" (selectionDone)="dateSelectionDone()">
+    </datepicker>
+    <timepicker [hidden]="!isDateVisible" [(ngModel)]="time" (ngModelChange)="updateTime()" [showMeridian]="isMeridian" showSeconds="true">
+    </timepicker>
+
+    <div style="padding:5px">
+        <span class="btn-group pull-left" style="margin-right:10px;">
+            <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+            <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group pull-right">
+            <button type=button class="btn btn-sm btn-success" (click)="close()">Close</button>
+        </span> <span class=clearfix></span>
+    </div>
+</ng-template>
+<ng-template #popTemplate1>
+    <datepicker [hidden]="!isDateVisible" [(ngModel)]="endDate" [minDate]="date" [maxDate] ="todayDateTime" [showWeeks]="false"
+        (ngModelChange)="updateEndDate()" (selectionDone)="dateSelectionDone()">
+    </datepicker>
+    <timepicker [hidden]="!isDateVisible" [(ngModel)]="endTime" (ngModelChange)="updateEndTime()"
+        [showMeridian]="isMeridian" showSeconds="true">
+    </timepicker>
+
+    <div style="padding:5px">
+        <span class="btn-group pull-left" style="margin-right:10px;">
+            <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+            <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group pull-right">
+            <button type=button class="btn btn-sm btn-success" (click)="closeEndDatepicker()">Close</button>
+        </span> <span class=clearfix></span>
+    </div>
+</ng-template>
+
+
+<ng-template #userParentList>
+    <div class="modal-header">
+        <h4 class="modal-title">Parent List of {{userParentName}}</h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+    <table class="table">
+        <tbody>
+            <ng-container *ngFor="let parent of parentList; let i =index">
+                <tr>
+                    <td>{{parent?.name}}({{parent?.user_name}})</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</ng-template> -->
+
+
+
+
+
+
+<div id="layoutSidenav" class="pt-3">
+    <div id="layoutSidenav_content" class="p-0">
+       <main>
+          <div class="container-fluid px-3">
+             <div class="mb-4">
+                <div class="col-sm-12 col-md-12">
+                   <div class="card card-report-datepicker">
+                      <div class="card-body card-cal row p-0">
+                         <div class="col-md-12">
+                            <div class="row">
+                            <div class="col-lg-2 col-md-12 col-xs-12">
+                               <div class="form-group">
+                                  <label for="type">Select Type</label>
+                                  <select class="form-control" placeholder="Select Bet Type"
+                                  [(ngModel)]="betType" [ngModelOptions]="{standalone: true}"
+                                  aria-label="Default select example"
+                                  (ngModelChange)="selectMatchType()">
+                                     <option value="0" disabled selected>Select your option</option>
+                                     <option value="settled">Settle</option>
+                                     <option value="unsettle">UnSettle</option>
+                                     <option value="void">Void</option>
+                                  </select>
+                               </div>
+                            </div>
+                            <div class="col-lg-2 col-md-12 col-xs-12">
+                               <div class="form-group">
+                                  <label for="type">Select Sport</label>
+                                  <ng-select [ngModelOptions]="{standalone: true}" [(ngModel)]="searchSport"  
+                              (change)="getFilterData(searchSport.sport_id)" 
+                              placeholder="Select sport">
+                                  <ng-option value="">All</ng-option>
+                                <ng-option *ngFor="let sport of SportList" [value]="sport">{{sport.sport_name}}</ng-option>
+                                </ng-select>
+                               </div>
+                            </div>
+                            <div class="col-lg-3 col-md-12 col-xs-12">
+                               <div class="input-group form-group">
+                                  <label for="type" style="width: 100%;">From</label>
+                                  <input type="text" class="form-control" [popover]="popTemplate" placement="bottom"
+                                [outsideClick]="true" #startpopoverRef="bs-popover"
+                                value="{{startdateTime | date:'yyyy-MM-dd HH:mm:ss'}}" (click)="showDate()">
+                                  <div class="input-group-append"><button class="btn btn-secondary" type="button"><i class="fa-solid fa-calendar-days"></i></button></div>
+                               </div>
+                            </div>
+                            <div class="col-lg-3 col-md-12 col-xs-12">
+                               <div class="input-group form-group">
+                                  <label for="type" style="width: 100%;">To</label>
+                                  <input type="text" class="form-control" [popover]="popTemplate1" placement="bottom"
+                                [outsideClick]="true" #endpopoverRef="bs-popover"
+                                value="{{enddateTime | date:'yyyy-MM-dd HH:mm:ss'}}" (click)="showDate()">
+                                  <div class="input-group-append"><button class="btn btn-secondary" type="button"><i class="fa-solid fa-calendar-days"></i></button></div>
+                               </div>
+                            </div>
+                            <div class="col-lg-2 col-md-12 col-xs-12">
+                               <div class="form-group"><label for="type" style="width: 100%;">&nbsp;</label><button class="btn btn-primary" type="button" (click)="rerender()"><strong>Get History</strong></button></div>
+                            </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <div class="header-tab bg-tab btr-5">
+                   <h3>Bet History<i class="fas fa-circle-question fa-fw"></i></h3>
+                </div>
+                <div class="table-profit">
+                   <div class="card mb-4">
+                      <div class="card-body">
+                         <table class="dataTable-table table-bordered" id="datatablesSimple" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                            <!-- <thead>
+                               <tr>
+                                  <th class="text-center">User Name</th>
+                                  <th class="text-center">Sport Name</th>
+                                  <th class="text-center">Event</th>
+                                  <th class="text-center">Market</th>
+                                  <th class="text-center">Selection</th>
+                                  <th class="text-center">Type</th>
+                                  <th class="text-center">Odds Req.</th>
+                                  <th class="text-center">Stack</th>
+                                  <th class="text-center">Place Time</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                               <tr *ngFor="let bet of settledBetData| paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems };let i = index;">
+                                  <td class="text-center">
+                                     <span class="text-uppercase"><a id="bet_name" class="event-color" (click)="openModalUserParentList(bet,userParentList)">{{bet?.user_name}}</a></span>
+                                  </td>
+                                  <td class="text-center">{{bet?.sport_name}}</td>
+                                  <td class="text-center">{{bet?.match_name}}</td>
+                                  <td class="text-center">{{bet?.market_name}}</td>
+                                  <td class="text-center">
+                                    <span *ngIf="bet.is_fancy == 0" [ngClass]="{'lay-btn':bet.is_back == 0,'back-btn':bet.is_back == 1}">{{bet.is_back == 1 ? 'Back' : 'Lay'}}</span>
+                                    <span *ngIf="bet.is_fancy == 1" [ngClass]="{'lay-btn':bet.is_back == 0,'back-btn':bet.is_back == 1}">{{bet.is_back == 1 ? 'Yes' : 'No'}} </span>
+                                  </td>
+                                  <td class="text-center tabel-back-text">Back</td>
+                                  <td *ngIf="bet.is_fancy == 0">{{bet?.odds| number : '0.0-2'}}</td>
+                                  <td *ngIf="bet.is_fancy == 1">{{bet?.odds| number : '0.0-2'}} / {{bet?.size| number : '0.0-2'}} </td>
+                                  <td class="table-font-weight text-center">{{bet?.stack| number : '0.0-2'}}</td>
+                                  <td class="text-center">
+                                    <span class="date">{{bet?.createdAt| date :'dd-MM-yyyy'}} </span>
+                                    <span class="date"> {{bet?.createdAt| date :'hh:mm:ss aa'}}</span>
+                                   </td>
+                               </tr>
+                            </tbody> -->
+                         </table>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </main>
+    </div>
+ </div>
+
+ <ng-template #popTemplate>
+    <datepicker [hidden]="!isDateVisible" [(ngModel)]="date" [minDate]="minDate" [maxDate] ="todayDateTime" [showWeeks]="false"
+        (ngModelChange)="updateDate()" (selectionDone)="dateSelectionDone()">
+    </datepicker>
+    <timepicker [hidden]="!isDateVisible" [(ngModel)]="time" (ngModelChange)="updateTime()" [showMeridian]="isMeridian" showSeconds="true">
+    </timepicker>
+
+    <div style="padding:5px">
+        <span class="btn-group pull-left" style="margin-right:10px;">
+            <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+            <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group pull-right">
+            <button type=button class="btn btn-sm btn-success" (click)="close()">Close</button>
+        </span> <span class=clearfix></span>
+    </div>
+</ng-template>
+
+<ng-template #popTemplate1>
+    <datepicker [hidden]="!isDateVisible" [(ngModel)]="endDate" [minDate]="date" [maxDate] ="todayDateTime" [showWeeks]="false"
+        (ngModelChange)="updateEndDate()" (selectionDone)="dateSelectionDone()">
+    </datepicker>
+    <timepicker [hidden]="!isDateVisible" [(ngModel)]="endTime" (ngModelChange)="updateEndTime()"
+        [showMeridian]="isMeridian" showSeconds="true">
+    </timepicker>
+
+    <div style="padding:5px">
+        <span class="btn-group pull-left" style="margin-right:10px;">
+            <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+            <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group pull-right">
+            <button type=button class="btn btn-sm btn-success" (click)="closeEndDatepicker()">Close</button>
+        </span> <span class=clearfix></span>
+    </div>
+</ng-template>
+
+<ng-template #userParentList>
+    <div class="modal-header bg-primary">
+        <h5 class="modal-title text-white" id="betnameModalLabel">Parent List of {{userParentName}}</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+        </button>
+     </div>
+     <div class="modal-body">
+        <ul class="list-group">
+            <ng-container *ngFor="let parent of parentList; let i =index">
+                <li class="list-group-item"><b> {{parent?.name}}({{parent?.user_name}}) </b></li>
+            </ng-container>  
+        </ul>
+     </div>
+
+    <!-- <div class="modal-header">
+        <h4 class="modal-title">Parent List of {{userParentName}}</h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+    <table class="table">
+        <tbody>
+            <ng-container *ngFor="let parent of parentList; let i =index">
+                <tr>
+                    <td>{{parent?.name}}({{parent?.user_name}})</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table> -->
+</ng-template>

@@ -1,0 +1,90 @@
+export const fancyData = {
+  "message": "Success",
+  "code": 0,
+  "error": false,
+  "data": {
+    "fancy": [
+      {
+        "active": "1",
+        "display_message": 'Ball Running',
+        "fancy_id": "30802553_9",
+        "session_size_no": 'Running',
+        "session_size_yes": 90,
+        "session_value_no": 'Ball',
+        "session_value_yes": 21,
+        "sport_id": "4",
+        "name": "Fall of 1st wkt ENG(ENG vs IND)adv",
+        "score_position": null,
+        "fancy_score_position_json": "[]",
+        "max_session_bet_liability": 0,
+        "max_session_liability": 0,
+        "super_admin_message": ""
+      },
+      {
+        "active": "1",
+        "display_message": null,
+        "fancy_id": "30802553_10",
+        "session_size_no": 110,
+        "session_size_yes": 90,
+        "session_value_no": 25,
+        "session_value_yes": 25,
+        "sport_id": "4",
+        "name": "Fall of 1st wkt IND(ENG vs IND)adv",
+        "score_position": null,
+        "fancy_score_position_json": "[]",
+        "max_session_bet_liability": 0,
+        "max_session_liability": 0,
+        "super_admin_message": ""
+      },
+      {
+        "active": "1",
+        "display_message": null,
+        "fancy_id": "30802553_6",
+        "session_size_no": 100,
+        "session_size_yes": 100,
+        "session_value_no": 11,
+        "session_value_yes": 12,
+        "sport_id": "4",
+        "name": "5 over runs IND(ENG vs IND)adv",
+        "score_position": null,
+        "fancy_score_position_json": "[]",
+        "max_session_bet_liability": 0,
+        "max_session_liability": 0,
+        "super_admin_message": ""
+      },
+      {
+        "active": "1",
+        "display_message": null,
+        "fancy_id": "30802553_5",
+        "session_size_no": 100,
+        "session_size_yes": 100,
+        "session_value_no": 10,
+        "session_value_yes": 11,
+        "sport_id": "4",
+        "name": "5 over runs ENG(ENG vs IND)adv",
+        "score_position": null,
+        "fancy_score_position_json": "[]",
+        "max_session_bet_liability": 0,
+        "max_session_liability": 0,
+        "super_admin_message": ""
+      },
+      {
+        "active": "1",
+        "display_message": 'SUSPENDED',
+        "fancy_id": "30802553_1",
+        "session_size_no": 115,
+        "session_size_yes": 85,
+        "session_value_no": 2,
+        "session_value_yes": 2,
+        "sport_id": "4",
+        "name": "Match 1st over run(ENG vs IND)adv",
+        "score_position": null,
+        "fancy_score_position_json": "[]",
+        "max_session_bet_liability": 0,
+        "max_session_liability": 0,
+        "super_admin_message": ""
+      }
+    ],
+    "enableFancy": 1
+  }
+}

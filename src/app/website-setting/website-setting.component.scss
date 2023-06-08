@@ -1,0 +1,41 @@
+.filterDiv .form-group {
+    padding: 0 15px 0 0;
+    margin-bottom: 0;
+}
+.btn-group {
+    margin: 15px 0 0;
+}
+.report-page .form-group .form-label{
+    background-color: #195991 !important;
+    color: #fff !important;
+}
+.report-page .form-group .form-label ~ input, 
+.report-page .form-group .form-label ~ .ng-select, 
+.report-page .form-group .form-label ~ .form-select{
+    margin-top: 15px !important;
+}
+.body-inner .form-group {
+    padding: 0 0 0 10px;
+    margin-bottom: 10px;
+}
+.search-div{
+    float:right;
+    margin-bottom: 5px;
+}
+.search-input{
+    width: 180px;
+    box-sizing: border-box;
+    //border: none;
+    //border-radius: 20px;
+    //background-color: var(--white-bg);
+    background-position: 8px 8px;
+    background-repeat: no-repeat;
+    padding: 0 5px 0 28px;
+    transition: width 0.4s ease-in-out;
+    height: 30px;
+    font-size: 12px;
+    outline: none;
+    //color: var(--black-text);
+    background-image: url('/assets/images/search-blue.png');
+    background-size: 14px;
+}

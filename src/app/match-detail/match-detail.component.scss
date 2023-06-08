@@ -1,0 +1,1759 @@
+// main > div{
+//     background-color: transparent;
+//     margin: 0;
+//     padding: 0;
+// }
+// .main-div .left-section .main-row{
+//     padding: 5px 0 0;
+// }
+// .select-bet {
+//     // background-color: var(--white-bg);
+//     border-radius: 4px;
+//     // overflow: hidden;
+//     .selectbet-header {
+//         position: relative;
+//         display: flex;
+//         background-color: var(--blue-bg);
+//         .bet-teamname {
+//             font-weight: 600;
+//             font-size: 11px;
+//             line-height: 32px;
+//             padding: 0 10px;
+//             color: var(--white-text);
+//             h4 {
+//                 font-size: 13px;
+//                 margin: 0;
+//                 font-weight: 600;
+//                 line-height: 32px;
+//                 color: var(--white-text);
+//                 img{
+//                     width: 16px;
+//                     margin-right: 5px;
+//                 }
+//                 .inplay{
+//                     i{
+//                         font-size: 16px;
+//                         padding: 0 5px;
+//                     }
+//                 }
+//             }
+//             .bet-datetime{
+//                 display: inline-block;
+//             }
+//             .all-bet{
+//                 display: inline-block;
+//                 padding-left: 15px;
+//             }
+//         }
+//     }
+//     .scoreBoard {
+//         background-color: var(--white-bg);
+//         border-radius: 0 0 4px 4px;
+//         margin-bottom: 0;
+//         margin-top: 0;
+//         #scoreBoard{
+//             margin-bottom: 10px;
+//         }
+//         .game-header {
+//             border-bottom: 1px solid #eff3fc;
+//             .nav-item{
+//                 a{
+//                     color: #777;
+//                     background: none;
+//                     border-bottom: 3px solid #eff3fc;
+//                 }
+//             }
+//         }
+//         .row{
+//             padding:10px 0;
+//             .col-md-6:nth-child(1){
+//                 border-right: 1px solid var(--grey-border)
+//             }
+//         }
+//         .score-detail {
+//             height: 100%;
+//             padding: 0 15px;
+//             .score-title{
+//                 h3{
+//                     font-weight: 500;
+//                     font-size: 14px;
+//                     color: var(--dark-text);
+//                     line-height: 24px;
+//                     margin-bottom: 0;
+//                 }
+//                 h5{
+//                     font-size: 11px;
+//                     font-weight: normal;
+//                     color: #777;
+//                     margin-bottom: 15px;
+//                 }
+//             }
+//             .score-list {
+//                 background-color: #F4F8FC;
+//                 margin-bottom: 10px;
+//                 border-radius: 4px;
+//                 padding: 5px 10px;
+//                 .score-event{
+//                     color:#777;
+//                     font-weight: 400;
+//                     font-size: 11px;
+//                 }
+//                 ul{
+//                     li{
+//                         list-style-type: none;
+//                         display: inline-block;
+//                         border-left: 1px solid var(--grey-border);
+//                         padding: 0 10px;
+//                         color:#777;
+//                         font-weight: 500;
+//                         font-size: 11px;
+//                         &:first-child{
+//                             padding-left: 0;
+//                             border-left: none;
+//                         }
+//                         span{
+//                             display: inline-block;
+//                             margin: 0 5px 0 0;
+//                         }
+//                         .ball{
+//                             border-radius: 50%;
+//                             width: 16px;
+//                             height: 16px;
+//                             color: #fff;
+//                             text-align: center;
+//                             font-size: 9px;
+//                             line-height: 16px;
+//                         }
+//                         .ball-single{
+//                             background-color: #0BB311;
+//                         }
+//                         .ball-four{
+//                             background-color: #0BB311;
+//                         }
+//                         .ball-zero{
+//                             background-color: #8d8d8d;
+//                         }
+//                         .ball-six{
+//                             background-color: #0BB311;
+//                         }
+//                         .ball-wicket{
+//                             background-color: #FF4848;
+//                         }
+//                     }
+//                 }
+//             }
+//             .score-table{
+//                 .table:last-child{
+//                     margin-bottom: 0;
+//                 }
+//                 .table{
+//                     margin-bottom: 10px;
+//                     position: relative;
+//                     margin-bottom: 50px;
+//                     tr{
+//                         th{
+//                             background-color: #F4F8FC;
+//                             border:none;
+//                             font-size: 11px;
+//                             color: var(--dark-text);
+//                             font-weight: 500;
+//                             text-transform: uppercase;
+//                         }
+//                         td{
+//                             font-size: 11px;
+//                             font-weight: 500;
+//                             color: #777;
+//                             border: none;
+//                             padding: 5px 10px;
+//                             background-color: unset;
+//                         }
+//                     }
+//                 }
+//                 .table-main{
+//                     border-radius: 4px;
+//                     overflow: hidden;
+//                     tr{
+//                         th{
+//                             text-align: center;
+//                             padding: 0 10px;
+//                             vertical-align: middle;
+//                             border-left: 1px solid var(--grey-border);
+//                         }
+//                         th:first-child, td:first-child{
+//                             text-align: left;
+//                             line-height: 20px;
+//                             border-left:none
+//                         }
+//                         td{
+//                             background-color: #F4F8FC;
+//                             text-align: center;
+//                             padding: 0 10px;
+//                             vertical-align: middle;
+//                             border-left: 1px solid var(--grey-border);
+//                         }
+//                     }
+//                     tr:nth-child(2){
+//                         border-bottom: 8px solid #F4F8FC;
+//                     }
+//                     tr:nth-child(1){
+//                         border-top: 8px solid #F4F8FC;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     .bet-semiheader {
+//         background: var(--white-bg);
+//         position: relative;
+//         padding: 0 0 0 10px;
+//         border-radius: 4px 4px 0 0; 
+//         line-height: 32px;
+//         overflow: hidden;
+//         .match-odd {
+//             display: block;
+//             .event-name {
+//                 position: relative;
+//                 font-size: 11px;
+//                 font-weight: 600;
+//                 line-height: 30px;
+//                 color: var(--dark-text);
+//                 display: inline-block;
+//             }
+//         }
+//     }
+//     .bet-main{
+//         border-radius: 5px;
+//         box-shadow: 0px 2px 6px rgb(0 0 0 / 4%);
+//         // overflow: hidden;
+//         margin: 0 0 10px;
+//         .bet-list{
+//             position: relative;
+//             background-color: var(--white-bg);
+//             padding: 0;
+//             border-radius: 0 0 4px 4px;
+//             // overflow: hidden;
+//             .market-runner{
+//                 .team-market {
+//                     position: relative;
+//                     .team1 {
+//                         display: flex;
+//                         border-bottom: 1px solid #7e97a7;
+//                         height: 40px;
+//                         align-items: center;
+//                         .team-name {
+//                             flex-basis: 80px;
+//                             flex-grow: 4;
+//                             padding: 2px 10px;
+//                             line-height: 32px;
+//                             p {
+//                                 margin: 0;
+//                                 font-weight: 500;
+//                                 font-size: 12px;
+//                                 color: var(--dark-text);
+//                                 line-height: 32px;
+//                                 display: inline-block;
+//                                 white-space: nowrap;
+//                                 text-overflow: ellipsis;
+//                                 width: auto;
+//                                 overflow: hidden;
+//                                 vertical-align: middle;
+//                                 text-transform: uppercase;
+//                             }
+//                             span{
+//                                 float: right;
+//                             }
+//                             .right-align{
+//                                 float: right;
+//                             }
+//                             .plValue{
+//                                 float: right;
+//                                 font-weight: 600;
+//                                 font-size: 13px;
+//                                 line-height: 32px;
+//                             }
+//                         }
+//                         .bet-value {
+//                             flex-basis: 55px;
+//                             text-align: center;
+//                             height: 39px;
+//                             line-height: 13px;
+//                             border-radius: 0;
+//                             margin: 0;
+//                             a {
+//                                 color: #000;
+//                                 padding: 5px 0;
+//                                 display: inline-block;
+//                                 width: 100%;
+//                                 line-height: 1.1;
+//                                 cursor: pointer;
+//                                 p {
+//                                     margin: 0;
+//                                     font-size: 12px;
+//                                     font-weight: 600;
+//                                 }
+//                                 span {
+//                                     font-size: 10px;
+//                                     font-weight: 500;
+//                                     text-transform: uppercase;
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//             .suspend{
+//                 width: 48%;
+//                 position: absolute;
+//                 right: 0;
+//                 left: auto;
+//                 .suspend-cont{
+//                     flex-basis: 100%;
+//                 }
+//             }
+//         }
+        
+//         .bet-list-header{
+//             .market-runner{
+//                 .team-market {
+//                     .team1 {
+//                         .bet-value{
+//                             a{
+//                                 color: #000;
+//                                 font-weight: 600;
+//                                 font-size: 12px;
+//                                 text-transform: uppercase;
+//                             }
+//                         }
+//                         .team-name{
+//                             p{
+//                                 font-size: 12px;
+//                                 text-transform: uppercase;
+//                                 color: #777;
+//                                 font-weight: normal;
+//                                 line-height: 26px !important;
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         .fancy-bet{
+//             border-radius: 0 0 4px 4px;
+//             // overflow: hidden;
+//             padding-bottom: 5px;
+//             background-color: var(--white-bg);
+//             .bet-list-header{
+//                 padding:0px;
+//             }
+//             .fancy-list{
+//                 padding: 0;
+//                 .team1{
+//                     border-radius: 0;
+//                     border-bottom: 1px solid #7e97a7;
+//                 }
+//             }
+//             .bet-list{
+//                 border-radius: 0;
+//                 margin-bottom: 0;
+//             }
+//             .header.scores-event {
+//                 font-size: 12px;
+//                 text-transform: uppercase;
+//                 color: #777;
+//                 font-weight: normal;
+//                 line-height: 30px;
+//                 display: inline-block;
+//             }
+//             .team1 {
+//                 display: flex;
+//                 border-bottom: 1px solid #d3dcdc;
+//                 .team-name {
+//                     flex-basis: 70px;
+//                     flex-grow: 1;
+//                     padding: 2px 0 !important;
+//                     line-height: 32px;
+//                     span{
+//                         display: block;
+//                     }
+//                     span{
+//                         margin: 0;
+//                         font-weight: 500;
+//                         font-size: 12px;
+//                         color: var(--dark-text);
+//                         line-height: 20px;
+//                         i.allow {
+//                             color: #00b82b;
+//                         }
+//                         .in-text {
+//                             padding-left: 10px;
+//                             display: inline-block;
+//                         }
+//                     }
+//                 }
+//                 .blank4 {
+//                     flex-basis: 55px;
+//                     span{
+//                         display: block;
+//                         cursor: pointer;
+//                         text-align: right;
+//                         .position-bet {
+//                             color: var(--blue-text);
+//                             font-size: 12px;
+//                             font-weight: 600;
+//                             text-align: center;
+//                             display: inline-block;
+//                             line-height: 40px;
+//                             margin-right: 10px;
+//                             width: 50%;
+//                             cursor: pointer;
+//                         }
+//                     }
+//                 }
+                
+//                 .bet-value {
+//                     flex-basis: 55px;
+//                     text-align: center;
+//                     line-height: 15px;
+//                     border-radius: 0;
+//                     margin: 0;
+//                     .info{
+//                         line-height: 38px;
+//                         text-align: left;
+//                         cursor: pointer;
+//                         a{
+//                             padding: 0;
+//                         }
+//                     }
+//                     a {
+//                         color: #000;
+//                         padding: 2px 0;
+//                         display: inline-block;
+//                         width: 100%;
+//                         cursor: pointer;
+//                         p {
+//                             margin: 0;
+//                             font-size: 12px;
+//                             font-weight: 600;
+//                         }
+//                         span {
+//                             font-size: 10px;
+//                             font-weight: 500;
+//                             text-transform: uppercase;
+//                         }
+//                     }
+//                 }
+//             }
+//             .suspend{
+//                 right: 36px;
+//                 width: 120px;
+//                 border-radius: 4px;
+//             }
+//         }
+//     }
+// }
+// .stack-name{
+//     color: #00b82b;
+// }
+// .main-div .left-section{
+//     padding-right: 15px;
+//     padding-left: 15px;
+// }
+// .betHeadRight{
+//     display: flex;
+//     align-items: center;
+//     .all-bet{
+//         margin-left: 10px;
+//     }
+// }
+// .bet-list .report-table {
+//     //overflow-y: auto;
+//     height: calc(100vh - 250px);
+//     padding: 0;
+//     table thead{
+//         position: sticky;
+//         top: 0;
+//     }
+// }
+
+// .min-max-value {
+//     display: inline-block;
+//     float: right;
+//     margin-right: 10px;
+//     span{
+//         display: inline-block !important;
+//         font-size: 11px !important;
+//         padding: 0 0 0 5px;
+//         line-height: 16px !important;
+//         color: #000;
+//         b{
+//             font-size: 10px;
+//             font-weight: 400;
+//             color: #5093ba;
+//             display: block;
+//         }
+//     }
+// }
+// .suspend-status {
+//     flex-basis: 420px;
+// }
+// .fancy-list{
+//     .suspend-status {
+//         flex-basis: 140px;
+//     }
+//     .setting-btn{
+//         padding: 0 10px 0 0;
+//     }
+//     .matchBetList {
+//         margin-top: 8px;
+//     }
+// }
+
+// .fancyPosition {
+//     line-height: 40px;
+//     text-align: center;
+//     a{
+//         color: var(--dark-text);
+//         cursor: pointer;
+//     }
+// }
+// .minSpan, .maxSpan{
+//     display: block;
+//     border-bottom: 1px solid #DDDDDD;
+//     font-size: 11px;
+//     font-weight: 500;
+//     color: var(--black-text);
+//     line-height: 30px;
+//     margin: 0 2px;
+//     img{
+//         display: inline-block;
+//         vertical-align: middle;
+//     }
+// }
+// .maxSpan{
+//     border-bottom: none;
+// }
+// .fpmain{
+//     padding: 0 10px;
+//     .fpHead {
+//         font-size: 11px;
+//         color: var(--black-text);
+//         font-weight: 500;
+//         border-bottom: 1px solid #DDDDDD;
+//         display: block;
+//         margin-bottom: 5px;
+//         padding-bottom: 5px;
+//     }
+//     .fpBody{
+//         table{
+//             width: 100%;
+//             thead{
+//                 tr{
+//                     th{
+//                         background-color: transparent;
+//                         border: 1px solid #ccc;
+//                         font-weight: 500;
+//                         color: #777777;
+//                         font-size: 11px;
+//                         padding-top: 0;
+//                         text-transform: uppercase;
+//                         padding: 10px;
+//                         width: 50%;
+//                         text-align: center;
+//                     }
+//                 }
+//             }
+//             tbody{
+//                 tr{
+//                     td{
+//                         background-color: transparent;
+//                         border: 1px solid #ccc;
+//                         font-weight: 500;
+//                         color: var(--black-text);
+//                         font-size: 11px;
+//                         padding-top: 0;
+//                         padding: 10px;
+//                         width: 50%;
+//                         span{
+//                             border-radius: 3px;
+//                             padding: 0 10px;
+//                             line-height: 24px;
+//                             text-align: center;
+//                             display: block;
+//                             min-width: 80px;
+//                             &.range{
+//                                 background-color: #F1F1F1;
+//                                 margin: 2px 4px 2px 0;
+//                             }
+//                             &.plRange{
+//                                 margin: 2px 0 2px 4px;
+//                             }
+//                             &.plRange.error{
+//                                 background-color: #FF41481A;
+//                                 color: #FF4148;
+//                             }
+//                             &.plRange.positive{
+//                                 background-color: #00C14D1A;
+//                                 color: #00C14D;
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+// .nav-tabs{
+//     border: none;
+//     .nav-item{
+//         a{
+//             border: none;
+//             font-size: 12px;
+//             font-weight: 600;
+//             color: #000;
+//             padding: 0 10px;
+//             line-height: 32px;
+//             border-bottom: none;
+//             cursor: pointer;
+//             border-radius: 0;
+//         }
+//         a.active {
+//             color: var(--black-text);
+//             background-color: unset;
+//         }
+//     }
+// }
+// .tab-content{
+//     padding: 0;
+//     .betList{
+//         width: 100%;
+//         max-height: calc(100vh - 170px);
+//         overflow-y: scroll;
+//         .list{
+//             padding: 5px;
+//             border-radius: 3px;
+//             margin-bottom: 5px;
+//             &.lay{
+//                 background-color: var(--lay-rate);
+//             }
+//             &.back{
+//                 background-color: var(--back-rate);
+//             }
+//             span {
+//                 display: inline-block;
+//                 width: 50%;
+//                 vertical-align: top;
+//                 line-height: 16px;
+//                 font-weight: 500;
+//                 font-size: 12px;
+//                 .error{
+//                     color: var(--error);
+//                 }
+//                 .success{
+//                     color: var(--positive);
+//                 }
+//             }
+//             span:nth-child(2n-0) {
+//                 text-align: right;
+//             }
+//         }
+//     }
+// }
+// ::ng-deep .green{
+//     color: green;
+// }
+// ::ng-deep  .red{
+//     color: red;
+// }
+// .lay{
+//     background-color: var(--lay-rate);
+// }
+// .back{
+//     background-color: var(--back-rate);
+// }
+// .tab-content.back{
+//     background-color: #7cc3f6;
+// }
+// .tab-content.lay{
+//     background-color: #fba4b7;
+// }
+// @media (min-width: 993px){
+
+// }
+// @media (min-width: 768px){
+    
+// }
+// @media (max-width: 992px){
+//     .main-div .left-section{
+//         padding-right: 10px;
+//         padding-left: 10px;
+//     }
+// }
+// @media (max-width: 767px){
+//     .select-bet .bet-main .fancy-bet .suspend {
+//         right: 38px;
+//     }
+//     .select-bet .bet-main .fancy-bet .fancy-list{
+//         padding: 0;
+//     }
+//     span.in-text b{
+//         width: 90% !important;
+//     }
+//     .select-bet .bet-main .fancy-bet .team1 .team-name span .in-text{
+//         display: block;
+//     }
+//     .select-bet .bet-main .fancy-bet .team1 .team-name{
+//         width: calc(100% - 165px);
+//     }
+// }
+// ::ng-deep .term-modal .modal-body {
+//     height: 400px;
+//     overflow-y: scroll;
+// }
+// iframe {
+//     border: 0;
+//     min-height: 235px !important;
+// }
+// input[type=number]::-webkit-inner-spin-button, 
+// input[type=number]::-webkit-outer-spin-button { 
+//     -webkit-appearance: none;
+//     -moz-appearance: none;
+//     appearance: none;
+//     margin: 0; 
+// }
+
+// .url-hierarchy {
+//     padding: 5px 0 10px;
+//     ul li {
+//         display: inline-block;
+//         position: relative;
+//         font-size: 12px;
+//         color: #777;
+//         font-weight: 500;
+//         &:after{
+//             content: '\f101';
+//             color: var(--blue-text);
+//             padding: 0 5px;
+//             font-family: 'FontAwesome';
+//         }
+//         &:last-child:after{
+//             display: none;
+//         }
+//         a{
+//             cursor: pointer;
+//             color: var(--blue-text);
+//         }
+//     }
+// }
+
+// .match-heading{
+//     border-radius: 4px 4px 0 0;
+//     padding: 0 5px;
+//     background-color: #2f353a;
+//     color: #fff;
+//     cursor: pointer;
+//     .match-heading-name{
+//         font-weight: 500;
+//         // border-bottom: 1px solid #DDDDDD;
+//         display: flex;
+//         justify-content: space-between;
+//         align-items: center;
+//         padding: 5px 0;
+//     }
+//     .match-name{
+//         font-size: 14px;
+//         color: var(--dark-text);
+//         font-weight: 600;
+//         .icon{
+//             background-color: rgb(71 120 177 / 7%);
+//             margin: 5px;
+//             width: 30px;
+//             height: 30px;
+//             display: inline-block;
+//             text-align: center;
+//             line-height: 30px;
+//             border-radius: 3px;
+//             img{
+//                 width: 15px;
+//             }
+//         }
+//     }
+//     .bet-datetime {
+//         background-color: rgb(0 178 255 / 5%);
+//         color: #00B2FF;
+//         border: 0.5px solid #00B2FF;
+//         border-radius: 5px;
+//         box-shadow: 0 2px 6px rgb(0 0 0 / 4%);
+//         padding: 8px 15px;
+//         font-size: 12px;
+//         font-weight: 500;
+//         display: inline-block;
+//         img{
+//             vertical-align: middle;
+//             display: inline-block;
+//             margin-top: -2px;
+//         }
+//     }
+// }
+// .bet-list-header .bet-value, .bet-list-header .team1.cteam {
+//     height: auto !important;
+// }
+// .bet-list-header .bet-value a, .bet-list-header .team1.cteam .team-name, 
+// .bet-list-header .team1.cteam .team-name p{
+//     line-height: 22px !important;
+// }
+// .matchBetList{
+//     display: inline-block;
+//     background-color: rgba(0, 178, 255, 0.05);
+//     color: #00B2FF;
+//     border: 0.5px solid #00B2FF;
+//     border-radius: 5px;
+//     line-height: 20px;
+//     margin-left: 0;
+//     // color: var(--blue-text);
+//     font-size: 12px;
+//     padding: 0 10px;
+//     cursor: pointer;
+//     font-weight: 500;
+//     margin-right: 5px;
+// }
+// .matchBetList:hover{
+//     background-color: #00b2ff;
+//     color: #fff;
+//     border: 0.5px solid #00B2FF;
+// }
+// .inputFilter {
+//     overflow-x: scroll;
+//     width: 100%;
+//     display: block;
+//     white-space: nowrap;
+//     .inputList{
+//         display: inline-block;
+//         min-width: 100px;
+//         width: min-content;
+//         margin: 0 3px 5px;
+//         &:first-child{
+//             min-width: 40px;
+//         }
+//     }
+// }
+
+// .nav-pills{
+//     color:#ccc;
+//     text-transform: capitalize;
+//     .nav-link{
+//         padding:5px 15px;
+//         border-radius: 0;
+//         font-size: 12px;
+//         color:#ccc;
+//     }
+// }
+// .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+//     color:  #fff;
+//     background: none;
+//     // border-bottom: 3px solid #fff;
+//     border-radius: 0;
+//     font-weight: 500;
+// }
+// .bet-list-header .bet-value a {
+//     padding: 0 !important;
+//     display: block;
+// }
+// .minMax-limit {
+//     display: inline-block;
+//     background-color: #F7F7F7;
+//     border-radius: 3px;
+//     line-height: 25px;
+//     margin-left: 10px;
+//     padding: 0 5px;
+//     vertical-align: middle;
+//     span {
+//         color: #777;
+//         position: relative;
+//         font-size: 11px;
+//         padding: 0 5px;
+//         &:first-child:after{
+//             content: '|';
+//             position: absolute;
+//             right: -2px;
+//         }
+//     }
+// }
+
+
+// // Blinking Css
+
+// .backColorChange0{-webkit-animation:.5s sparkBack_2;animation:.5s sparkBack_2}
+// @-webkit-keyframes sparkBack_2{0%,100%{background:#b7d5eb;color:#1e1e1e}50%{background:#f8e71c;color:#fff}}
+// @keyframes sparkBack_2{0%,100%{background:#b7d5eb;color:#1e1e1e}50%{background:#f8e71c;color:#fff}}
+
+// .backColorChange1{-webkit-animation:.5s sparkBack_3;animation:.5s sparkBack_3}
+// @-webkit-keyframes sparkBack_3{0%,100%{background-color:#d7e8f4;color:#1e1e1e}50%{background-color:#f8e71c;color:#fff  !important}}
+// @keyframes sparkBack_3{0%,100%{background-color:#d7e8f4;color:#1e1e1e}50%{background-color:#f8e71c;color:#fff  !important}}
+
+// .backColorChange2{-webkit-animation:.5s sparkLay;animation:.5s sparkLay}
+// @-webkit-keyframes sparkLay{0%,100%{background-color:#faa9ba;color:#1e1e1e}50%{background-color:#26f1f8;color:#fff !important}}
+// @keyframes sparkLay{0%,100%{background-color:#faa9ba;color:#1e1e1e}50%{background-color:#26f1f8;color:#fff !important}}
+
+
+// .layColorChange0{-webkit-animation:.10s sparkLay_2;animation:.10s sparkLay_2}
+// @-webkit-keyframes sparkLay_2{0%,100%{background-color:#efd3d9;color:#1e1e1e}50%{background-color:#26f1f8;color:#fff}}
+// @keyframes sparkLay_2{0%,100%{background-color:#efd3d9;color:#1e1e1e}50%{background-color:#26f1f8;color:#fff}}
+
+// .layColorChange1{-webkit-animation:.5s sparkLay_3;animation:.5s sparkLay_3}@-webkit-keyframes sparkLay_3{0%,100%{background-color:#f6e6ea;color:#1e1e1e}50%{background-color:#26f1f8;color:#fff}}@keyframes sparkLay_3{0%,100%{background-color:#f6e6ea;color:#1e1e1e}50%{background-color:#26f1f8;color:#fff}}
+
+// .layColorChange2{-webkit-animation:.5s sparkLay_4;animation:.5s sparkLay_4}@-webkit-keyframes sparkLay_4{0%,100%{background-color:#f6e6ea;color:#1e1e1e}50%{background-color:#26f1f8;color:#fff}}@keyframes sparkLay_4{0%,100%{background-color:#f6e6ea;color:#1e1e1e}50%{background-color:#26f1f8;color:#fff}}
+
+// td.green-icon {
+//     color: #fff !important;
+//     text-align: center;
+//     width: 50px;
+//     border-radius: 28px;
+// }
+// .ball1Color {
+//     background-color: #00CC00 !important;
+//   }
+//   .wckball2 {
+//     background-color: #FF0000 !important;
+//   }
+//   a.orange-icon {
+//     background-color: #FFCC66;
+//   }
+//   .zerocolor {
+//     background-color: #999 !important;
+//   }
+//   .sixfourcolor {
+//     background-color: #7e078c !important;
+//   }
+//  .fourcolor {
+//     background-color: #2d90d4 !important;
+//   }
+//   .report-table{
+//       margin-top: 5px;
+//   }
+// #myRightTabContent .report-table .btn{
+//     line-height: unset;
+//     height: auto;
+//     background: unset;
+//     border: none;
+//     padding: 0;
+//     color: #000;
+// }
+// // .leftOddContent {
+// //     overflow-y: auto;
+// //     height: calc(100vh - 210px);
+// // }
+// .bet-list .report-table table tbody tr td.blue{
+//     background-color: transparent !important;
+//     color: var(--white-text);
+//     text-align: center;
+//     font-weight: 500;
+// }
+// .bet-list .report-table table tbody tr td.blue span{
+//     display: inline-block;
+//     background-color: var(--back-rate);
+//     border-radius: 8px;
+//     padding: 0 10px;
+//     min-width: 50px;
+// }
+// .bet-list .report-table table tbody tr td.pink span{
+//     display: inline-block;
+//     background-color: var(--lay-rate);
+//     border-radius: 8px;
+//     padding: 0 10px;
+//     min-width: 50px;
+// }
+// td.name-cell {
+//     color: #2800c9;
+//     // font-weight: 500;
+// }
+// .bet-list .report-table table tbody tr td.pink{
+//     background-color: transparent !important;
+//     color: var(--white-text);
+//     text-align: center;
+//     font-weight: 500;
+// }
+// .ballOver span {
+//     display: inline-block;
+//     width: 20px;
+//     border-radius: 50%;
+//     height: 20px;
+//     line-height: 20px;
+//     text-align: center;
+//     margin-right: 5px;
+//     font-weight: 500;
+// }
+// .back-cell{
+//     // background-color: var(--back-rate);
+//     // border-radius: 20px 0 0 0;
+//     color: var(--black-text) !important;
+//     margin-bottom: -5px;
+//     position: relative;
+//     background-position: -274px -273px;
+//     background-image: url('../../assets/images/bg-transparent.png');
+// }
+// .lay-cell{
+//     // background-color: var(--lay-rate);
+//     // border-radius: 0 20px 0 0;
+//     color: var(--black-text) !important;
+//     margin-bottom: -5px;
+//     position: relative;
+//     background-position: 100% -399px;
+//     background-image: url('../../assets/images/bg-transparent.png');
+// }
+// .back-cell img{
+//     left: 11px;
+//     // background-repeat: repeat-x;
+//     // background-position: 0 -6214px;
+//     // background-image: url('../../assets/images/bg-transparent.png');
+//     position: absolute;
+//     top: 0;
+//     width: calc(100% - 11px);
+//     height: 100%;
+// }
+// .lay-cell img{
+//     right: 11px;
+//     background-repeat: repeat-x;
+//     background-position: 0 -7340px;
+//     background-image: url('../../assets/images/bg-transparent.png');
+//     position: absolute;
+//     top: 0;
+//     width: calc(100% - 11px);
+//     height: 100%;
+// }
+// .report-table table thead tr th, .report-table table tbody tr td{
+//     border: 1px solid #e7e5e5;
+//     border-width: 0 0 1px 0;
+// }
+// .report-table table thead tr th {
+//     border-bottom: 1px solid #e7e5e5 !important;
+//     border-top: 2px solid #ffffff;
+//     color: rgba(0,0,0,.54);
+//     font-weight: 500;
+// }
+// .report-table thead tr th:first-child {
+//     border-left-color: #fff;
+// }
+// .report-table thead tr th:last-child {
+//     border-right-color: #fff;
+// }
+// .report-table table thead tr{
+//     background-color: #fff;
+// }
+// .market-type-title {
+//     padding: 0 !important;
+// }
+// .market-type-title .title {
+//     background-color: #c5d0d6;
+//     padding: 0 0 0 10px;
+//     color: #003060 !important;
+//     font-weight: 600 !important;
+//     text-transform: capitalize !important;
+//     width: auto !important;
+// }
+// .fancy-bet .market-type-title {
+//     margin-left: 0;
+// }
+// .market-type-title .title img {
+//     vertical-align: top;
+//     background-repeat: no-repeat;
+//     background-position: -394px -3146px;
+//     height: 26px;
+//     width: 20px;
+//     background-image: url('../../assets/images/bg-transparent.png');
+// }
+// #myRightTabContent .betFilter {
+//     margin-top: 0;
+//     background-color: var(--white-bg);
+//     padding: 10px 15px;
+//     border-radius: 4px;
+//     box-shadow: 0 2px 4px rgb(15 34 58 / 12%);
+//     overflow-x: auto;
+// }
+// .betFilter a i {
+//     margin-right: 8px;
+//     color: #003060;
+// }
+
+// .sport-market-list h3 img {
+//     width: auto;
+//     height: 16px;
+//     margin-right: 5px;
+// }
+// .event-full-date:after, .inplay-div:after {
+//     content: '|';
+//     position: absolute;
+//     right: 5px;
+//     font-weight: normal;
+//     color: #777777;
+//     top: 0;
+// }
+// .inplay-div .inplay-btn.inplay {
+//     font-size: 11px;
+//     text-transform: uppercase;
+//     font-weight: 500;
+// }
+// .event-format-strip {
+//     display: flex;
+//     justify-content: flex-start;
+//     width: 100%;
+// }
+// .event-format-strip > * {
+//     position: relative;
+//     padding: 0 15px 0 0;
+//     line-height: 20px;
+// }
+// .event-full-date:after, .inplay-div:after {
+//     content: '|';
+//     position: absolute;
+//     right: 5px;
+//     font-weight: normal;
+//     color: #777777;
+//     top: 0;
+// }
+// .inplay-div .inplay-btn.inplay {
+//     font-size: 11px;
+//     text-transform: uppercase;
+//     font-weight: 500;
+// }
+// .event-full-date .date {
+//     font-size: 12px;
+//     font-weight: 400;
+//     color: #777;
+// }
+// .event-format-series {
+//     font-size: 12px;
+//     color: var(--blue-text);
+//     max-width: 200px;
+//     padding-right: 0 !important;
+//     white-space: nowrap;
+//     text-overflow: ellipsis;
+//     overflow: hidden;
+// }
+
+
+
+// @media (max-width: 1024px){
+//     .select-bet .bet-main .bet-list .suspend {
+//         width: 113px;
+//     }
+//     .select-bet .bet-main .bet-list .market-runner .team-market .team1 .team-name p{
+//         width: 210px;
+//     }
+//     .select-bet .bet-main .bet-list .market-runner .team-market .team1{
+//         justify-content: end;
+//     }
+//     .leftOddContent{
+//         height: auto;
+//     }
+//     .main-content > .row > .col-md-6{
+//         width: 100%;
+//         padding: 0 !important;
+//     }
+// }
+
+// @media (max-width: 767px){
+    
+//     .select-bet .bet-main .bet-list .market-runner .team-market .team1 .team-name p{
+//         width: 160px;
+//     }
+//     .select-bet .bet-main .bet-list .market-runner .team-market .team1 .bet-value{
+//         flex-basis: 54px;
+//     }
+//     .game-header > ul{
+//         flex-wrap: nowrap;
+//         white-space: nowrap;
+//         overflow-x: scroll;
+//         padding-bottom: 5px;
+//     }
+//     .left-section .main-content .pl-10 {
+//         padding-left: 0 !important;
+//     }
+//     .left-section .main-content .pr-10 {
+//         padding-right: 0 !important;
+//     }
+//     .match-heading .bet-datetime{
+//         display: none;
+//     }
+//     .match-heading .match-heading-name{
+//         flex-direction: row;
+//         align-items: flex-start;
+//         .betHeadRight{
+//             align-items: flex-end;
+//         }
+//         .match-name{
+//             font-size: 13px;
+//             white-space: nowrap;
+//             overflow: hidden;
+//             text-overflow: ellipsis;
+//             display: block;
+//             width: 100%;
+//             max-width: 240px;
+//             .fa-arrow-left{
+//                 display: none;
+//             }
+//             .inplay, .icon {
+//                 font-size: 18px;
+//                 display: none;
+//             }
+//         }
+//     }
+//     .minMax-limit{
+//         display: none;
+//     }
+//     .main-div .left-section {
+//         padding-right: 0;
+//         padding-left: 0;
+//     }
+//     label.switch{
+//         margin:0 10px;
+//     }
+//     .select-bet .scoreBoard .score-detail{
+//         padding: 0 10px;
+//     }
+//     #myRightTabContent .betFilter .filter-input-list {
+//         display: flex;
+//         white-space: nowrap;
+//         .form-group{
+//             width: auto !important;
+//         }
+//     }
+//     .user-list-pagination{
+//         left: 0;
+//     }
+//     .show-on-mobile{
+//         display: block;
+//     }
+//     .select-bet .scoreBoard .score-detail .score-table .table{
+//         margin-bottom: 0;
+//     }
+// }
+// #myRightTabContent .betFilter .filter-input-list {
+//     display: inline-block;
+//     vertical-align: middle;
+//     .form-group{
+//         margin-bottom: 0;
+//         display: inline-block;
+//         padding: 0 2px;
+//         width: 15%;
+//     }
+// }
+// .setting-btn{
+//     margin-left: 10px;
+// }
+
+// .filter-bet-btn{
+//     background-color: rgb(0 178 255 / 5%);
+//     color: #00B2FF;
+//     border: 0.5px solid #00B2FF;
+//     border-radius: 5px;
+//     box-shadow: 0 2px 6px rgb(0 0 0 / 4%);
+//     padding: 8px 15px;
+//     font-size: 12px;
+//     font-weight: 500;
+//     display: inline-block;
+// }
+// .user-list-pagination {
+//     position: absolute;
+//     // bottom: -10px;
+//     right: 0;
+//     // width: 100%;
+//     background-color: #fff;
+//     left: 10px;
+//     padding-top: 10px;
+//     border-top: 1px solid #ccc;
+// }
+// .betpopup-list-pagination{
+//     float: right;
+// }
+
+// .in-text span {
+//     line-height: 10px !important;
+// }
+// span.in-text b {
+//     font-weight: unset;
+//     width: 200px;
+//     text-overflow: ellipsis;
+//     overflow: hidden;
+//     white-space: nowrap;
+//     display: block;
+// }
+
+// .switch {
+//     position: relative;
+//     display: inline-block;
+//     width: 50px;
+//     height: 20px;
+//     vertical-align: middle;
+//     margin: 10px;
+// }
+// .switch input {
+//     opacity: 0;
+//     width: 0;
+//     height: 0;
+// }
+// input:checked+.slider {
+//     background-color: #007a1d;
+// }
+// .slider.round {
+//     border-radius: 34px;
+// }
+// .slider {
+//     position: absolute;
+//     cursor: pointer;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     background-color: #a00;
+//     -webkit-transition: .4s;
+//     transition: .4s;
+// }
+// input:checked+.slider:before {
+//     -webkit-transform: translateX(26px);
+//     -ms-transform: translateX(26px);
+//     transform: translateX(26px);
+// }
+// .slider.round:before {
+//     border-radius: 50%;
+// }
+// .slider:before {
+//     position: absolute;
+//     content: "";
+//     height: 15px;
+//     width: 15px;
+//     left: 4px;
+//     bottom: 3px;
+//     background-color: #fff;
+//     -webkit-transition: .4s;
+//     transition: .4s;
+// }
+// input:checked+.slider .on {
+//     display: block;
+// }
+// .on {
+//     display: none;
+// }
+// .on {
+//     color: #fff;
+//     position: absolute;
+//     transform: translate(-50%,-50%);
+//     top: 50%;
+//     left: 40%;
+//     font-size: 10px;
+//     font-family: Verdana,sans-serif;
+// }
+// input:checked+.slider .off {
+//     display: none;
+// }
+// .off {
+//     color: #fff;
+//     position: absolute;
+//     transform: translate(-50%,-50%);
+//     top: 50%;
+//     left: 62%;
+//     font-size: 10px;
+//     font-family: Verdana,sans-serif;
+// }
+
+// .bets-modal.market-book.modal-dialog {
+//     max-width: 680px;
+// }
+// .bet-value.book-bet-div {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+//     align-items: center;
+// }
+// .detail-fancy .dropdown-toggle:after{
+//     display: none;
+// }
+// .detail-fancy .dropdown-menu {
+//     padding: 0;
+//     &:before {
+//         position: absolute;
+//         left: auto;
+//         right: 10px;
+//         top: -10px;
+//         width: 0;
+//         height: 0;
+//         content: '';
+//         border-left: 10px solid transparent;
+//         border-right: 10px solid transparent;
+//         border-bottom: 10px solid #2370b0;
+//     }
+//     .dropdown-item{
+//         color: #fff;
+//         background-color: #2370b0;
+//         display: block;
+//         border-bottom: 1px solid #65a4d8;
+//         line-height: 26px;
+//         padding: 0 10px;
+//         font-size: 12px;
+//         font-weight: 500;
+//         a{
+//             color: #fff !important;
+//         }
+//         i{
+//             margin-right: 5px;
+//             font-size:14px;
+//         }
+//         &:hover{
+//             background-color: #2ec6f0;
+//             color: #fff;
+//         }
+//         .setting-btn{
+//             display: block;
+//         }
+//         .min-max-value{
+//             float: unset;
+//             span{
+//                 color: #fff;
+//                 padding: 5px 0;
+//                 margin-right: 5px;
+//                 b{
+//                     color: inherit;
+//                 }
+//             }
+//             &:hover{
+//                 span{
+//                     color: #fff;
+//                     b{
+//                         color: #fff;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// .bet-rate-section {
+//     display: flex;
+//     white-space: nowrap;
+//     position: relative;
+//     .suspend{
+//         right: 0 !important;
+//         width: auto !important;
+//         left: 0 !important;
+//         bottom: 0;
+//         top: 0;
+//     }
+//     .bet-value {
+//         width: 55px;
+//     }
+// }
+// .dropdown.detail-fancy {
+//     line-height: 35px;
+// }
+// .odd-market-runner .market-runner .team-market .team1 .bet-rate-section .suspend {
+//     .suspend-cont{
+//         font-size: 12px;
+//     }
+// }
+// .odd-header-list{
+//     display: flex;
+//     justify-content: space-between !important;
+//     white-space: nowrap;
+//     & >.bet-value{
+//         width: auto;
+//         /* flex-basis: auto !important; */
+//         display: flex;
+//         align-items: center;  
+//         .bet-value{
+//             width: 55px;
+//         }   
+//     }
+//     .switch{
+//         margin:0 5px;
+//     }
+// }
+// .small-label{
+//     font-size: 12px;
+// }
+// .UserPermissionDiv {
+//     background: #eee;
+//     display: none;
+//     position: absolute;
+//     border-radius: 5px;
+//     left: 15%;
+//     z-index: 1;
+//     top: 30px;
+//     box-shadow: 0 0 5px 2px #b0b0b0;
+// }
+// .actionListDiv.UserPermissionDiv {
+//     right: 0;
+//     left: auto;
+//     .btn-list {
+//         display: flex !important;
+//         flex-wrap: wrap;
+//         background-color: #fff;
+//         padding: 5px 0;
+//         &>a{
+//             margin: 2px 0;
+//             background-color: transparent;
+//             display: block;
+//             width: 100%;
+//             text-align: left;
+//             padding: 0 10px !important;
+//             height: 30px;
+//             line-height: 30px;
+//             &:hover{
+//                 background-color: #eee;
+//             }
+//         }
+//         &>span{
+//             margin: 2px 0;
+//             background-color: transparent;
+//             display: block;
+//             width: 100%;
+//             text-align: left;
+//             padding: 0 10px;
+//             height: 30px;
+//             line-height: 30px;
+//             &:hover{
+//                 background-color: #eee;
+//             }
+//         }
+       
+//     }
+// }
+// .icon-background{
+//     padding: 5px;
+//     margin:5px;
+//     border-radius: 50%;
+//     color: #fff;
+// }
+// .manualInplayBtn{
+//     padding:0 10px ;
+//     font-size: 10px;
+//     width:fit-content;
+//     //border: 1px solid #000;
+//     // background-color: #ccc;
+//     border-radius: 10px;
+//     margin-top:10px ;
+//     color: #fff !important;
+// }
+
+// .card-matchodds {
+//     background: #fff;
+//     color: #333;
+//     border: none;
+//     padding: 0;
+//     font-size: 13px;
+//     display: flex;
+// }
+// .match-odds {
+//     height: 30px;
+//     line-height: 30px;
+//     color: #fff;
+//     float: left;
+//     font-weight: 700;
+//     padding-right: 30px;
+//     padding-left: 10px;
+//     position: relative;
+//     background: var(--newsColor);
+//     border-top-right-radius: 15px;
+//     font-size: 12px;
+// }
+// .marketinfo {
+//     width: 15px;
+//     height: 15px;
+//     position: absolute;
+//     right: 8px;
+//     top: 8px;
+//     background-repeat: no-repeat;
+//     background-size: contain;
+//     display: inline-block;
+//     font-size: 14px;
+//     cursor: pointer;
+//     background: url('../../assets/aura777/info.svg');
+// }
+// .leftOddContent{ 
+//     .fancy-head h4 {
+//         position: relative;
+//         height: 25px;
+//         line-height: 25px;
+//         font-size: 12px;
+//         color: #fff;
+//         z-index: 1;
+//         float: left;
+//         zoom: 1;
+//         margin-bottom: 0;
+//     }
+//     .fancy-head h4 span {
+//         min-width: 72px;
+//         line-height: 30px !important;
+//         padding: 0 14px 0 8px;
+//         vertical-align: top;
+//         background: #067e8f;
+//         font-weight: 600 !important;
+//         cursor: pointer;
+//         float: unset !important;
+//         display: inline-block !important;
+//     }
+//     .fancy-bet .team-name.market-type-title {
+//         height: 32px !important;
+//     }
+//     .btn-fancybet_rules{
+//         vertical-align: top;
+//         margin-left: -4px;
+//         height: 30px;
+//         font-size: 0;
+//         text-indent: -99999px;
+//         width: 41px;
+//         display: inline-block;
+//         background-repeat: no-repeat;
+//         background-image: url('../../assets/aura777/bg-fanctbet_rules.svg');
+//     }
+//     .btn-fancybet_rules::before {
+//         content: '';
+//         width: 15px;
+//         height: 15px;
+//         background-repeat: no-repeat;
+//         margin: 8px 12px;
+//         background-size: contain;
+//         display: block;
+//         background-image: url('../../assets/aura777/info.svg');
+//     }
+// }
+
+// .report-bottom-paginate {
+//     display: flex;
+//     justify-content: end;
+//     /* margin-top: 41px; */
+//     /* margin-bottom: 1px; */
+//     position: relative !important;
+// }
+
+.table>:not(caption)>*>* {
+    padding: 0px ;
+}
+
+.btn{
+    line-height: 1 !important;
+    font-weight: 700 !important;
+}
+.book-btn {
+    background: var(--btnColor);
+    font-weight: 700;
+    font-size: 12px;
+    padding: 4px 10px;
+    line-height: 1.5 !important;
+}
+.modal-header{
+    padding: 0.25rem 1rem !important;
+}
+.card-body {
+    padding: 0 !important;
+}
+.market-analysis .match-name {
+    font-weight: 700;
+    color: #2789ce !important;
+    padding: 15px ;
+    font-size: 13px !important;
+    text-decoration: none;
+}
+.table>thead, .dataTable-table>thead {
+    background-color: #fff !important;
+    color: #243a48;
+}
+.accordion-button {
+    padding-left: 3px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+.tbl-bets th {
+    padding: 0px !important;
+}
+book-tbl {
+    width: 100%;
+}
+.book-tbl td, .book-tbl th, .book-tbl thead {
+    text-align: center;
+    font-weight: 700;
+    border: 1px solid #333;
+}
+.bg-default {
+    background-color: #c8ced3 !important;
+}
+.book-tbl td, .book-tbl th, .book-tbl thead {
+    font-size: 13px !important;
+    text-align: center;
+    font-weight: 700;
+    border: 1px solid #333;
+}
+.book-tbl td{
+    padding: 8px 10px !important;
+}
+a:not([href]):not([tabindex]), a:not([href]):not([tabindex]):hover {
+    cursor: pointer;
+}
+
+
+.mobile-show{
+    opacity: 0;
+}
+
+.fancy-info{
+    padding: 5px 6px 0 !important;
+    margin: 0;
+    background-color: #bed5d8;
+    font-size: 10px;
+    line-height: 7px;
+    border-radius: 3px;
+}
+.tbl-bets th{
+    padding: 5px !important;
+    border-top: none;
+    text-align: center;
+}
+.tbl-bets td{
+    font-weight:700;
+    text-align: center;
+    font-size: 12px;
+    padding: 2px 0 !important;
+    border-top: none;
+}
+.odd-row .team-name{
+    text-align: left;
+    padding-left: 6px !important;
+}
+@media screen and (max-width: 767px) {
+    .iSize {
+            height: 210px !important;
+        }
+    .marketinfo-list{
+        padding: 0;
+    }
+    .tbl-bets .team-name{
+        // min-width: 190px;
+    }
+    .mobile-hide{
+        display: none;
+    }
+    .mobile-show{
+        opacity: 1;
+    }
+   
+    .mobile-tabs{
+        overflow: scroll;
+        ul{
+            display: flex;
+            flex-wrap: unset;
+            padding: 0 10px 0 170px;
+            li{
+                width: -webkit-fill-available;
+                a{
+                    width: max-content;
+                }
+            }
+        }
+    }
+       
+    .tbl-bets .back-1, .tbl-bets .lay-1{
+        max-width: 65px;
+        margin: 0;
+    }
+}
+.iSize{
+    height:305px;
+}

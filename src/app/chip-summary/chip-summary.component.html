@@ -1,0 +1,280 @@
+<app-header></app-header>
+<!-- <app-sidebar></app-sidebar> -->
+
+<main>
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="closed-user inner-content">
+                <div class="page-title">
+                    <h3>Chip Summary</h3>
+                    <div class="breadcrumb">
+                        <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                class="fa fa-arrow-left"></i>Back</a>
+                    </div>
+                </div>
+
+                <!-- <div class="filterDiv">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form>
+                                <div class="row form-field">
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Search by user">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner text-end">
+                                            <div class="btn-list">
+                                                <button type="button" class="btn btn-success">Filter</button>
+                                                <button type="button" class="btn btn-danger">Clear</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="row">
+                    <div class="col-md-6 col-12 pr-10">
+                        <div class="report-table">
+                            <div class="page-sub-title">
+                                <h3>Plus Account - {{parent_user_name}}</h3>
+                            </div>
+                            <table datatable class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Account</th>
+                                        <th colspan="2">Chips <button _ngcontent-vvo-c153=""
+                                                class="btn btn-warning btn-xs bs-back"
+                                                style="padding: 4px 16px; margin: -5px 7px; float: right; background-color: #4bd0ef !important;"
+                                                (click)="userSettlement(parent_id)" *ngIf="backShowButton">Back</button>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngIf="plusLength != 0">
+                                        <tr *ngFor="let plus of plusData;let i = index;">
+                                            <td></td>
+                                            <td>{{plus.description}}</td>
+                                            <td style="color: green;">{{plus.amount | number : '0.0-2'}}</td>
+                                            <td></td>
+                                        </tr>
+                                    </ng-container>
+                                    <!-- <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td></td>
+                                        <td>Own</td>
+                                        <td>1438.38</td>
+                                        <td></td>
+                                    </tr> -->
+                                    <tr *ngFor="let paidData of paidtoData ; let i=index;">
+                                        <td (click)="openModalUserParentList(paidData,userParentList)">{{paidData.name}}</td>
+                                        <td (click)="paidData.user_type_id == 1 ? goToStatement(paidData.user_id) : userSettlement(paidData.user_id)"
+                                            style="cursor: pointer;color: rgb(23, 221, 247);">
+                                            <span class="userLabel">
+                                                <span *ngIf="paidData?.user_type_id != 1"> A </span>
+                                                <span *ngIf="paidData?.user_type_id == 1"> C </span>
+                                            </span>
+                                            {{paidData.user_name}} A/C
+                                        </td>
+                                        <td style="color: green;">{{paidData.settlement_amount | number : '0.0-2'}}</td>
+                                        <td>
+                                            <a class="td-btn btn-info"
+                                                (click)="openModalHistory(paidData.user_id,history)">History</a>
+                                            <a class="td-btn btn-warning"
+                                                (click)="openModalSettlement(paidData,1,parent_id,settleMent)">Settlement</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total</td>
+                                        <td></td>
+                                        <td style="color: green;">{{totalPlus | number : '0.0-2'}}</td>
+                                        <td> </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 pl-10">
+                        <div class="report-table">
+                            <div class="page-sub-title">
+                                <h3>Minus Account - {{parent_user_name}}</h3>
+                            </div>
+                            <table datatable class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Account</th>
+                                        <th colspan="2">Chips <button _ngcontent-vvo-c153=""
+                                                class="btn btn-warning btn-xs bs-back"
+                                                style="padding: 4px 16px; margin: -5px 7px; float: right; background-color: #4bd0ef !important;"
+                                                (click)="userSettlement(parent_id)" *ngIf="backShowButton">Back</button>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngIf="minusLength != 0">
+                                        <tr *ngFor="let minus of minusData ; let i=index;">
+                                            <td></td>
+                                            <td>{{minus.description}}</td>
+                                            <td style="color: red;">{{minus.amount | number : '0.0-2'}}</td>
+                                            <td></td>
+                                        </tr>
+                                    </ng-container>
+                                    <tr *ngFor="let reced of recedData ; let i=index;">
+                                        <td (click)="openModalUserParentList(reced,userParentList)">{{reced.name}}</td>
+                                        <td (click)="reced.user_type_id == 1 ? goToStatement(reced.user_id) : userSettlement(reced.user_id)"
+                                            style="cursor: pointer;color: rgb(23, 221, 247);">
+                                            <span class="userLabel">
+                                                <span *ngIf="reced?.user_type_id != 1"> A </span>
+                                                <span *ngIf="reced?.user_type_id == 1"> C </span>
+                                            </span>
+                                            {{reced.user_name}} A/C
+                                        </td>
+                                        <td style="color: red;">{{reced.settlement_amount | number : '0.0-2'}}</td>
+                                        <td>
+                                            <a class="td-btn btn-info"
+                                                (click)="openModalHistory(reced.user_id,history)">History</a>
+                                            <a class="td-btn btn-warning"
+                                                (click)="openModalSettlement(reced,2,parent_id,settleMent)">Settlement</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total</td>
+                                        <td></td>
+                                        <td style="color: red;">{{totalMinus | number : '0.0-2'}}</td>
+                                        <td> </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<ng-template #history>
+    <div class="modal-header">
+        <h4 class="modal-title">History</h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+
+    <div class="modal-body">
+        <div class="body-inner">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Updated Amount</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="popUpData == true">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Opening Amount</td>
+                        <td></td>
+                    </tr>
+                    <tr *ngFor="let settleHistory of settlementHistoryData; let i = index;">
+                        <td>{{settleHistory?.s_num}}</td>
+                        <td>{{settleHistory?.createdAt | date :'dd-MM-yyyy hh:mm:ss aa'}}</td>
+                        <td [ngClass]="{'red':settleHistory.amount < 0 ,'green':settleHistory.amount >= 0}">
+                            {{settleHistory?.amount | number : '0.0-2'}}</td>
+                        <td>{{settleHistory?.updated_balance | number : '0.0-2'}}</td>
+                        <td>{{settleHistory?.comment}}</td>
+                    </tr>
+                </tbody>
+                <tbody *ngIf="popUpData == false">
+                    No Record Found...
+                </tbody>
+            </table>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #deleteSettle>
+    <div class="modal-header">
+        <h4 class="modal-title">Delete Settlement</h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+    <form>
+        <div class="modal-body no-scroll-body">
+            <div class="body-inner">
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="text" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success">Submit</button>
+            <a href="javascript:void(0)" class="modal-close btn-warning btn" data-dismiss="modal"
+                (click)="modalRef.hide()">Close</a>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #settleMent>
+    <div class="modal-header">
+        <h4 class="modal-title">Settlement</h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+    <form [formGroup]='settlementForm'>
+        <div class="modal-body no-scroll-body">
+            <div class="body-inner">
+                <div class="form-group">
+                    <label class="form-label">Chips</label>
+                    <input class="form-control" formControlName="settleamount" type="number" name="Name1" id="Chips" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Remark</label>
+                    <input class="form-control" formControlName="settleCmt" type="text" name="Value1" id="Narration" />
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success" *ngIf="showButton == true" (click)="makeSettlement('1')">
+                Debit</button>
+            <button type="button" class="btn btn-success" *ngIf="showButton == false"
+                (click)="makeSettlement('2')">Credit</button>
+            <a class="modal-close btn-warning btn" data-dismiss="modal" (click)="modalRef.hide()">Close</a>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #userParentList>
+    <div class="modal-header">
+        <h4 class="modal-title">Parent List of {{userParentName}}</h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+    <table class="table">
+        <tbody>
+            <ng-container *ngFor="let parent of parentList; let i =index">
+                <tr>
+                    <td>{{parent?.name}}({{parent?.user_name}})</td>
+                </tr>
+                <!-- <tr>
+                    <td>user2</td>
+                </tr>
+                <tr>
+                    <td>user3</td>
+                </tr> -->
+                
+            </ng-container>
+        </tbody>
+    </table>
+</ng-template>

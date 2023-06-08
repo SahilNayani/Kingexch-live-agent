@@ -1,0 +1,171 @@
+<app-header></app-header>
+<!-- <app-sidebar></app-sidebar> -->
+
+<main>
+    <div class="account-info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="divider-top">
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="card card-accent-primary">
+                                    <div class="card-header account-detail-head">
+                                        <h3>Fancy Stake (User Wise)</h3>
+                                        <div class="breadcrumb">
+                                            <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                                class="fa fa-arrow-left"></i>Back</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body account-stat-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered dataTable no-footer">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>S.No.</th>
+                                                                <th *ngIf="type == 0">Domain Name</th>
+                                                                <th>Name</th>
+                                                                <th>Fancy Stake</th>
+                                                                <th> <i class="fa fa-arrow-left"
+                                                                        style="margin: 10px;cursor: pointer;" (click)="fancyStake(parentId)"
+                                                                        *ngIf="userDetails.user_id != Id && Id != ''"></i></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- <tr>
+                                                                <td>1</td>
+                                                                <td>abc</td>
+                                                                <td>4000</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td>xyz</td>
+                                                                <td>2500</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td>efg</td>
+                                                                <td>3500</td>
+                                                            </tr> -->
+                                                            <tr *ngFor="let profit of userStakeList;let i = index;">
+                                                                <td>{{i+1}}</td>
+                                                                <td *ngIf="type == 0">{{profit?.domain_name}}</td>
+                                                                <td (click)="profit?.user_type_id == 1 ? '' : fancyStake(profit.user_id)" style="cursor: pointer;">
+                                                                    <span class="userLabel">
+                                                                        <span *ngIf="profit?.user_type_id != 1"> A </span>
+                                                                        <span *ngIf="profit?.user_type_id == 1"> C </span>
+                                                                    </span>
+                                                                    {{profit?.user_name}}</td>
+                                                                <td [ngClass]="{'red':profit.stack < 0 ,'green':profit.stack >= 0}">
+                                                                    {{profit?.stack == undefined ? '0': profit?.stack | number : '0.0-2'}}</td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-sm btn-success"
+                                                                    (click)="openModalUserParentList(profit,userParentList)">P</button> &nbsp;&nbsp;
+                                                                <button type="button" class="btn btn-sm btn-success"
+                                                                        (click)="goToViewBets(profit.user_id)" *ngIf="profit?.user_type_id == 1">View
+                                                                        Bets</button>
+                                                                </td>
+                                                            </tr>
+                                                            <div *ngIf="userStakeList.length == 0" style="text-align: center;">
+                                                                No data avalible 
+                                                            </div>
+                                                        </tbody>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td  *ngIf="type == 0"></td>
+                                                                <td>Total </td>
+                                                                <td [ngClass]="{'red':total < 0 ,'green':total >= 0}"> {{total | number :
+                                                                    '0.0-2'}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Date Time Picker -->
+<ng-template #popTemplate>
+    <datepicker [hidden]="!isDateVisible" [(ngModel)]="date" [minDate]="minDate" [maxDate] ="todayDateTime" [showWeeks]="false"
+        (ngModelChange)="updateDate()" (selectionDone)="dateSelectionDone()">
+    </datepicker>
+    <timepicker [hidden]="!isDateVisible" [(ngModel)]="time" (ngModelChange)="updateTime()" showSeconds="true" [showMeridian]="isMeridian">
+    </timepicker>
+
+    <div style="padding:5px">
+        <span class="btn-group pull-left" style="margin-right:10px;">
+            <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+            <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group pull-right">
+            <!-- <button type=button class="btn btn-sm btn-light" [hidden]="isDateVisible" 
+            (click)="showDate()">Date
+            </button>
+            <button type=button class="btn btn-sm btn-light" [hidden]="!isDateVisible" 
+            (click)="showTime()">Time
+            </button> -->
+            <button type=button class="btn btn-sm btn-success" (click)="close()">Close</button>
+        </span> <span class=clearfix></span>
+    </div>
+</ng-template>
+
+<ng-template #popTemplate1>
+    <datepicker [hidden]="!isDateVisible" [(ngModel)]="endDate" [minDate]="date" [maxDate] ="todayDateTime" [showWeeks]="false"
+        (ngModelChange)="updateEndDate()" (selectionDone)="dateSelectionDone()">
+    </datepicker>
+    <timepicker [hidden]="!isDateVisible" [(ngModel)]="endTime" (ngModelChange)="updateEndTime()"
+        [showMeridian]="isMeridian" showSeconds="true">
+    </timepicker>
+
+    <div style="padding:5px">
+        <span class="btn-group pull-left" style="margin-right:10px;">
+            <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+            <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group pull-right">
+            <!-- <button type=button class="btn btn-sm btn-light" [hidden]="isDateVisible" 
+            (click)="showDate()">Date
+            </button>
+            <button type=button class="btn btn-sm btn-light" [hidden]="!isDateVisible" 
+            (click)="showTime()">Time
+            </button> -->
+            <button type=button class="btn btn-sm btn-success" (click)="closeEndDatepicker()">Close</button>
+        </span> <span class=clearfix></span>
+    </div>
+</ng-template>
+
+<ng-template #userParentList>
+    <div class="modal-header">
+        <h4 class="modal-title">Parent List of {{userParentName}}</h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+    <table class="table">
+        <tbody>
+            <ng-container *ngFor="let parent of parentList; let i =index">
+                <tr>
+                    <td>{{parent?.name}}({{parent?.user_name}})</td>
+                </tr>
+                <!-- <tr>
+                    <td>user2</td>
+                </tr>
+                <tr>
+                    <td>user3</td>
+                </tr> -->
+                
+            </ng-container>
+        </tbody>
+    </table>
+</ng-template>

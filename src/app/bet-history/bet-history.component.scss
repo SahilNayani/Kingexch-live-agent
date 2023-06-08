@@ -1,0 +1,49 @@
+.form-field .col-inner .form-group {
+    padding-right: 15px;
+    margin-bottom: 0;
+}
+.btn-list {
+    .btn-success {
+        margin-right: 10px;
+    }
+}
+.filter-tab .report-table {
+    margin-top: 0;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0 0 10px;
+}
+.report-page .filterDiv .form-check label {
+    color: #2370b0;
+    font-weight: 500;
+}
+.filter-tab {
+    box-shadow: 0 2px 4px rgb(15 34 58 / 12%);
+    margin-top: 0;
+    background-color: var(--white-bg);
+    border-radius:4px;
+    overflow: hidden;
+}
+.filter-tab .nav-tabs {
+    background-color: #f1f7fc;
+    border-bottom: none;
+    margin-bottom: 5px;
+}
+.filter-tab .nav-tabs .nav-link.active {
+    border: none;
+    background-color: #fff;
+    color: #4475cf;
+    font-weight: 600;
+    border-bottom: 2px solid #4475cf !important;
+}
+.filter-tab .nav-tabs .nav-link {
+    color: #4475cf;
+    background-color: #f1f7fc;
+    border-bottom: 2px solid #f1f7fc;
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 13px;
+    border: none !important;
+    text-transform: uppercase;
+    line-height: 32px;
+}

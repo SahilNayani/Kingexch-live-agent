@@ -1,0 +1,14 @@
+<div class="header-tab bg-tab">
+   <h3>My Account</h3>
+</div>
+<div class="tabs-nav">
+   <ul>
+      <li class="active"><a (click)="account(user_id,user_type_id)">My Profile</a></li>
+      <!-- <li><a (click)="openBet(user_id,user_type_id)" *ngIf="user_type_id == 1">Bet History</a></li>
+       <li><a (click)="proloss(user_id,user_type_id)" *ngIf="user_type_id == 1">Profit & Loss</a></li> -->
+      <li><a (click)="openBet(user_id,user_type_id)" *ngIf="user_type_id == 1 ">Bet History</a></li>
+      <li><a (click)="proloss(user_id,user_type_id)" *ngIf="user_type_id == 1 ">Profit & Loss</a></li>
+      <li><a (click)="statement(user_id,user_type_id)">Account Statement</a></li>
+      <li><a (click)="onlineUser(user_id,user_type_id)">Activity Log</a></li>
+   </ul>
+</div>

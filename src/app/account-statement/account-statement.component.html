@@ -1,0 +1,488 @@
+<app-header></app-header>
+
+<!--main>
+    <div class="account-info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4 col-md-3">
+                    <div class="card card-accent-primary">
+                        <div class="card-header account-detail-head">My Account </div>
+                        <div class="card-body account-detail-body p-0">
+                            <div class="sidebar-account">
+                                <a (click)="account(update_user_id,update_user_Type_id)">My Profile</a>
+                                <a (click)="openBet(update_user_id,update_user_Type_id)" *ngIf="update_user_Type_id == 1">Bet History</a>
+                                <a (click)="proloss(update_user_id,update_user_Type_id)" *ngIf="update_user_Type_id == 1">Profit & Loss</a>
+                                <a (click)="statement(update_user_id,update_user_Type_id)">Account Statement</a>
+                                <a (click)="onlineUser(update_user_id,update_user_Type_id)">Activity Log</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="divider-top">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="card card-report">
+                                    <div class="card-body p-0">
+                                        <form>
+                                           
+                                            <div class="row form-field">
+                                                <div class="filter-column">
+                                                    <div class="col-inner">
+                                                        <div class="form-group dateTimePicker">
+                                                           
+                                                        <input type="text" class="form-control" [popover]="popTemplate" placement="bottom" [outsideClick]="true" #startpopoverRef="bs-popover" value="{{startdateTime | date:'yyyy-MM-dd HH:mm:ss '}}" (click)="showDate()">
+            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="filter-column">
+                                                    <div class="col-inner">
+                                                        <div class="form-group dateTimePicker">
+                                                            
+                                                            <input type="text" class="form-control" [popover]="popTemplate1" placement="bottom" [outsideClick]="true" #endpopoverRef="bs-popover" value="{{enddateTime | date:'yyyy-MM-dd HH:mm:ss '}}" (click)="showDate()">
+                                                        
+                                                        </div>
+            
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="filter-column">
+                                                    <div class="col-inner text-end">
+                                                        <div class="btn-list">
+                                                            <button type="button" class="btn btn-success"
+                                                                (click)="getStatement('filterBtnClick')">Filter</button>
+                                                            <button type="button" class="btn btn-danger" (click)="onClickClear()">Clear</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="card card-accent-primary">
+                                    <div class="card-header account-detail-head">
+                                        Account Statement 
+                                    </div>
+
+                                    <div class="card-body account-stat-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered dataTable no-footer">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Date/Time</th>
+                                                                <th>Deposit</th>
+                                                                <th>Withdrawl</th>
+                                                                <th>Balance</th>
+                                                                <th>Remark</th>
+                                                                <th> From//To</th>
+                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <ng-container
+                                                                *ngFor="let list of statementList| paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems };let i = index;">
+                                                                <tr>
+                                                                    <td>
+                                                                        <span class="date">{{list.date| date :'dd-MM-yyyy hh:mm:ss aa'}}</span>
+                                                                    </td>
+                                                                    <td class="green">{{list.credit_debit > '0' ? (list.credit_debit | number : '0.0-2') : '0'}}</td>
+                                                                    <td class="red">{{list.credit_debit < '0' ? (list.credit_debit | number : '0.0-2' ) : '0' }}</td>
+                                                                    <td [ngClass]="{'red':list.balance < 0 ,'green':list.balance >= 0}">{{list.balance | number : '0.0-2'}}
+                                                                    </td>
+                                                                    <td >{{list.remark}}</td>
+                                                                    <td  class="dec-cell"> {{list.description}}</td>
+                                                                </tr>
+                                                            </ng-container>
+                                                            <div *ngIf="statementList.length == 0" style="text-align: center;width:100%">
+                                                                No data avalible 
+                                                            </div>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="report-bottom-paginate">
+                                                        <div class="col-inner item-perpage-select">
+                                                            <label>Items per page:</label>
+                                
+                                                            <select name="betType" class="form-select" [(ngModel)]="itemsPerPage"
+                                                                [ngModelOptions]="{standalone: true}" aria-label="Default select example"
+                                                                (ngModelChange)="pageChange()">
+                                                                <option selected disabled></option>
+                                                                <option value="50">50</option>
+                                                                <option value="100">100</option>
+                                                                <option value="150">150</option>
+                                                                <option value="200">200</option>
+                                                            </select>
+                                                        </div>
+                                                       
+                                                        <pagination-controls (pageChange)="pageChange($event)"
+                                                        class="user-list-pagination" ></pagination-controls>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<main class="d-none">
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="closed-user inner-content">
+                <div class="page-title" style="margin-bottom: 0;">
+                    <h3>Account Statement</h3>
+                    <div class="breadcrumb">
+                        <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                class="fa fa-arrow-left"></i>Back</a>
+                    </div>
+                </div>
+
+                <div class="filterDiv" style="margin-top: 0;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form>
+                                <div class="filter-btn text-start">
+                                    <div class="form-check"
+                                        *ngFor="let type of statementType| keyvalue; let i = index;">
+                                        <input name="{{type.value}}" [value]='type.key' id='{{type.value}}'
+                                            [(ngModel)]="radioSelect" type="radio"
+                                            (ngModelChange)="onSelectionChange(type.key)"
+                                            (change)="onSelectionChange(type.key)">
+                                        <label class="form-check-label" for="{{type.value}}"
+                                            (keyup.space)="radioSelected=type.key">{{type.value}} </label>
+                                    </div>
+
+                                </div>
+                                <div class="row form-field">
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group dateTimePicker">
+                                                
+                                            <input type="text" class="form-control" [popover]="popTemplate" placement="bottom" [outsideClick]="true" #startpopoverRef="bs-popover" value="{{startdateTime | date:'yyyy-MM-dd HH:mm:ss '}}" (click)="showDate()">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group dateTimePicker">
+                                               
+                                                <input type="text" class="form-control" [popover]="popTemplate1" placement="bottom" [outsideClick]="true" #endpopoverRef="bs-popover" value="{{enddateTime | date:'yyyy-MM-dd HH:mm:ss '}}" (click)="showDate()">
+                                            
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="col-inner">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Search by user">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-inner text-end">
+                                            <div class="btn-list">
+                                                <button type="button" class="btn btn-success"
+                                                    (click)="getStatement('filterBtnClick')">Filter</button>
+                                                <button type="button" class="btn btn-danger" (click)="onClickClear()">Clear</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="report-table">
+                    <table datatable class="table" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Credit</th>
+                                <th>Debit</th>
+                                    <th *ngIf="(selections == 1 || selections == 4 || selections == 0) && update_user_Type_id == 1">Balance</th>
+                                    <th *ngIf="(selections == 1 || selections == 4) && update_user_Type_id != 1">Balance</th>
+                                <th *ngIf="selections == 1 || selections == 4"> Remark</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container
+                                *ngFor="let list of statementList| paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems };let i = index;">
+                                <tr>
+                                    <td>{{itemsPerPage *(currentPage-1)+i+1}}</td>
+                                    <td>
+                                        <span class="date">{{list.date| date :'dd-MM-yyyy hh:mm:ss aa'}}</span>
+                                    </td>
+                                    <td (click)="openModalUserParentList(list,userParentList)">{{list.user_name}}</td>
+                                    <td style="color: blue !important;cursor: pointer;" class="dec-cell" (click)="(list.statement_type == 4 || list.statement_type == 2) ? routePath(list) : '' "> {{list.description}}</td>
+                                    <td class="green">{{list.credit_debit > '0' ? (list.credit_debit | number : '0.0-2')
+                                        : '0'}}</td>
+                                    <td class="red">{{list.credit_debit < '0' ? (list.credit_debit | number : '0.0-2' )
+                                            : '0' }}</td>
+                                    <td [ngClass]="{'red':list.balance < 0 ,'green':list.balance >= 0}"
+                                        *ngIf="(selections == 1 || selections == 4 || selections == 0) && update_user_Type_id == 1">{{list.balance | number : '0.0-2'}}
+                                    </td>
+                                    <td [ngClass]="{'red':list.balance < 0 ,'green':list.balance >= 0}"
+                                        *ngIf="(selections == 1 || selections == 4) && update_user_Type_id != 1">{{list.balance | number : '0.0-2'}}
+                                    </td>
+                                    <td *ngIf="selections == 1 || selections == 4">{{list.remark}}</td>
+                                </tr>
+                            </ng-container>
+                            <div *ngIf="statementList.length == 0" style="text-align: center;width:100%">
+                                No data avalible 
+                            </div>
+                        </tbody>
+
+                    </table>
+                    
+                    <div class="report-bottom-paginate">
+                        <div class="col-inner item-perpage-select">
+                            <label>Items per page:</label>
+
+                            <select name="betType" class="form-select" [(ngModel)]="itemsPerPage"
+                                [ngModelOptions]="{standalone: true}" aria-label="Default select example"
+                                (ngModelChange)="pageChange()">
+                                <option selected disabled></option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="150">150</option>
+                                <option value="200">200</option>
+                            </select>
+                        </div>
+                       
+                        <pagination-controls (pageChange)="pageChange($event)"
+                        class="user-list-pagination" ></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<ng-template #popTemplate>
+    <datepicker [hidden]="!isDateVisible" [(ngModel)]="date" [minDate]="minDate" [maxDate] ="todayDateTime" [showWeeks]="false"
+        (ngModelChange)="updateDate()" (selectionDone)="dateSelectionDone()">
+    </datepicker>
+    <timepicker [hidden]="!isDateVisible" [(ngModel)]="time" [min]="minTime" [max]="maxTime" (ngModelChange)="updateTime()" [showMeridian]="isMeridian" showSeconds="true">
+    </timepicker>
+
+    <div style="padding:5px">
+        <span class="btn-group pull-left" style="margin-right:10px;">
+            <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+            <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group pull-right">
+            
+            <button type=button class="btn btn-sm btn-success" (click)="close()">Close</button>
+        </span> <span class=clearfix></span>
+    </div>
+</ng-template>
+<ng-template #popTemplate1>
+    <datepicker [hidden]="!isDateVisible" [(ngModel)]="endDate"[minDate]="date" [maxDate] ="todayDateTime" [showWeeks]="false"
+        (ngModelChange)="updateEndDate()" (selectionDone)="dateSelectionDone()">
+    </datepicker>
+    <timepicker [hidden]="!isDateVisible" [(ngModel)]="endTime" (ngModelChange)="updateEndTime()"
+        [showMeridian]="isMeridian" showSeconds="true"  [min]="minTime" [max]="maxTime">
+    </timepicker>
+
+    <div style="padding:5px">
+        <span class="btn-group pull-left" style="margin-right:10px;">
+            <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+            <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group pull-right">
+           
+            <button type=button class="btn btn-sm btn-success" (click)="closeEndDatepicker()">Close</button>
+        </span> <span class=clearfix></span>
+    </div>
+</ng-template>
+
+<ng-template #userParentList>
+    <div class="modal-header">
+        <h4 class="modal-title">Parent List of {{userParentName}}</h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+    <table class="table">
+        <tbody>
+            <ng-container *ngFor="let parent of parentList; let i =index">
+                <tr>
+                    <td>{{parent?.name}}({{parent?.user_name}})</td>
+                </tr>
+               
+                
+            </ng-container>
+        </tbody>
+    </table>
+</ng-template> -->
+
+
+<div id="layoutSidenav" class="pt-3">
+    <div id="layoutSidenav_content" class="p-0">
+        <main>
+            <div class="container-fluid px-3">
+                <div class="row">
+                    <div class="col-sm-4 col-md-3">
+                        <app-account-sidebar [user_id]="update_user_id" [user_type_id]="update_user_Type_id">
+                        </app-account-sidebar>
+                    </div>
+                    <div class="col-sm-8 col-md-9">
+                        <div id="account_statement" class="tab-table">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12">
+                                    <div class="card card-report-datepicker">
+                                        <div class="card-body card-cal p-0">
+                                            <div class="">
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-md-12 col-xs-12">
+                                                        <div class="input-group form-group">
+                                                            <label for="type" style="width: 100%;">From</label>
+                                                            <input type="text" class="form-control" [popover]="popTemplate"
+                                                                placement="bottom" [outsideClick]="true"
+                                                                #startpopoverRef="bs-popover"
+                                                                value="{{startdateTime | date:'yyyy-MM-dd HH:mm:ss'}}"
+                                                                (click)="showDate()">
+                                                            <div class="input-group-append"><button
+                                                                    class="btn btn-secondary" type="button"><i
+                                                                        class="fa-solid fa-calendar-days"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-12 col-xs-12">
+                                                        <div class="input-group form-group">
+                                                            <label for="type" style="width: 100%;">To</label>
+                                                            <input type="text" class="form-control" [popover]="popTemplate1"
+                                                                placement="bottom" [outsideClick]="true"
+                                                                #endpopoverRef="bs-popover"
+                                                                value="{{enddateTime | date:'yyyy-MM-dd HH:mm:ss'}}"
+                                                                (click)="showDate()">
+                                                            <div class="input-group-append"><button
+                                                                    class="btn btn-secondary" type="button"><i
+                                                                        class="fa-solid fa-calendar-days"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-12 col-xs-12">
+                                                        <div class="form-group"><label for="type"
+                                                                style="width: 100%;">&nbsp;</label><button
+                                                                class="btn btn-primary" type="button"
+                                                                (click)="rerender()"><strong>Get Statement</strong></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-md-2 col-6">
+                                              <div class="form-group">
+                                                 <label for="type">Data Source</label>
+                                                 <select class="form-control">
+                                                    <option disabled="" value="">Data Source</option>
+                                                    <option value="LIVE">LIVE DATA</option>
+                                                    <option value="BACKUP">BACKUP DATA</option>
+                                                    <option value="OLD">OLD DATA</option>
+                                                 </select>
+                                              </div>
+                                           </div> -->
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="header-tab bg-tab btr-5">
+                                <h3>Account Statement</h3>
+                            </div>
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <table id="" class="dataTable-table no-footer" datatable [dtOptions]="dtOptions"
+                                        [dtTrigger]="dtTrigger">
+                                        <!-- <thead>
+                                        <tr>
+                                           <th>Date/Time</th>
+                                           <th>Deposit</th>
+                                           <th>Withdraw</th>
+                                           <th>Balance</th>
+                                           <th>Remark</th>
+                                           <th>From//To</th>
+                                        </tr>
+                                     </thead>
+                                     <tbody>
+                                        <tr class="text-center" *ngFor="let list of statementList| paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems };let i = index;">
+                                           <td>{{list.date| date :'dd-MM-yyyy hh:mm:ss aa'}}</td>
+                                           <td class="fw-bold">{{list.credit_debit > '0' ? (list.credit_debit | number : '0.0-2') : '0'}}</td>
+                                           <td class="fw-bold"><span class="minus-book">{{list.credit_debit < '0' ? (list.credit_debit | number : '0.0-2' ) : '0' }}</span></td>
+                                           <td class="fw-bold" [ngClass]="{'red':list.balance < 0 ,'green':list.balance >= 0}">{{list.balance | number : '0.0-2'}}</td>
+                                           <td>{{list.remark}}</td>
+                                           <td><span class="from">Upline <i aria-hidden="true" class="fa fa-arrow-right"></i></span><span class="to ml-2">{{list.description}}</span></td>
+                                        </tr>
+                                        <tr *ngIf="statementList.length == 0">
+                                            No Data Available...
+                                        </tr>
+                                     </tbody> -->
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<ng-template #popTemplate>
+    <datepicker [hidden]="!isDateVisible" [(ngModel)]="date" [minDate]="minDate" [maxDate]="todayDateTime"
+        [showWeeks]="false" (ngModelChange)="updateDate()" (selectionDone)="dateSelectionDone()">
+    </datepicker>
+    <timepicker [hidden]="!isDateVisible" [(ngModel)]="time" [min]="minTime" [max]="maxTime"
+        (ngModelChange)="updateTime()" [showMeridian]="isMeridian" showSeconds="true">
+    </timepicker>
+
+    <div style="padding:5px">
+        <span class="btn-group pull-left" style="margin-right:10px;">
+            <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+            <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group pull-right">
+
+            <button type=button class="btn btn-sm btn-success" (click)="close()">Close</button>
+        </span> <span class=clearfix></span>
+    </div>
+</ng-template>
+<ng-template #popTemplate1>
+    <datepicker [hidden]="!isDateVisible" [(ngModel)]="endDate" [minDate]="date" [maxDate]="todayDateTime"
+        [showWeeks]="false" (ngModelChange)="updateEndDate()" (selectionDone)="dateSelectionDone()">
+    </datepicker>
+    <timepicker [hidden]="!isDateVisible" [(ngModel)]="endTime" (ngModelChange)="updateEndTime()"
+        [showMeridian]="isMeridian" showSeconds="true" [min]="minTime" [max]="maxTime">
+    </timepicker>
+
+    <div style="padding:5px">
+        <span class="btn-group pull-left" style="margin-right:10px;">
+            <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+            <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group pull-right">
+
+            <button type=button class="btn btn-sm btn-success" (click)="closeEndDatepicker()">Close</button>
+        </span> <span class=clearfix></span>
+    </div>
+</ng-template>

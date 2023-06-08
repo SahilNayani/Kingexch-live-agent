@@ -1,0 +1,54 @@
+<app-header></app-header>
+<div id="layoutSidenav" class="pt-3">
+  <div id="layoutSidenav_content" class="p-0">
+      <main>
+          <div class="account-info">
+              <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-sm-4 col-md-3">
+                          <app-account-sidebar [user_id]="userId" [user_type_id]="typeId">
+                          </app-account-sidebar>
+                      </div>
+                      <div class="col-md-9">
+                          <div class="header-tab bg-tab btr-5">
+                              <h3>Profit Loss</h3>
+                          </div>
+                          <div class="card mb-4">
+                              <div class="card-body">
+                                  <table id="datatablesSimple" class="dataTable-table no-footer" datatable
+                                      [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                                      <!-- <thead>
+                                          <tr>
+                                              <th>Sport Name</th>
+                                              <th>Profit/Loss</th>
+                                              <th>Commission</th>
+                                              <th>Total P&L</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr *ngFor="let profit of profitData| paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems };let i = index;">
+                                              <td>{{profit?.sport_name}}</td>
+                                              <td [ngClass]="{'red':profit.p_l_full < 0 ,'green':profit.p_l_full >= 0}">
+                                                  {{profit?.p_l_full | number : '0.0-2'}}
+                                              </td>
+                                              <td [ngClass]="{'red':profit.commission_full < 0 ,'green':profit.commission_full >= 0}">
+                                                  {{profit?.commission_full | number : '0.0-2'}}
+                                              </td>
+                                              <td [ngClass]="{'red':profit.net_pl_full < 0 ,'green':profit.net_pl_full >= 0}">
+                                                  {{profit?.net_pl_full | number : '0.0-2'}}
+                                              </td>
+                                          </tr>
+                                          <tr *ngIf="profitData?.length == 0">
+                                              No Record Found...
+                                          </tr>
+                                      </tbody> -->
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </main>
+  </div>
+</div>

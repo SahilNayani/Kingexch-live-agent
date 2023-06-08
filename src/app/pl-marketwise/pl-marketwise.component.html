@@ -1,0 +1,99 @@
+<app-header></app-header>
+
+<!-- <main>
+    <div class="full-wrap" id="contentToConvert" #contentToConvert>
+        <div class="report-page">
+            <div class="user-list inner-content">
+
+              <div class="card-header account-detail-head">
+                Profit Loss Market
+              </div>
+
+                <div class="card my-exchange-head">
+                    <div class="card-body">
+                        
+                        <div class="table-filter">
+                            <div class="col-inner">
+                                <label>Items per page:</label>
+    
+                                <select name="betType" class="form-select" [(ngModel)]="itemsPerPage"
+                            [ngModelOptions]="{standalone: true}" aria-label="Default select example"
+                            (change)="setSelectedOption($event.target.value)">
+                            <option value="50" selected>50</option>
+                            <option value="100">100</option>
+                            <option value="200">200</option>
+                            <option value="500">500</option>
+                        </select>
+                            </div>
+
+                            <div class="col-inner">
+                                <label>Search:</label>
+                                <input type="text"  [(ngModel)]="searchMarket" (ngModelChange)="searchFilter()" [ngModelOptions]="{standalone: true}" placeholder="Search Match">
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                              <thead>
+                                <tr>
+                                    <th>Sport Name</th>
+                                    <th>Event Name</th>
+                                    <th>Market Name</th>
+                                    <th>Result</th>
+                                    <th>Profit/Loss</th>
+                                    <th>Commission</th>
+                                    <th>Settle Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let profit of profitData| paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: total_items };let i = index;">
+                                  <td >{{profit?.sport_name}}</td>
+                                  <td>{{profit?.match_name}}</td>
+                                  <td (click)="userWisePl(profit)"  style="cursor: pointer;color: blue !important;">{{profit?.event_name}}</td>
+                                  <td>{{profit?.winner_name}}</td>
+                                  <td [ngClass]="{'red':-(profit.p_l_full) < 0 ,'green':-(profit.p_l_full) >= 0}">
+                                    {{-(profit?.p_l_full)}}
+                                  </td>
+                                  <td [ngClass]="{'red':profit.commission_full >= 0}">
+                                    {{profit?.commission_full}}
+                                  </td>
+                                  <td>{{profit?.result_date | date :'dd-MM-yyyy hh:mm:ss aa'}}</td>
+                              </tr>
+                                <div *ngIf="profitData?.length == 0" style="text-align: center;">
+                                    No data avalible
+                                </div>
+                            </tbody>
+                           
+                            </table>
+                        </div>
+                        <div class="report-bottom-paginate">
+                            <pagination-controls (pageChange)="pageChange($event)" class="user-list-pagination">
+                            </pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main> -->
+
+<div id="layoutSidenav">
+    <div id="layoutSidenav_content" class="pt-3">
+       <main>
+          <div class="container-fluid px-3">
+             <div class="mb-4">
+                <div class="header-tab bg-tab btr-5">
+                   <h3>Profit Loss Market</h3>
+                </div>
+                <div class="table-profit">
+                   <div class="card mb-4">
+                      <div class="card-body text-center">
+                         <table class="dataTable-table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                            </table>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </main>
+    </div>
+  </div>

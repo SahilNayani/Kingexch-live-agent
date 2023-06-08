@@ -1,0 +1,138 @@
+<app-header></app-header>
+<main>
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="bet-history inner-content">
+                <div class="page-title">
+                    <h3>Roll Back Fancy Result</h3>
+                    <div class="row col-md-12">
+                        <div class="col-md-2 mr-4 ">
+                            <div class="col-inner">
+                                <div class="form-group mb-0">
+
+                                    <input name="searchFancy" class="search-input dropdown-toggle form-control"
+                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" type="text" autocomplete="off" [(ngModel)]="searchFancy"
+                                        placeholder="Search Match Name">
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item"
+                                            *ngFor="let sport of homeData |search: searchFancy :'match_name'">
+                                            <div class="event-info" (click)="getFancy(sport.match_id)">
+                                                <div class="event-format-strip">
+                                                    <div class="event-team">
+                                                        <div class="team-name">{{sport?.match_name}} &#8739; </div>
+                                                    </div>
+                                                    <div class="event-full-date">
+                                                        <span
+                                                            class="date">{{moment(sport?.match_date).utcOffset("+0").format('D')}}
+                                                            {{moment(sport?.match_date).utcOffset("+0").format('MMM')}}
+                                                            {{moment(sport?.match_date).utcOffset("+0").format('HH:mm')}}
+                                                            IST</span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="col-inner">
+                                <div class="form-group mb-0">
+
+                                    <input name="searchSport" class="search-input dropdown-toggle form-control"
+                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" type="text" autocomplete="off" [(ngModel)]="searchSport"
+                                        placeholder="Search Fancy Name...">
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item"
+                                            *ngFor="let sport of homeData |search: searchSport :'match_name'">
+                                            <div class="event-info" (click)="getFancy(sport.match_id)">
+                                                <div class="event-format-strip">
+                                                    <div class="event-team">
+                                                        <div class="team-name">{{sport?.match_name}} &#8739; </div>
+                                                    </div>
+                                                    <div class="event-full-date">
+                                                        <span
+                                                            class="date">{{moment(sport?.match_date).utcOffset("+0").format('D')}}
+                                                            {{moment(sport?.match_date).utcOffset("+0").format('MMM')}}
+                                                            {{moment(sport?.match_date).utcOffset("+0").format('HH:mm')}}
+                                                            IST</span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="breadcrumb">
+                        <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                class="fa fa-arrow-left"></i>Back</a>
+                    </div>
+                </div>
+                <div class="report-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S.no.</th>
+                                <th>Fancy Name</th>
+                                <th>Result</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let fancy of fancyList;let i =index;">
+                                <tr>
+                                    <td>{{i+1}}</td>
+                                    <td>{{fancy?.fancy_name}}</td>
+                                    <td>{{fancy?.result}}</td>
+                                    <td>
+
+                                        <button _ngcontent-c8="" class="btn-success btn-success2"
+                                            (click)="abandonedRollback(fancy)"
+                                            *ngIf="fancy?.is_active == 3">Abandoned Rollback</button>
+
+                                        <span _ngcontent-c8="" style="margin: 0 10px;"><button _ngcontent-c8=""
+                                                class="btn-success" href="" (click)="rollBackResult(fancy)"
+                                                *ngIf="fancy?.is_active == 2">Rollback Result</button>
+                                        </span>
+                                        <button _ngcontent-c8="" class="btn-success btn-success2"
+                                            *ngIf="fancy?.is_active == 2">Fancy P|L </button>
+                                    </td>
+
+
+                                </tr>
+                                <!-- <tr>
+                                    <td>1</td>
+                                    <td>6 Over run</td>
+                                    <td>50</td>
+                                    <td>
+                                        <button _ngcontent-c8="" class="btn-success btn-success2"
+                                            >Abandoned Rollback</button>
+
+                                        <span _ngcontent-c8="" style="margin: 0 10px;"><button _ngcontent-c8="" class="btn-success" href=""
+                                                >Rollback Result</button>
+                                        </span>
+                                        <button _ngcontent-c8="" class="btn-success btn-success2"
+                                            >Fancy  P|L </button>
+                                    </td>
+                                    
+                                    
+                                </tr> -->
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

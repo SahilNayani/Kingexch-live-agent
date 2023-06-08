@@ -1,0 +1,205 @@
+<app-header></app-header>
+<!-- <app-sidebar></app-sidebar> -->
+
+<main>
+    <div class="account-info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="divider-top">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="card card-report">
+                                    <div class="card-body p-0">
+                                        <form>
+                                            <div class="row form-field">
+                                                <div class="filter-column">
+                                                    <div class="col-inner">
+                                                        <div class="form-group dateTimePicker">
+                                                            <input type="text" class="form-control" [popover]="popTemplate" placement="bottom" [outsideClick]="true" #startpopoverRef="bs-popover" value="{{startdateTime | date:'yyyy-MM-dd HH:mm:ss '}}" (click)="showDate()">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="filter-column">
+                                                    <div class="col-inner">
+                                                        <div class="form-group dateTimePicker">
+                                                            <input type="text" class="form-control" [popover]="popTemplate1" placement="bottom" [outsideClick]="true" #endpopoverRef="bs-popover" value="{{enddateTime | date:'yyyy-MM-dd HH:mm:ss '}}" (click)="showDate()">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="filter-column">
+                                                    <div class="col-inner text-end">
+                                                        <div class="btn-list">
+                                                            <button type="button" class="btn btn-success" (click)="sportsPl('','filterBtnClick')">Filter</button>
+                                                            <button type="button" class="btn btn-danger"
+                                                                (click)="onClickClear()">Clear</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="card card-accent-primary">
+                                    <div class="card-header account-detail-head">
+                                        <h3>{{userName}} <span *ngIf="showBetButton == true">
+                                                (
+                                            <span *ngIf="sport_name != undefined">{{sport_name}} </span>       
+                                            <span *ngIf="series_name != undefined">/ {{series_name}} </span>        
+                                            <span *ngIf="match_name != undefined">  / {{match_name}}</span>       
+                                            <span *ngIf="market_name != undefined">  / {{market_name}}</span>        
+                                                    ) </span> Sports P|L List</h3>
+                                        <div class="breadcrumb">
+                                            <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                                    class="fa fa-arrow-left"></i>Back</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body account-stat-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered dataTable no-footer">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>S.No.</th>
+                                                                <th>Name</th>
+                                                                <th *ngFor="let game of gameList;let i = index;">{{game?.name}}</th>
+                                                                <th> <span *ngIf="showBetButton == true">ViewBets</span> <i class="fa fa-arrow-left"
+                                                                        style="margin: 10px;cursor: pointer;"
+                                                                        (click)="sportsPl(parentId,'filterBtnClick')"
+                                                                        *ngIf="userDetails.user_id != Id && Id != ''"></i></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                
+                                                            <tr *ngFor="let profit of userPlList;let i = index;">
+                                                                <td>{{i+1}}</td>
+                                                                <td (click)="profit?.user_type_id == 1 ? '' : sportsPl(profit.user_id,'filterBtnClick')"
+                                                                    style="cursor: pointer;">
+                                                                    <span class="userLabel">
+                                                                        <span *ngIf="profit?.user_type_id != 1"> A </span>
+                                                                        <span *ngIf="profit?.user_type_id == 1"> C </span>
+                                                                    </span>
+                                                                    {{profit?.user_name}}
+                                                                </td>
+                                                                <td *ngFor="let game of gameList;let i = index;">
+                                                                    <div [ngClass]="profit[game.lower_name] == undefined ? '' : addCssClass(profit[game.lower_name])">{{profit[game.lower_name] == undefined ? '0': profit[game.lower_name]  | number : '0.0-2'}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-sm btn-success"
+                                                                        (click)="openModalUserParentList(profit,userParentList)">P</button> &nbsp;&nbsp;
+                                                                    <button type="button" class="btn btn-sm btn-success"
+                                                                        (click)="goToStatement(profit.user_id,profit.user_type_id)"
+                                                                        *ngIf="showBetButton != true && profit?.user_type_id == 1">Statement</button>
+                                                                    <button type="button" class="btn btn-sm btn-success"
+                                                                        (click)="goToViewBets(profit.user_id)" *ngIf="showBetButton == true">View
+                                                                        Bets</button>
+                                                                </td>
+                                                                <!-- <td></td> -->
+                                                            </tr>
+                                                            <div *ngIf="userPlList.length == 0" style="text-align: center;">
+                                                                No data avalible
+                                                            </div>
+                                                        </tbody>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td>Total </td>
+                                                                <td *ngFor="let game of gameList;let i = index;"> <div [ngClass]="{'red':game.total < 0 ,'green':game.total >= 0}">{{game.total | number :
+                                                                    '0.0-2'}}</div></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!-- Date Time Picker -->
+<ng-template #popTemplate>
+    <datepicker [hidden]="!isDateVisible" [(ngModel)]="date" [minDate]="minDate" [maxDate] ="todayDateTime" [showWeeks]="false"
+        (ngModelChange)="updateDate()" (selectionDone)="dateSelectionDone()">
+    </datepicker>
+    <timepicker [hidden]="!isDateVisible" [(ngModel)]="time" (ngModelChange)="updateTime()" showSeconds="true" [showMeridian]="isMeridian">
+    </timepicker>
+
+    <div style="padding:5px">
+        <span class="btn-group pull-left" style="margin-right:10px;">
+            <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+            <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group pull-right">
+            <!-- <button type=button class="btn btn-sm btn-light" [hidden]="isDateVisible" 
+            (click)="showDate()">Date
+            </button>
+            <button type=button class="btn btn-sm btn-light" [hidden]="!isDateVisible" 
+            (click)="showTime()">Time
+            </button> -->
+            <button type=button class="btn btn-sm btn-success" (click)="close()">Close</button>
+        </span> <span class=clearfix></span>
+    </div>
+</ng-template>
+
+<ng-template #popTemplate1>
+    <datepicker [hidden]="!isDateVisible" [(ngModel)]="endDate" [minDate]="date" [maxDate] ="todayDateTime" [showWeeks]="false"
+        (ngModelChange)="updateEndDate()" (selectionDone)="dateSelectionDone()">
+    </datepicker>
+    <timepicker [hidden]="!isDateVisible" [(ngModel)]="endTime" (ngModelChange)="updateEndTime()"
+        [showMeridian]="isMeridian" showSeconds="true">
+    </timepicker>
+
+    <div style="padding:5px">
+        <span class="btn-group pull-left" style="margin-right:10px;">
+            <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+            <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+        </span>
+        <span class="btn-group pull-right">
+            <!-- <button type=button class="btn btn-sm btn-light" [hidden]="isDateVisible" 
+            (click)="showDate()">Date
+            </button>
+            <button type=button class="btn btn-sm btn-light" [hidden]="!isDateVisible" 
+            (click)="showTime()">Time
+            </button> -->
+            <button type=button class="btn btn-sm btn-success" (click)="closeEndDatepicker()">Close</button>
+        </span> <span class=clearfix></span>
+    </div>
+</ng-template>
+
+<ng-template #userParentList>
+    <div class="modal-header">
+        <h4 class="modal-title">Parent List of {{userParentName}}</h4>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+    <table class="table">
+        <tbody>
+            <ng-container *ngFor="let parent of parentList; let i =index">
+                <tr>
+                    <td>{{parent?.name}}({{parent?.user_name}})</td>
+                </tr>
+                <!-- <tr>
+                    <td>user2</td>
+                </tr>
+                <tr>
+                    <td>user3</td>
+                </tr> -->
+                
+            </ng-container>
+        </tbody>
+    </table>
+</ng-template>

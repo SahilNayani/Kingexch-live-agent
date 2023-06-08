@@ -1,0 +1,405 @@
+<app-header></app-header>
+<!-- <app-sidebar></app-sidebar> -->
+
+<!-- <main>
+  <div class="account-info">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="divider-top">
+            <div class="row pt-3">
+              <div class="col-sm-12 col-md-12">
+
+                <div class="card card-report-datepicker">
+                  <div class="card-body row p-0">
+                    <div class="col-md-12 row">
+                      <div class="col-md-2 col-6">
+                        <div class="input-group form-group">
+                          <label for="type" style="width: 100%;"></label>
+                          <input id="date_picker1" class="form-control" name="mydate" placeholder="End Date"
+                            [popover]="popTemplate" value="{{startdateTime | date:'yyyy-MM-dd HH:mm:ss'}}"
+                            (click)="showDate()">
+                          <div class="input-group-append"><button class="btn btn-secondary" type="button"><i
+                                class="fa-solid fa-calendar-days"></i></button></div>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-6 row align-items-center">
+                        <div class="col-md-1 p-0">
+                          <label class="lbl-to">To</label>
+                        </div>
+                        <div class="col-md-7">
+                          <div class="input-group form-group">
+                            <label for="type" style="width: 100%;"></label>
+                            <input id="date_picker2" class="form-control" name="mydate" placeholder="End Date"
+                              [popover]="popTemplate1" value="{{enddateTime | date:'yyyy-MM-dd HH:mm:ss'}}"
+                              (click)="showDate()">
+                            <div class="input-group-append"><button class="btn btn-secondary" type="button"><i
+                                  class="fa-solid fa-calendar-days"></i></button></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-6 row align-items-center">
+                        <div class="Commission-btn">
+                          <button class="btn btn-primary" type="button" (click)="filter('filterBtnClick')">
+                            <strong>Get Commission</strong>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="row">
+              <div class="col-sm-12 col-md-12">
+                <div class="card card-accent-primary">
+                  <div class="card-header account-detail-head">
+                    Agent Commission
+                  </div>
+                  <div class="filter-tab" style="padding: 25px;background:#e2e2e2!important">
+                    <nav>
+                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#nav-fancy">Fancy</a>
+                        <a class="nav-link " data-bs-toggle="tab" data-bs-target="#nav-matka">Matka</a>
+                        <a class="nav-link " data-bs-toggle="tab" data-bs-target="#nav-casino">Casino</a>
+                        <a class="nav-link " data-bs-toggle="tab" data-bs-target="#nav-binary">Binary</a>
+                        <a class="nav-link " data-bs-toggle="tab" data-bs-target="#nav-sportsbook">SportsBook</a>
+                        <a class="nav-link " data-bs-toggle="tab" data-bs-target="#nav-bookmaker">Bookmaker</a>
+                      </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                      <div class="tab-pane fade show active " id="nav-fancy">
+
+                        <div class="mt-3 mb-4">
+                          <table cellspacing="0" cellpadding="0" class="dataTable-table w-100" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                          
+                          </table>
+                        </div>
+                </div>
+
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main> -->
+<div id="layoutSidenav">
+  <div id="layoutSidenav_content" class="pt-3">
+     <main>
+        <div class="container-fluid px-3">
+           <div class="row">
+              <div class="col-sm-12 col-md-12">
+                 <div class="card card-report-datepicker">
+                    <div class="card-body p-0">
+                       <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="input-group form-group">
+                              <label for="type" style="width: 100%;">From</label>
+                              <input type="text" class="form-control" [popover]="popTemplate" placement="bottom"
+                              [outsideClick]="true" #startpopoverRef="bs-popover"
+                              value="{{startdateTime | date:'yyyy-MM-dd HH:mm:ss'}}" (click)="showDate()">
+                              <div class="input-group-append"><button class="btn btn-secondary" type="button"><i
+                                    class="fa-solid fa-calendar-days"></i></button></div>
+                            </div>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-xs-12">
+                             <!-- <div class="col-md-1 p-0">
+                                <label class="lbl-to">To</label>
+                             </div> -->
+                                <div class="input-group form-group">
+                                  <label for="type" style="width: 100%;">To</label>
+                                  <input type="text" class="form-control" [popover]="popTemplate1" placement="bottom"
+                                [outsideClick]="true" #endpopoverRef="bs-popover"
+                                value="{{enddateTime | date:'yyyy-MM-dd HH:mm:ss'}}" (click)="showDate()">
+                                  <div class="input-group-append"><button class="btn btn-secondary" type="button"><i
+                                        class="fa-solid fa-calendar-days"></i></button></div>
+                                </div>
+                             
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="form-group">
+                              <div class="Commission-btn">
+                                 <label for="type" style="width: 100%;">&nbsp;</label>
+                                 <button class="btn btn-primary" type="button" (click)="rerender()">
+                                 <strong>Get Commission</strong>
+                                 </button>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                          
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="row">
+              <div class="agent-commission-data">
+                 <div class="header-tab bg-tab btr-5">
+                    <h3>Agent Commission</h3>
+                 </div>
+                 <div class="agent-commission-tab-data">
+                    <div class="agent-tabs-nav">
+                       <ul>
+                          <li class="active"><a >Fancy</a></li>
+                          <li><a>Matka</a></li>
+                          <li><a>Casino</a></li>
+                          <li><a>Binary</a></li>
+                          <li><a>Sportbook</a></li>
+                          <li><a>Bookmaker</a></li>
+                       </ul>
+                    </div>
+                    <div class="agent-tabs-content bbr-5">
+                       <div id="fancy" class="agent-tab-table active">
+                          <div class="mb-4 ">
+                            <div class="form-group row commition-percentage my_calcu">
+                              <div class="col-md-8 col-sm-8">
+                                
+                                <input  #commissionPer (ngModelChange)="omit_special_char($event,commissionPer)"  [ngModel]="commissionValue" type="text"
+                                 class="form-control my_input"
+                                  placeholder="Commission Percentage..">
+                              </div>
+                              <div class="col-md-4 col-sm-4 my_btn">
+                                <button class="btn btn-primary " (click)="onCalculate(commissionPer.value)" type="button">
+                                  <strong>Calculate</strong>
+                                </button>
+                              </div>
+                            </div>
+                            <table cellspacing="0" cellpadding="0" class="dataTable-table w-100" datatable [dtOptions]="dtOptions"
+                              [dtTrigger]="dtTrigger">
+                            </table>
+                          </div>
+                       </div>
+                       <div id="matka" class="agent-tab-table">
+                          <!-- <div class="mb-4">
+                             <table cellspacing="0" cellpadding="0" class="dataTable-table w-100">
+                                <thead>
+                                   <tr class="text-center" role="row">
+                                      <th>Agent Name</th>
+                                      <th>Turn Over</th>
+                                      <th>Commission</th>
+                                      <th>Action</th>
+                                   </tr>
+                                </thead>
+                                
+                                <tbody>
+                                   
+                                   <tr class="text-center">
+                                      <td>johnagenta</td>
+                                      <td>0</td>
+                                      <td>0</td>
+                                      <td><button class="btn btn-primary btn-sm"><a class="text-white" href="#" data-toggle="modal" data-target="#settle_confirmation" href="">Settle</a></button><button class="btn btn-danger btn-sm ml-2"><a class="text-white" href="#" data-toggle="modal" data-target="#reject_confirmation" href="#">Reject</a></button></td>
+                                   </tr>
+                                </tbody>
+                                
+                             </table>
+                          </div> -->
+                       </div>
+                       <div id="casino" class="agent-tab-table">
+                          <!-- <div class="mb-4">
+                             <table cellspacing="0" cellpadding="0" class="dataTable-table w-100">
+                                <thead>
+                                   <tr class="text-center" role="row">
+                                      <th>Agent Name</th>
+                                      <th>Turn Over</th>
+                                      <th>Commission</th>
+                                      <th>Action</th>
+                                   </tr>
+                                </thead>
+                                
+                                <tbody>
+                                   
+                                   <tr class="text-center">
+                                      <td>johnagenta</td>
+                                      <td>0</td>
+                                      <td>0</td>
+                                      <td><button class="btn btn-primary btn-sm"><a class="text-white" href="#" data-toggle="modal" data-target="#settle_confirmation" href="">Settle</a></button><button class="btn btn-danger btn-sm ml-2"><a class="text-white" href="#" data-toggle="modal" data-target="#reject_confirmation" href="#">Reject</a></button></td>
+                                   </tr>
+                                </tbody>
+                                
+                             </table>
+                          </div> -->
+                       </div>
+                       <div id="binary" class="agent-tab-table">
+                          <!-- <div class="mb-4">
+                             <table cellspacing="0" cellpadding="0" class="dataTable-table w-100">
+                                <thead>
+                                   <tr class="text-center" role="row">
+                                      <th>Agent Name</th>
+                                      <th>Turn Over</th>
+                                      <th>Commission</th>
+                                      <th>Action</th>
+                                   </tr>
+                                </thead>
+                                
+                                <tbody>
+                                   
+                                   <tr class="text-center">
+                                      <td>johnagenta</td>
+                                      <td>0</td>
+                                      <td>0</td>
+                                      <td><button class="btn btn-primary btn-sm"><a class="text-white" href="#" data-toggle="modal" data-target="#settle_confirmation" href="">Settle</a></button><button class="btn btn-danger btn-sm ml-2"><a class="text-white" href="#" data-toggle="modal" data-target="#reject_confirmation" href="#">Reject</a></button></td>
+                                   </tr>
+                                </tbody>
+                                
+                             </table>
+                          </div> -->
+                       </div>
+                       <div id="Sportbook" class="agent-tab-table">
+                          <!-- <div class="mb-4">
+                             <table cellspacing="0" cellpadding="0" class="dataTable-table w-100">
+                                <thead>
+                                   <tr class="text-center" role="row">
+                                      <th>Agent Name</th>
+                                      <th>Turn Over</th>
+                                      <th>Commission</th>
+                                      <th>Action</th>
+                                   </tr>
+                                </thead>
+                                
+                                <tbody>
+                                   
+                                   <tr class="text-center">
+                                      <td>johnagenta</td>
+                                      <td>0</td>
+                                      <td>0</td>
+                                      <td><button class="btn btn-primary btn-sm"><a class="text-white" href="#" data-toggle="modal" data-target="#settle_confirmation" href="">Settle</a></button><button class="btn btn-danger btn-sm ml-2"><a class="text-white" href="#" data-toggle="modal" data-target="#reject_confirmation" href="#">Reject</a></button></td>
+                                   </tr>
+                                </tbody>
+                                
+                             </table>
+                          </div> -->
+                       </div>
+                       <div id="bookmaker" class="agent-tab-table">
+                          <!-- <div class="mb-4">
+                             <table cellspacing="0" cellpadding="0" class="dataTable-table w-100">
+                                <thead>
+                                   <tr class="text-center" role="row">
+                                      <th>Agent Name</th>
+                                      <th>Turn Over</th>
+                                      <th>Commission</th>
+                                      <th>Action</th>
+                                   </tr>
+                                </thead>
+                                
+                                <tbody>
+                                   
+                                   <tr class="text-center">
+                                      <td>johnagenta</td>
+                                      <td>0</td>
+                                      <td>0</td>
+                                      <td><button class="btn btn-primary btn-sm"><a class="text-white" href="#" data-toggle="modal" data-target="#settle_confirmation" href="">Settle</a></button><button class="btn btn-danger btn-sm ml-2"><a class="text-white" href="#" data-toggle="modal" data-target="#reject_confirmation" href="#">Reject</a></button></td>
+                                   </tr>
+                                </tbody>
+                                
+                             </table>
+                          </div> -->
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </main>
+  </div>
+</div>
+
+<!-- Date Time Picker -->
+<ng-template #popTemplate>
+  <datepicker [hidden]="!isDateVisible" [(ngModel)]="date" [minDate]="minDate" [maxDate]="todayDateTime"
+    [showWeeks]="false" (ngModelChange)="updateDate()" (selectionDone)="dateSelectionDone()">
+  </datepicker>
+  <timepicker [hidden]="!isDateVisible" [(ngModel)]="time" (ngModelChange)="updateTime()" [showMeridian]="isMeridian"
+    showSeconds="true">
+  </timepicker>
+
+  <div style="padding:5px">
+    <span class="btn-group pull-left" style="margin-right:10px;">
+      <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+      <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+    </span>
+    <span class="btn-group pull-right">
+
+      <button type=button class="btn btn-sm btn-success" (click)="close()">Close</button>
+
+    </span> <span class=clearfix></span>
+  </div>
+</ng-template>
+<ng-template #popTemplate1>
+  <datepicker [hidden]="!isDateVisible" [(ngModel)]="endDate" [minDate]="date" [maxDate]="todayDateTime"
+    [showWeeks]="false" (ngModelChange)="updateEndDate()" (selectionDone)="dateSelectionDone()">
+  </datepicker>
+  <timepicker [hidden]="!isDateVisible" [(ngModel)]="endTime" (ngModelChange)="updateEndTime()"
+    [showMeridian]="isMeridian" showSeconds="true">
+  </timepicker>
+
+  <div style="padding:5px">
+    <span class="btn-group pull-left" style="margin-right:10px;">
+      <button type=button class="btn btn-sm btn-info" [hidden]="!isDateVisible" (click)="today()">Today</button>
+      <button type=button class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+    </span>
+    <span class="btn-group pull-right">
+      <button type=button class="btn btn-sm btn-success" (click)="closeEndDatepicker()">Close</button>
+    </span> <span class=clearfix></span>
+  </div>
+</ng-template>
+
+
+<ng-template #userParentList>
+  <div class="modal-header">
+    <h4 class="modal-title">Parent List of {{userParentName}}</h4>
+    <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+  </div>
+  <table class="table">
+    <tbody>
+      <ng-container *ngFor="let parent of parentList; let i =index">
+        <tr>
+          <td>{{parent?.name}}({{parent?.user_name}})</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #settle_confirmation>
+  <div class="modal-header bg-primary">
+    <h5 class="modal-title text-white">Confirmation - {{selectedData.user_name}}</h5>
+    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body text-center">
+    <h5>Are you sure want to Settle?</h5>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button">Yes</button>
+    <button class="btn btn-default" type="button" (click)="modalRef.hide()">Cancel</button>
+  </div>
+</ng-template>
+
+<ng-template #reject_confirmation>
+  <div class="modal-header bg-primary">
+    <h5 class="modal-title text-white">Confirmation - {{selectedData.user_name}}</h5>
+    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body text-center">
+    <h5>Are you sure want to reject?</h5>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button">Yes</button>
+    <button class="btn btn-default" type="button" (click)="modalRef.hide()">Cancel</button>
+  </div>
+</ng-template>

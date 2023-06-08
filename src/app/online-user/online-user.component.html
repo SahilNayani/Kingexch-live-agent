@@ -1,0 +1,117 @@
+<app-header></app-header>
+
+<div id="layoutSidenav" class="pt-3">
+    <div id="layoutSidenav_content" class="p-0">
+        <main>
+            <div class="account-info">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-4 col-md-3">
+                            <app-account-sidebar [user_id]="update_user_id" [user_type_id]="update_user_Type_id">
+                            </app-account-sidebar>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="divider-top">
+                                <!-- <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="card card-report">
+                                    <div class="card-body p-0">
+                                        <form>
+                                            <div class="filter-btn text-start">
+                                                <ul>
+                                                    <li><button type="button" class="btn btn-danger"><i class="fa fa-sign-out"></i>
+                                                            All User Logout</button></li>
+                                                </ul>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                                <!-- <div class="row">
+                                    <div class="col-sm-12 col-md-12">
+                                        <div class="card card-accent-primary">
+                                            <div class="card-header account-detail-head">
+                                                Activity Log
+                                            </div>
+
+                                            <div class="card-body account-stat-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered dataTable no-footer">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Login Date & Time</th>
+                                                                        <th>Login Status</th>
+                                                                        <th>IP Address</th>
+                                                                        <th>ISP</th>
+                                                                        <th>City/State/Country</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr
+                                                                        *ngFor="let onlineuser of onlineUserDetails;let i = index;">
+                                                                        <td>{{(onlineuser?.login_time | date:'dd-MM-yyyy HH:mm:ss')}}</td>
+                                                                        <td
+                                                                            [ngClass]="{'red':onlineuser?.login_status == 'login_failed','green':onlineuser?.login_status == 'login_success'}">
+                                                                            {{onlineuser?.login_status}}</td>
+                                                                        <td>{{onlineuser?.ip_address}}</td>
+                                                                        <td>{{onlineuser?.geolocation?.isp}}</td>
+                                                                        <td>{{onlineuser?.geolocation?.city}}/{{onlineuser?.geolocation?.state}}/{{onlineuser?.geolocation?.country}}
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr *ngIf="onlineUserDetails?.length == 0">No Record
+                                                                        Found...</tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                                <div id="activity_log" class="tab-table">
+                                    <div class="header-tab bg-tab btr-5">
+                                       <h3>Activity Log</h3>
+                                    </div>
+                                    <div class="card mb-4">
+                                       <div class="card-body">
+                                          <table id="" class="dataTable-table no-footer">
+                                             <thead>
+                                                <th>Login Date &amp; Time</th>
+                                                <th>Login Status</th>
+                                                <th >IP Address</th>
+                                                <th width="36%">ISP</th>
+                                                <th width="20%">City/State/Country</th>
+                                             </thead>
+                                             <tbody>
+                                                <tr *ngFor="let onlineuser of onlineUserDetails;let i = index;">
+                                                   <td >{{(onlineuser?.login_time | date:'dd-MM-yyyy HH:mm:ss')}}</td>
+                                                   <td [ngClass]="{'red':onlineuser?.login_status == 'login_failed','green':onlineuser?.login_status == 'login_success'}"><span class="login-success">{{onlineuser?.login_status}}</span></td>
+                                                   <td>{{onlineuser?.ip_address}}</td>
+                                                   <td>{{onlineuser?.geolocation?.isp}}</td>
+                                                   <td>
+                                                      <span>{{onlineuser?.geolocation?.city}}/{{onlineuser?.geolocation?.state}}/{{onlineuser?.geolocation?.country}}</span>
+                                                   </td>
+                                                </tr>
+                                                <tr *ngIf="onlineUserDetails?.length == 0">
+                                                    No Record Found...
+                                                </tr>
+                                                
+                                             </tbody>
+                                          </table>
+                                       </div>
+                                    </div>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

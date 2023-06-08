@@ -1,0 +1,55 @@
+<app-header></app-header>
+<!-- <app-sidebar></app-sidebar> -->
+
+<main>
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="online-user inner-content">
+                <div class="page-title">
+                    <h3>Closed User</h3>
+                </div>
+
+
+                <div class="report-table">
+                    <table datatable class="table">
+                        <thead>
+                            <tr>
+                                <!-- <th><input type="checkbox"></th> -->
+                                <th>Name</th>
+                                <th>UserName</th>
+                                <th>Balance</th>
+                                <th>Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let user of userList | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: total_items } ; let i=index">
+
+                                <td (click)='getClosedChild(user._id)'> <a class="user-name-style"> {{user?.name}} </a>
+                                </td>
+                                <td (click)='getClosedChild(user._id)'> <a class="user-name-style"> {{user?.user_name}}
+                                    </a> </td>
+                                <td>{{user?.balance}} </td>
+                                <td>
+
+                                    <a class="td-btn btn-primary"
+                                        (click)="openAccountOfUserAndTheirChilds(user._id, user.self_close_account)">Re
+                                        open</a>
+
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+
+                <pagination-controls (pageChange)="pageChange($event)" class="closed-user-list-pagination">
+                </pagination-controls>
+
+
+            </div>
+        </div>
+    </div>
+</main>

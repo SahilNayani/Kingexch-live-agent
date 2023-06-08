@@ -1,0 +1,143 @@
+<app-header></app-header>
+
+<!-- <main>
+    <div class="account-info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="divider-top">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="card card-report">
+                                    <div class="card-body p-0">
+                                        <form>
+                                            <div class="row form-field">
+                                                <div class="filter-column">
+                                                    <div class="col-inner">
+                                                        <ul>
+                                                            <li><button type="button" class="btn btn-success">Open User</button></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="card card-accent-primary">
+                                    <div class="card-header account-detail-head">
+                                        Restore User  
+                                    </div>
+
+                                    <div class="card-body account-stat-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered dataTable no-footer">
+                                                        <thead>
+                                                            <tr>
+                                                                <th><input type="checkbox"></th>
+                                                                <th>Closed User Name</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr
+                                                                *ngFor="let user of userList | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: total_items } ; let i=index">
+                                                                <td><input type="checkbox"></td>
+                                                                <td> {{user?.user_name}} </td>
+                                                                <td> <button type="button"
+                                                                        (click)="openAccountOfUserAndTheirChilds(user._id, user.self_close_account)"
+                                                                        class="btn btn-success">Open User</button></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                
+                                                <div class="report-bottom-paginate">
+                                                    <pagination-controls (pageChange)="pageChange($event)"
+                                                    class="user-list-pagination" ></pagination-controls>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main> -->
+
+
+<div id="layoutSidenav" class="pt-3">
+    <div id="layoutSidenav_content" class="p-0">
+       <main>
+          <div class="container-fluid px-3">
+             <div class="header-tab bg-tab btr-5">
+                <h3>Restore User</h3>
+             </div>
+             <div class="table-profit">
+                <div class="card mb-4">
+                   <div class="card-body text-center">
+                      <table class="dataTable-table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                         <!-- <thead>
+                            <tr>
+                               <th class="text-center">User Name</th>
+                               <th class="text-center"> Name</th>
+                               <th class="text-center">Date & Time</th>
+                               <th class="text-center">Action</th>
+                            </tr>
+                         </thead>
+                         
+                         <tbody>
+                            <tr *ngFor="let user of userList | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: total_items } ; let i=index">
+                               <td class="text-center">
+                                  <span class="text-uppercase">{{user?.user_name}}</span>
+                               </td>
+                               <td class="text-center">
+                                  <span class="text-uppercase">-</span>
+                               </td>
+                               <td class="text-center">
+                                  <span class="text-uppercase">-</span>
+                               </td>
+                               <td class="text-center">
+                                  <a (click)="openAccountOfUserAndTheirChilds(user._id, user.self_close_account)" class="btn btn-primary btn-sm" title="deleteicon">Restore</a>
+                               </td>
+                            </tr>
+                           
+                         </tbody> -->
+                      </table>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </main>
+    </div>
+    <!-- delete conform -->
+    <!-- <div class="modal fade" id="restore_user" tabindex="-1" role="dialog" aria-labelledby="restoreuserModalLabel" aria-hidden="true">
+       <div class="modal-dialog" role="document">
+          <div class="modal-content">
+             <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white">Confirmation</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+                </button>
+             </div>
+             <div class="modal-body text-center">
+                <h5>Are you sure want to restore?</h5>
+             </div>
+             <div class="modal-footer">
+                <button class="btn btn-primary" type="button">Yes</button>
+                <button class="btn btn-default" type="button">Cancel</button>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div> -->

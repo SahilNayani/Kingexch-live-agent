@@ -1,0 +1,543 @@
+<app-header></app-header>
+<main>
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="block-market inner-content">
+                <div class="page-title">
+                    <h3 *ngIf="userDetail?.user_type_id != 0">Block Market</h3>
+                    <h3 *ngIf="userDetail?.user_type_id == 0">Import Market</h3>
+                    <div class="breadcrumb">
+                        <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                class="fa fa-arrow-left"></i>Back</a>
+                    </div>
+                </div>
+                <div class="filterDiv">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form>
+                                <div class="filter-btn text-start">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="blockMarketFilter" id="all"
+                                            value="all" [(ngModel)]="selectedFilter"
+                                            (ngModelChange)="filterSportsDataBasedRadioSelect($event,selectedFilter)">
+                                        <label class="form-check-label" for="all">All </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="blockMarketFilter"
+                                            id="cricket" value="Cricket" [(ngModel)]="selectedFilter"
+                                            (ngModelChange)="filterSportsDataBasedRadioSelect($event,selectedFilter)">
+                                        <label class="form-check-label" for="cricket">Cricket</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="blockMarketFilter"
+                                            id="soccer" value="Soccer" [(ngModel)]="selectedFilter"
+                                            (ngModelChange)="filterSportsDataBasedRadioSelect($event,selectedFilter)">
+                                        <label class="form-check-label" for="soccer">Soccer</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="blockMarketFilter"
+                                            id="tennis" value="Tennis" [(ngModel)]="selectedFilter"
+                                            (ngModelChange)="filterSportsDataBasedRadioSelect($event,selectedFilter)">
+                                        <label class="form-check-label" for="tennis">Tennis </label>
+                                    </div>
+                                    <!-- <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="blockMarketFilter" id="casino" value="Casino" [(ngModel)]="selectedFilter" (ngModelChange)="filterSportsDataBasedRadioSelect($event,selectedFilter)">
+                                        <label class="form-check-label" for="casino">Casino </label>
+                                    </div> -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-div">
+                    <div id="multilevelList">
+                        <ul>
+                            <li class="parent-list" *ngFor="let sport of allSportsDetails;let i =index">
+                                <a>
+                                    <span (click)="getOnlineSeries(sport,sport?.sport_id,i)">{{sport?.name}} </span>
+                                    <label class="switch">
+                                        <input type="checkbox" value="sport?.is_active" name="Active"
+                                            class="chkPermission" (change)='updateSportStatus(sport)'
+                                            [checked]="sport?.is_active==1?true:false">
+                                        <div class="slider round">
+                                            <div class="on">On</div>
+                                            <div class="off">Off</div>
+                                        </div>
+                                    </label>
+                                    <span class="icon-background" ngbTooltip="Visible"
+                                        [ngStyle]="{'background-color': (sport?.is_visible == true) ? 'green' : 'red'}"
+                                        style="align-self: center;line-height: 10px;"
+                                        *ngIf="sport?.is_created == 1 && sport?.is_active == 1 && userDetail?.user_type_id == 0 "
+                                        (click)="blockVisible('sport',sport,i)">V</span>
+                                    <span ngbTooltip="Market-Setting" class="setting-btn"
+                                        (click)="openModalSportSetting(sportSetting,userDetail,sport.sport_id,0);getMarketLimits(sport,0)"
+                                        *ngIf="sport?.is_created == 1 && sport?.is_active == 1 && userDetail?.user_type_id == 0"><i
+                                            class="fa fa-cog"></i></span>
+                                    <input name="searchSport" *ngIf="sport.seriesDetails"
+                                        class="form-control search-input" type="text" autocomplete="off"
+                                        [(ngModel)]="searchSeries[i]" placeholder="Search Series...">
+                                </a>
+                                <ul *ngIf="sport.seriesDetails || sport?.is_active == 1">
+                                    <li
+                                        *ngFor="let series of sport.seriesDetails|search: searchSeries[i] :'name';let j=index">
+                                        <a>
+                                            <span style="font-weight: 600;"
+                                                (click)="getOnlineMatchDetails(sport?.sport_id,series,i,j)">{{series.name}}
+                                                <span *ngIf="userDetail?.user_type_id == 0">❲{{series?.match_count}}❳
+                                                    ({{series?.series_id}})
+                                                </span> </span>
+                                            <label class="switch" *ngIf="seriesButton[i] == true ">
+                                                <input type="checkbox" value="series?.is_active" name="Active"
+                                                    class="chkPermission"
+                                                    (change)='updateSeriesStatus($event,series,i,j)'
+                                                    [checked]="series?.is_active==1?true:false">
+                                                <div class="slider round">
+                                                    <div class="on">On</div>
+                                                    <div class="off">Off</div>
+                                                </div>
+                                            </label>
+                                            <span ngbTooltip="Market-Setting" class="setting-btn"
+                                                (click)="openModalSportSetting(sportSetting,userDetail,series.series_id,1);getMarketLimits(series,1)"
+                                                *ngIf="seriesButton[i] == true &&series?.is_active==1 && userDetail?.user_type_id == 0"><i
+                                                    class="fa fa-cog"></i></span>
+                                            <span class="icon-background" ngbTooltip="Active"
+                                                [ngStyle]="{'background-color': (series.is_active ==1) ? 'green' : 'red'}"
+                                                *ngIf="seriesButton[i] == true ">A</span>
+                                            <span class="icon-background" ngbTooltip="Create"
+                                                [ngStyle]="{'background-color': (series.is_created ==1) ? 'green' : 'red'}"
+                                                *ngIf="seriesButton[i] == true && userDetail?.user_type_id == 0">C</span>
+                                            <span class="icon-background" ngbTooltip="Visible"
+                                                [ngStyle]="{'background-color': (series?.is_visible == true) ? 'green' : 'red'}"
+                                                style="align-self: center;"
+                                                *ngIf="series?.is_created == 1 &&sport?.is_visible == true && series?.is_active == 1 && userDetail?.user_type_id == 0 "
+                                                (click)="blockVisible('series',series,i,j)">V</span>
+                                            <input name="searchMatch" *ngIf="series.matchDetails"
+                                                class="form-control search-input" type="text" autocomplete="off"
+                                                [(ngModel)]="searchMatch[j]" placeholder="Search Match...">
+                                        </a>
+                                        <ul *ngIf="series.matchDetails || series?.is_active == 1">
+                                            <li
+                                                *ngFor="let match of series.matchDetails |search: searchMatch[j] :'name';let k=index">
+                                                <a>
+                                                    <span
+                                                        (click)="getMarketList(match.sport_id,match,i,j,k)">{{match.name}}
+                                                        <span *ngIf="userDetail?.user_type_id == 0">
+                                                            ({{match?.match_id}}) </span> &nbsp;&nbsp;
+                                                        {{match?.match_date | date:'medium'}} </span>
+                                                    <label class="switch" *ngIf="matchButton[j] == true ">
+                                                        <input type="checkbox" value="match?.is_active" name="Active"
+                                                            class="chkPermission"
+                                                            (change)='updateMatchStatus($event,match,i,j,k)'
+                                                            [checked]="match?.is_active==1?true:false">
+                                                        <div class="slider round">
+                                                            <div class="on">On</div>
+                                                            <div class="off">Off</div>
+                                                        </div>
+                                                    </label>
+                                                    <span ngbTooltip="Market-Setting" class="setting-btn"
+                                                        (click)="openModalSportSetting(sportSetting,userDetail,match.match_id,2); getMarketLimits(match,2)"
+                                                        *ngIf="matchButton[j] == true && match?.is_active==1 && userDetail?.user_type_id == 0"><i
+                                                            class="fa fa-cog"></i></span>
+                                                    <span class="icon-background" ngbTooltip="Fancy"
+                                                        [ngStyle]="{'background-color': (match.enable_fancy==1) ? 'green' : 'red'}"
+                                                        *ngIf="matchButton[j] == true && match.is_active == 1 && match.is_created == 1 && match.sport_id == '4' && userDetail?.user_type_id == 0"
+                                                        (click)="enableFancy(match,series,i,j,k)"><i
+                                                            class="fa fa-facebook" aria-hidden="true"></i></span>
+                                                    <span class="icon-background" ngbTooltip="Active"
+                                                        [ngStyle]="{'background-color': (match.is_active ==1) ? 'green' : 'red'}"
+                                                        *ngIf="matchButton[j] == true ">A</span>
+                                                    <span class="icon-background" ngbTooltip="Create"
+                                                        [ngStyle]="{'background-color': (match.is_created ==1) ? 'green' : 'red'}"
+                                                        *ngIf="matchButton[j] == true && userDetail?.user_type_id == 0">C</span>
+                                                    <span class="icon-background" ngbTooltip="Visible"
+                                                        [ngStyle]="{'background-color': (match?.is_visible == true) ? 'green' : 'red'}"
+                                                        style="align-self: center;"
+                                                        *ngIf="match?.is_created == 1 && match?.is_active == 1 && series?.is_visible == true && userDetail?.user_type_id == 0 "
+                                                        (click)="blockVisible('match',match,i,j,k)">V</span>
+                                                    <span style="margin: 0 10px; font-size: 18px;cursor: pointer;"
+                                                        (click)="updateLimit(match.match_id,1,match.is_lock,i,j,k)"
+                                                        *ngIf="match.is_lock == false && userDetail?.user_type_id == 0 && match.is_active == 1 && match.is_created == 1">
+                                                        <i class="fa fa-unlock"></i></span>
+                                                    <span style="margin: 0 10px; font-size: 18px; cursor: pointer;"
+                                                        (click)="userDetail?.user_type_id == 0 ? updateLimit(match.match_id,1,match.is_lock,i,j,k) : ''"
+                                                        *ngIf="match.is_lock != false && match.is_active == 1 && match.is_created == 1">
+                                                        <i class="fa fa-lock"></i></span>
+                                                    <span class="manualInplayBtn"
+                                                        [ngClass]="{'red':(match.inplay)== false,'green':(match.inplay)== true}"
+                                                        *ngIf="matchButton[j] == true && match.is_active == 1 && match.is_created == 1 "
+                                                        (click)="updateInplayStatus(match.match_id,match.inplay,i,j,k)">Manual
+                                                        Inplay</span>
+                                                    <span ngbTooltip="Route" class="setting-btn"
+                                                        (click)="matchDetail(match)"
+                                                        *ngIf="matchButton[j] == true && match.is_active == 1 && match.is_created == 1 ">
+                                                        <img src="assets/images/route.png"
+                                                            style="height: 25px;width: 25px;"></span>
+                                                    <textarea name="match.match_tv_url" *ngIf="matchButton[j] == true && match.is_active == 1 && match.is_created == 1 && userDetail?.user_type_id == 0"
+                                                        class="form-control"  autocomplete="off"  rows="2" cols="100"
+                                                        [(ngModel)]="tvUrl" (keydown.enter)="callTv($event,match.match_id);"></textarea>
+                                                </a>
+                                                <ul *ngIf="match.marketDetails || match?.is_active == 1">
+                                                    <li *ngFor="let market of match.marketDetails;let l=index">
+                                                        <a>
+                                                            <span style="font-style: oblique;
+                                                            font-weight: 600;">{{market.name}} <span
+                                                                    *ngIf="userDetail?.user_type_id == 0">
+                                                                    ({{market?.market_id}}) </span> </span>
+                                                            <label class="switch" *ngIf="marketButton[k] == true ">
+                                                                <input type="checkbox" value="market?.is_active"
+                                                                    name="Active" class="chkPermission"
+                                                                    (change)='updateMarketStatus($event,market,i,j,k,l)'
+                                                                    [checked]="market?.is_active==1?true:false">
+                                                                <div class="slider round">
+                                                                    <div class="on">On</div>
+                                                                    <div class="off">Off</div>
+                                                                </div>
+                                                            </label>
+                                                            <span ngbTooltip="Market-Setting" class="setting-btn"
+                                                                (click)="openModalSportSetting(sportSetting,userDetail,market.market_id,3);getMarketLimits(market,3)"
+                                                                *ngIf="marketButton[k] == true && market?.is_active==1 && userDetail?.user_type_id == 0"><i
+                                                                    class="fa fa-cog"></i></span>
+
+                                                            <span class="icon-background" ngbTooltip="Active"
+                                                                [ngStyle]="{'background-color': (market.is_active ==1) ? 'green' : 'red'}"
+                                                                *ngIf="marketButton[k] == true ">A</span>
+                                                            <span class="icon-background" ngbTooltip="Create"
+                                                                [ngStyle]="{'background-color': (market.is_created ==1) ? 'green' : 'red'}"
+                                                                *ngIf="marketButton[k] == true && userDetail?.user_type_id == 0">C</span>
+                                                            <span class="icon-background" ngbTooltip="Visible"
+                                                                [ngStyle]="{'background-color': (market?.is_visible == true) ? 'green' : 'red'}"
+                                                                style="align-self: center;"
+                                                                *ngIf="market?.is_created == 1 && match?.is_visible == true && market?.is_active == 1 && userDetail?.user_type_id == 0 "
+                                                                (click)="blockVisible('market',market,i,j,k,l)">V</span>
+                                                            <span style="margin: 0 10px; font-size: 18px;"
+                                                                (click)="updateLimit(market.market_id,2,market.is_lock,i,j,k,l)"
+                                                                *ngIf="marketButton[k] == true && market.is_lock == false && userDetail?.user_type_id == 0 && market.is_active == 1 && market.is_created == 1">
+                                                                <i class="fa fa-unlock"></i></span>
+                                                            <span style="margin: 0 10px; font-size: 18px;"
+                                                                (click)="userDetail?.user_type_id == 0 ? updateLimit(market.market_id,1,market.is_lock,i,j,k,l) : ''"
+                                                                *ngIf="marketButton[k] == true && market.is_lock != false && market.is_active == 1 && market.is_created == 1">
+                                                                <i class="fa fa-lock"></i></span>
+                                                        </a>
+
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<ng-template #sportSetting>
+    <div class="modal-header">
+        <label class="modal-title">{{popUpHead}} Settings : {{showSelectedUserName}}</label>
+        <a type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="modal-body no-scroll-body sport-setting-body">
+        <div class="body-inner">
+
+            <div class="filter-tab">
+                <nav>
+                    <!-- <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <ng-container *ngFor="let sportName of specificUserDetails;let i = index">
+                      <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#nav-{{sportName?.name}}" [ngClass]="{'active': i === selectedIndex}"
+                      (click)="selectPill(i)">{{sportName?.name}}</a>
+                    </ng-container>
+                    </div> -->
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-{{sportName?.name}}">
+                        <div class="form-main">
+                            <form [formGroup]='sportsForm'>
+                                <div class="sports-setting-main-section" formArrayName="sports_settings">
+                                    <div class="market-session-setting"
+                                        *ngFor="let sportSettingitem of sportsSettingsFormArr.controls; let j=index"
+                                        [formGroupName]='j'>
+
+                                        <div class="detail-row" *ngIf="selectedIndex === j">
+                                            <div class="detail-row-heading">
+                                                <h4>Market Setting</h4>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3 col-sm-4 col-12">
+                                                    <div class="col-inner">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Min. Stake Amount</label>
+                                                            <input type="number" formControlName="market_min_stack"
+                                                                ngbTooltip="{{sportSettingitem.controls.market_min_stack.errors |DisplayErrorMessage}}"
+                                                                placeholder="" class="form-control"
+                                                                (keyup)="applyValidatorsForMaxStack(j)" #t1="ngbTooltip"
+                                                                triggers="manual" [autoClose]="false"
+                                                                (mouseenter)="t1.open()" (key)="t1.open()"
+                                                                (blur)="t1.open()" />
+
+                                                            <!-- <span *ngIf="sportSettingitem.controls.market_min_stack.errors && !sportErrorData" class="red-alert-message">
+                                                                {{sportSettingitem.controls.market_min_stack.errors |DisplayErrorMessage}}
+                                                            </span> -->
+                                                            <span *ngIf="sportErrorData?.market_min_stack"
+                                                                class="red-alert-message">
+                                                                {{sportErrorData.market_min_stack[0].short_error}}
+                                                                <i class="fa fa-info"
+                                                                    ngbTooltip="{{sportErrorData.market_min_stack[1].long_error}}"></i>
+                                                            </span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-4 col-12">
+                                                    <div class="col-inner">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Max. Stake Amount</label>
+                                                            <input type="number" formControlName="market_max_stack"
+                                                                placeholder="" class="form-control"
+                                                                ngbTooltip="{{sportSettingitem.controls.market_max_stack.errors |DisplayErrorMessage}}"
+                                                                #t2="ngbTooltip" triggers="manual" [autoClose]="false"
+                                                                (mouseenter)="t2.open()" (key)="t2.open()"
+                                                                (blur)="t2.open()" />
+
+                                                            <!-- <span *ngIf="sportSettingitem.controls.market_max_stack.errors&& !sportErrorData" class="red-alert-message">
+                                                                
+                                                                <i class="fa fa-info" ngbTooltip="{{sportSettingitem.controls.market_max_stack.errors |DisplayErrorMessage}}"  ></i>
+                                                            </span> -->
+                                                            <span *ngIf="sportErrorData?.market_max_stack"
+                                                                class="red-alert-message">
+                                                                {{sportErrorData.market_max_stack[0].short_error}}
+                                                                <i class="fa fa-info"
+                                                                    ngbTooltip="{{sportErrorData.market_max_stack[1].long_error}}"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-4 col-12">
+                                                    <div class="col-inner">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Min. Odds Rate</label>
+                                                            <input type="number" formControlName="market_min_odds_rate"
+                                                                ngbTooltip="{{sportSettingitem.controls.market_min_odds_rate.errors |DisplayErrorMessage}}"
+                                                                placeholder="" class="form-control"
+                                                                (keyup)="applyValidatorsForMaxOddsRate(j)"
+                                                                #t3="ngbTooltip" triggers="manual" [autoClose]="false"
+                                                                (mouseenter)="t3.open()" (key)="t3.open()"
+                                                                (blur)="t3.open()" />
+
+                                                            <!-- <span *ngIf="sportSettingitem.controls.market_min_odds_rate.errors&& !sportErrorData" class="red-alert-message">
+                                                                {{sportSettingitem.controls.market_min_odds_rate.errors |DisplayErrorMessage}}
+                                                            </span> -->
+                                                            <span *ngIf="sportErrorData?.market_min_odds_rate"
+                                                                class="red-alert-message">
+                                                                {{sportErrorData.market_min_odds_rate[0].short_error}}
+                                                                <i class="fa fa-info"
+                                                                    ngbTooltip="{{sportErrorData.market_min_odds_rate[1].long_error}}"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-4 col-12">
+                                                    <div class="col-inner">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Max. Odds Rate</label>
+                                                            <input type="number" formControlName="market_max_odds_rate"
+                                                                placeholder="" class="form-control"
+                                                                ngbTooltip="{{sportSettingitem.controls.market_max_odds_rate.errors |DisplayErrorMessage}}"
+                                                                #t4="ngbTooltip" triggers="manual" [autoClose]="false"
+                                                                (mouseenter)="t4.open()" (key)="t4.open()"
+                                                                (blur)="t4.open()" />
+
+                                                            <!-- <span *ngIf="sportSettingitem.controls.market_max_odds_rate.errors&& !sportErrorData" class="red-alert-message">
+                                                                {{sportSettingitem.controls.market_max_odds_rate.errors |DisplayErrorMessage}}
+                                                            </span> -->
+                                                            <span *ngIf="sportErrorData?.market_max_odds_rate"
+                                                                class="red-alert-message">
+                                                                {{sportErrorData.market_max_odds_rate[0].short_error}}
+                                                                <i class="fa fa-info"
+                                                                    ngbTooltip="{{sportErrorData.market_max_odds_rate[1].long_error}}"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-md-3 col-sm-4 col-12">
+                                                    <div class="col-inner">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Match Bets Delay</label>
+                                                            <input type="number" formControlName="market_bet_delay"
+                                                                placeholder="" class="form-control" ngbTooltip="{{sportSettingitem.controls.market_bet_delay.errors |DisplayErrorMessage}}"
+                                                                #t5="ngbTooltip" triggers="manual" [autoClose]="false"(mouseenter)="t5.open()" (key)="t5.open()" (blur)="t5.open()"/>
+                                                            
+                                                           
+                                                            <span *ngIf="sportErrorData?.market_bet_delay" class="red-alert-message">
+                                                                {{sportErrorData.market_bet_delay[0].short_error}}
+                                                                <i class="fa fa-info" ngbTooltip="{{sportErrorData.market_bet_delay[1].long_error}}"  ></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                                <div class="col-md-3 col-sm-4 col-12">
+                                                    <div class="col-inner">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Market Max Profit</label>
+                                                            <input type="number" formControlName="market_max_profit"
+                                                                placeholder="" class="form-control"
+                                                                ngbTooltip="{{sportSettingitem.controls.market_max_profit.errors |DisplayErrorMessage}}"
+                                                                #t6="ngbTooltip" triggers="manual" [autoClose]="false"
+                                                                (mouseenter)="t6.open()" (key)="t6.open()"
+                                                                (blur)="t6.open()" />
+
+                                                            <!-- <span *ngIf="sportSettingitem.controls.market_max_profit.errors&& !sportErrorData" class="red-alert-message">
+                                                                {{sportSettingitem.controls.market_max_profit.errors |DisplayErrorMessage}}
+                                                            </span> -->
+                                                            <span *ngIf="sportErrorData?.market_max_profit"
+                                                                class="re0d0-alert-message">
+                                                                {{sportErrorData.market_max_profit[0].short_error}}
+                                                                <i class="fa fa-info"
+                                                                    ngbTooltip="{{sportErrorData.market_max_profit[1].long_error}}"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-4 col-12">
+                                                    <div class="col-inner">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Before Inplay Match Stake</label>
+                                                            <input type="number" #t7="ngbTooltip" triggers="manual"
+                                                                [autoClose]="false" (mouseenter)="t7.open()"
+                                                                (key)="t7.open()" (blur)="t7.open()"
+                                                                formControlName="market_advance_bet_stake"
+                                                                placeholder="" class="form-control"
+                                                                ngbTooltip="{{sportSettingitem.controls.market_advance_bet_stake.errors |DisplayErrorMessage}}" />
+
+                                                            <!-- <span *ngIf="sportSettingitem.controls.market_advance_bet_stake.errors&& !sportErrorData" class="red-alert-message">
+                                                                {{sportSettingitem.controls.market_advance_bet_stake.errors |DisplayErrorMessage}}
+                                                            </span> -->
+                                                            <span *ngIf="sportErrorData?.market_advance_bet_stake"
+                                                                class="red-alert-message">
+                                                                {{sportErrorData.market_advance_bet_stake[0].short_error}}
+                                                                <i class="fa fa-info"
+                                                                    ngbTooltip="{{sportErrorData.market_advance_bet_stake[1].long_error}}"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="detail-row" *ngIf="sessionSetting == true ">
+                                            <div class="detail-row-heading">
+                                                <h4>Session Setting</h4>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3 col-sm-4 col-12">
+                                                    <div class="col-inner">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Min. Stake Amount</label>
+                                                            <input type="number" formControlName="session_min_stack"
+                                                                ngbTooltip="{{sportSettingitem.controls.session_min_stack.errors |DisplayErrorMessage}}"
+                                                                placeholder="" class="form-control"
+                                                                (keyup)="applyValidatorsForMaxstake(j)" #t8="ngbTooltip"
+                                                                triggers="manual" [autoClose]="false"
+                                                                (mouseenter)="t8.open()" (key)="t8.open()"
+                                                                (blur)="t8.open()" />
+
+                                                            <!-- <span *ngIf="sportSettingitem.controls.session_min_stack.errors&& !sportErrorData" class="red-alert-message">
+                                                                {{sportSettingitem.controls.session_min_stack.errors |DisplayErrorMessage}}
+                                                            </span> -->
+                                                            <span *ngIf="sportErrorData?.session_min_stack"
+                                                                class="red-alert-message">
+                                                                {{sportErrorData.session_min_stack[0].short_error}}
+                                                                <i class="fa fa-info"
+                                                                    ngbTooltip="{{sportErrorData.session_min_stack[1].long_error}}"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-4 col-12">
+                                                    <div class="col-inner">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Max. Stake Amount</label>
+                                                            <input type="number" formControlName="session_max_stack"
+                                                                placeholder="" class="form-control"
+                                                                ngbTooltip="{{sportSettingitem.controls.session_max_stack.errors |DisplayErrorMessage}}"
+                                                                #t9="ngbTooltip" triggers="manual" [autoClose]="false"
+                                                                (mouseenter)="t9.open()" (key)="t9.open()"
+                                                                (blur)="t9.open()" />
+
+                                                            <!-- <span *ngIf="sportSettingitem.controls.session_max_stack.errors&& !sportErrorData" class="red-alert-message">
+                                                                {{sportSettingitem.controls.session_max_stack.errors |DisplayErrorMessage}}
+                                                            </span> -->
+                                                            <span *ngIf="sportErrorData?.session_max_stack"
+                                                                class="red-alert-message">
+                                                                {{sportErrorData.session_max_stack[0].short_error}}
+                                                                <i class="fa fa-info"
+                                                                    ngbTooltip="{{sportErrorData.session_max_stack[1].long_error}}"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-md-3 col-sm-4 col-12">
+                                                    <div class="col-inner">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Session Bet Delay</label>
+                                                            <input type="number" formControlName="session_bet_delay"
+                                                            #t10="ngbTooltip" triggers="manual" [autoClose]="false"(mouseenter)="t10.open()" (key)="t10.open()" (blur)="t10.open()"
+                                                                placeholder="" class="form-control" ngbTooltip="{{sportSettingitem.controls.session_bet_delay.errors |DisplayErrorMessage}}"/>
+                                                           
+                                                            <span *ngIf="sportErrorData?.session_bet_delay" class="red-alert-message">
+                                                                {{sportErrorData.session_bet_delay[0].short_error}}
+                                                                <i class="fa fa-info" ngbTooltip="{{sportErrorData.session_bet_delay[1].long_error}}"  ></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                                <div class="col-md-3 col-sm-4 col-12">
+                                                    <div class="col-inner">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Session Max Profit</label>
+                                                            <input type="number" formControlName="session_max_profit"
+                                                                #t11="ngbTooltip" triggers="manual" [autoClose]="false"
+                                                                (mouseenter)="t11.open()" (key)="t11.open()"
+                                                                (blur)="t11.open()" placeholder="" class="form-control"
+                                                                ngbTooltip="{{sportSettingitem.controls.session_max_profit.errors |DisplayErrorMessage}}" />
+
+                                                            <!-- <span *ngIf="sportSettingitem.controls.session_max_profit.errors&& !sportErrorData" class="red-alert-message">
+                                                                {{sportSettingitem.controls.session_max_profit.errors |DisplayErrorMessage}}
+                                                            </span> -->
+                                                            <span *ngIf="sportErrorData?.session_max_profit"
+                                                                class="red-alert-message">
+                                                                {{sportErrorData.session_max_profit[0].short_error}}
+                                                                <i class="fa fa-info"
+                                                                    ngbTooltip="{{sportErrorData.session_max_profit[1].long_error}}"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer" *ngIf="selectedIndex === j">
+                                            <div class="text-end">
+                                                <button type="submit" class="btn btn-success"
+                                                    (click)="updateMarketSetting(sportSettingitem[j],j)">Save</button>
+                                                &nbsp;
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                                                    (click)="modalRef.hide()">Cancel</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-template>

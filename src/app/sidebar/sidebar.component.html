@@ -1,0 +1,71 @@
+<!-- <div class="sidebar scroller collapse navbar-collapse" id="navbarCollapseSidebar">
+  <div class="menu-section">
+    <ul>
+      <li *ngFor="let sports of allSportsList;let i= index" (click)="getSeriesList(sports.sport_id)">
+        <a><img src="assets/icon/{{sports.sport_id}}.png"> <span>{{sports.name}}</span></a>
+      </li>
+    </ul>
+  </div>
+</div> -->
+<div class="sidebar collapse navbar-collapse" id="navbarCollapseSidebar">
+
+  <!-- <a class="navbar-brand" (click)="dashboard()">
+    <img src="assets/images/aura-logo.png" alt="AuraExch">
+  </a> -->
+  <div class="scroll-sidebar scroller">
+    <div class="menu-section">
+      <div class="top-head-sport">
+        <div class="path-back"><i class="fa fa-ellipsis-v"></i></div>
+        <ul class="text-right mr-2">
+          <li><a>Sports</a></li>
+        </ul>
+      </div>
+      <!-- <h4>Sports</h4> -->
+      <mat-accordion>
+        <mat-expansion-panel class="no-submenu active">
+          <mat-expansion-panel-header (click)="dashboard()">
+            <a><span>Home</span></a>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="no-submenu">
+          <mat-expansion-panel-header [routerLink]="['/dashboard/inplay']">
+            <a><span>In Play</span></a>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngFor="let sports of allSportsList;let i= index">
+          <mat-expansion-panel-header (click)="getSeriesList(sports.sport_id)">
+            <a><span>{{sports.name}}</span></a>
+          </mat-expansion-panel-header>
+          <ul class="submenu-list">
+            <li *ngFor="let series of allSeriesList;let j= index"
+              (click)="goToDashboard(series)">
+              <a> <span>{{series.name}}</span></a>
+            </li>
+          </ul>
+        </mat-expansion-panel>
+       
+        <!-- <mat-expansion-panel class="no-submenu">
+          <mat-expansion-panel-header>
+            <a><img src="assets/images/icon/favorite.png"> <span>Favorite</span></a>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel> -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <a><span>Reports</span></a>
+          </mat-expansion-panel-header>
+          <ul class="menu-list">
+            <li><a class="dropdown-item" [routerLink]="['/myMarket']"><img src="assets/images/icon/my_market.png"> My
+                Market</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/reports/openBets']"><img
+                  src="assets/images/icon/open_bet.png"> Open Bets</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/reports/settledBets']"><img
+                  src="assets/images/icon/settled_bet.png"> Settled Bets</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/reports/statements']"><img
+                  src="assets/images/icon/statement.png"> Statements</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/reports/profitLoss']"><img
+                  src="assets/images/icon/profit_loss.png"> Profit & Loss</a></li>
+          </ul>
+        </mat-expansion-panel>
+      </mat-accordion>
+  </div>
+</div>

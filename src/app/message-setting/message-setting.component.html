@@ -1,0 +1,51 @@
+<app-header></app-header>
+<!-- <app-sidebar></app-sidebar> -->
+<main>
+    <div class="full-wrap">
+        <div class="report-page">
+            <div class="messageSetting inner-content">
+                <div class="page-title">
+                    <h3>Message Setting</h3>
+                    <div class="breadcrumb">
+                        <a (click)="goToBack()" class="btn btn-secondary back-btn"><i
+                                class="fa fa-arrow-left"></i>Back</a>
+                    </div>
+                </div>
+                <div class="main-content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="admin-message">
+                                <form>
+                                    <div class="form-group">
+                                        <label class="form-label">Admin Message</label>
+                                        <textarea class="form-control" placeholder="Message..."
+                                            name="adminMsg"></textarea>
+                                    </div>
+                                    <br>
+                                    <div class="text-right">
+                                        <button type="button" class="btn btn-success">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="user-message">
+                                <form>
+                                    <div class="form-group">
+                                        <label class="form-label">User Message</label>
+                                        <textarea class="form-control" placeholder="Message..."
+                                            name="userMsg"></textarea>
+                                    </div>
+                                    <br>
+                                    <div class="text-right">
+                                        <button type="button" class="btn btn-success">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
