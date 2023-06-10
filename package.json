@@ -67,7 +67,7 @@
     "ngx-infinite-scroll": "^10.0.1",
     "ngx-order-pipe": "^2.1.1",
     "ngx-pagination": "^5.1.1",
-    "ngx-toastr": "^14.0.0",
+    "ngx-toastr": "^14.3.0",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "socket.io-client": "^4.1.3",
