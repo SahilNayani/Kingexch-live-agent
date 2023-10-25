@@ -43,7 +43,7 @@
     "angular-user-idle": "^2.2.7",
     "bootstrap": "^5.0.2",
     "bootstrap-select": "^1.13.1",
-    "crypto-js": "^4.1.1",
+    "crypto-js": "^4.2.0",
     "datatables.net": "^1.11.3",
     "datatables.net-dt": "^1.11.3",
     "express": "^4.15.2",
